@@ -1,3 +1,5 @@
 {
-    "token": "Njg1ODY3NzAzMzUyODE5NzIw.XmO6Hg.AXPDPo_wq91Mri-AAniuKUmqCkc"
+    "token": "Njg1ODY3NzAzMzUyODE5NzIw.XmO6Hg.AXPDPo_wq91Mri-AAniuKUmqCkc",
+    "mongoURL": "mongodb://localhost/2PG",
+    "modules": ["announce", "auto-mod", "general", "music", "xp"]
 }
