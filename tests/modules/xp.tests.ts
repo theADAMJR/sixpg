@@ -1,7 +1,5 @@
 import { expect } from 'chai';
 import { Leveling } from "../../modules/xp";
-import { Message } from "discord.js";
-import { GuildDocument } from '../../models/guild';
 
 describe('Leveling', () => {
     describe('validateXPMsg', () => {
