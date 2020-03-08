@@ -30,5 +30,13 @@ describe('CommandHandler', () => {
 
             assert.throws(result);
         });
+
+        it('found command, with extra args, throws error', async() => {
+            const msg: any = { content: '/ping pong', reply: () => { throw Error(); }};
+
+            const result = async() => await CommandHandler.handle(msg);
+
+            assert.throws(result, 'Invalid args.');
+        });
     });
 })

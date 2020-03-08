@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { Collection, Message, PartialMessage } from "discord.js";
-import Command from '../commands/Command';
+import { Command, CommandContext } from '../commands/Command';
+import { Leveling } from '../modules/xp';
 
 export default class CommandHandler {
     private static _commands: Collection<string, Command>;
@@ -29,13 +30,20 @@ export default class CommandHandler {
     static async handle(msg: Message) {              
         const prefix = '/';
         const content = msg.content.toLowerCase();
-        if (content?.startsWith(prefix)) {                  
-            await CommandHandler.findCommand(content)?.execute(msg);
+        if (content?.startsWith(prefix)) {
+            const args = CommandHandler.getCommandArgs(msg.content);
+            await CommandHandler.findCommand(content)?.execute({ msg, args });
+        } else {
+            Leveling.validateXPMsg(msg);
         }
     }
 
     private static findCommand(content: string) {
         const name = content.split(' ')[0].substr(1, content.length);
         return CommandHandler._commands.get(name);
+    }
+
+    private static getCommandArgs(content: string) {
+        return content.split(' ').splice(0, 1);
     }
 }

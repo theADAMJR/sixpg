@@ -1,21 +1,14 @@
 import { Client } from 'discord.js';
 import config from './config.json';
 import CommandHandler from './handlers/command-handler';
+import EventHandler from './handlers/event-hander';
 import mongoose from 'mongoose';
 
-// handle the bot
-
-const bot = new Client();
-
-bot.on('ready', () => console.log(`It's live!`));
-
-bot.on('message', async(msg: any) => await CommandHandler.handle(msg));
+export const bot = new Client();
 
 bot.login(config.token);
 
+EventHandler.initialize();
 CommandHandler.initialize();
 
-// initialize database
 mongoose.connect(config.mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });
-
-// streaming on my last 2GB of mobile data 😿

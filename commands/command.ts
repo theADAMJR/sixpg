@@ -1,8 +1,13 @@
 import { Message } from "discord.js";
 
-export default interface Command {
+export interface Command {
     name: string;
     summary: string;
     cooldown: number;
-    execute: (msg: Message) => any;
+    execute: (ctx: CommandContext) => any;
+}
+
+export interface CommandContext {
+    msg: Message;
+    args: string[];
 }
