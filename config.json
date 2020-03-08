@@ -1,5 +1,5 @@
 {
-    "token": "Njg1ODY3NzAzMzUyODE5NzIw.XmTRPA.2lSx09SAnUSXghUl4TW_k5Qau38",
+    "token": "Njg1ODY3NzAzMzUyODE5NzIw.XmTRbg.QqVoIsxCJ1Rh3qvlsC0EYXJcwLE",
     "mongoURL": "mongodb://localhost/2PG",
     "modules": ["announce", "auto-mod", "general", "music", "xp"],
     "webappURL": "https://2pg.xyz"
