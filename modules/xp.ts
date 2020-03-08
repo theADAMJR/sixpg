@@ -53,8 +53,8 @@ export class Leveling {
         return guild.xp.levelRoles.find(r => r.level == level)?.role;
     }
 
-    static xpForNextLevel(level: number, exp: number) {
-        return ((75 * Math.pow(level + 1, 2)) + (75 * (level + 1)) - 150) - exp;
+    static xpForNextLevel(currentLevel: number, exp: number) {
+        return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - exp;
     }
 }
 
