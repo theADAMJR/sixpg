@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import CommandHandler from '../../handlers/command-handler';
 
 describe('CommandHandler', () => {
@@ -12,7 +12,7 @@ describe('CommandHandler', () => {
 
             const result = async() => await CommandHandler.handle(msg);
 
-            assert.doesNotThrow(result);
+            expect(result).to.not.throw;
         });
 
         it('no found command message gets ignored', async() => {
@@ -20,7 +20,7 @@ describe('CommandHandler', () => {
 
             const result = async() => await CommandHandler.handle(msg);
 
-            assert.doesNotThrow(result);
+            expect(result).to.not.throw;
         });
 
         it('found command gets executed', async() => {
@@ -28,7 +28,7 @@ describe('CommandHandler', () => {
 
             const result = async() => await CommandHandler.handle(msg);
 
-            assert.throws(result);
+            expect(result).to.throw;
         });
 
         it('found command, with extra args, throws error', async() => {
@@ -36,7 +36,7 @@ describe('CommandHandler', () => {
 
             const result = async() => await CommandHandler.handle(msg);
 
-            assert.throws(result, 'Invalid args.');
+            expect(result).to.throw;
         });
     });
 })

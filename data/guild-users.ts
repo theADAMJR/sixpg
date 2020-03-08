@@ -1,6 +1,5 @@
 import { GuildMember, User } from "discord.js";
 import { GuildUser } from "../models/guild-user";
-import { Model } from "mongoose";
 
 export default class GuildUsers {
     static async get(member: GuildMember | null) {

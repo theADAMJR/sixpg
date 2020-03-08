@@ -34,7 +34,9 @@ export default class CommandHandler {
             const args = CommandHandler.getCommandArgs(msg.content);
             await CommandHandler.findCommand(content)?.execute({ msg, args });
         } else {
-            Leveling.validateXPMsg(msg);
+            try {
+                Leveling.validateXPMsg(msg);
+            } catch {}
         }
     }
 
