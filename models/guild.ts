@@ -1,18 +1,31 @@
-import mongoose from 'mongoose';
-import { XPModule } from '../modules/xp';
+import { model, Schema, Document } from 'mongoose';
+import { GeneralModule } from '../modules/general';
+import Module from '../modules/module';
 
-const guildSchema = new mongoose.Schema({
+export class XPModule extends Module {
+    levelRoles: LevelRole[] = [];
+    ignoredRoles: string[] = [];
+    xpPerMessage = 50;
+    xpCooldown = 5;
+}
+
+export interface LevelRole {
+    level: number;
+    role: string;
+}
+
+const guildSchema = new Schema({
     _id: String,
-    general: Object,
+    general: { type: Object, default: new GeneralModule() },
     music: Object,
-    xp: Object
+    xp: { type: Object, default: new XPModule() }
 });
 
 export interface GuildDocument extends Document {
     _id: string;
-    general: object;
+    general: GeneralModule;
     music: object;
     xp: XPModule;
 }
 
-export const SavedGuild = mongoose.model<GuildDocument>('guild', guildSchema);
+export const SavedGuild = model<GuildDocument>('guild', guildSchema);

@@ -1,17 +1,22 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
 
-const guildUserSchema = new mongoose.Schema({
+const guildUserSchema = new Schema({
     _id: String,
     guildId: String,
     xpMessages: Number,
-    warnings: Number
+    warnings: Object
 });
 
 export interface GuildUser extends Document {
     _id: string;
     guildId: string;
     xpMessages: number;
-    warnings: number;
+    warnings: Warning[];
 }
 
-export const GuildUser = mongoose.model<GuildUser>('guildUser', guildUserSchema);
+export interface Warning {
+    reason: string;
+    at: Date;
+}
+
+export const GuildUser = model<GuildUser>('guildUser', guildUserSchema);

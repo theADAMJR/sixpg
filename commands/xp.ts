@@ -1,10 +1,18 @@
 import { Command, CommandContext } from "./Command";
-import { Message } from "discord.js";
+import GuildUsers from "../data/guild-users";
+import { Leveling } from "../modules/xp";
 
 export default class XPCommand implements Command {
     name = 'xp';
     summary = 'Display the XP card of a user.';
     cooldown = 10;
-    execute = (ctx: CommandContext) => ctx.msg.channel.send('Coming soon!');
+    execute = async(ctx: CommandContext) =>  {
+        const guildUser = await GuildUsers.get(ctx.member);
+        console.log(guildUser);
+        
+
+        await ctx.channel.send(`
+            **XP**: ${guildUser?.xpMessages}\n**Next Level**: 123`);
+    };
 }
 

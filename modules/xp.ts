@@ -7,9 +7,7 @@ import { GuildDocument } from "../models/guild";
 export class Leveling {
     static async validateXPMsg(msg: Message) {
         const guild = await Guilds.get(msg?.guild);
-        if (!msg?.member || Leveling.hasIgnoredXPRole(msg.member, guild)) {
-            console.log('wee woo');
-            
+        if (!msg?.member || !guild || Leveling.hasIgnoredXPRole(msg.member, guild)) {
             throw new Error();
         }
 
@@ -56,16 +54,4 @@ export class Leveling {
     static xpForNextLevel(currentLevel: number, exp: number) {
         return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - exp;
     }
-}
-
-export class XPModule extends Module {
-    levelRoles: LevelRole[] = [];
-    ignoredRoles: string[] = [];
-    xpPerMessage = 50;
-    xpCooldown = 5;
-}
-
-export interface LevelRole {
-    level: number;
-    role: string;
 }

@@ -4,7 +4,8 @@
   "description": "Good bot",
   "main": "bot.js",
   "scripts": {
-    "test": "ts-mocha tests/**/*.tests.ts"
+    "test": "ts-mocha tests/**/*.tests.ts",
+    "start": "nodemon --exec ts-node bot.ts --watch * -e ts,json"
   },
   "keywords": [],
   "author": "ADAMJR#0001",
@@ -13,6 +14,7 @@
     "@types/chai": "^4.2.10",
     "@types/mocha": "^7.0.2",
     "@types/mongoose": "^5.7.3",
+    "@types/ws": "^7.2.2",
     "discord.js": "^12.0.1",
     "mongoose": "^5.9.3",
     "typescript": "^3.8.3"
