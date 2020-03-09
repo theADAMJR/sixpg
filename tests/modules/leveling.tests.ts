@@ -1,30 +1,27 @@
 import { expect } from 'chai';
+import { mock } from 'ts-mockito';
 import Leveling from "../../modules/leveling";
+import { GuildDocument } from '../../models/guild';
 
 describe('Leveling', () => {
     describe('validateXPMsg', () => {
         it('null message member throws exception', () => {
+            const guild = mock<GuildDocument>();
             let msg: any = { member: null };
 
-            const result = () => Leveling.validateXPMsg(msg);  
+            const result = () => Leveling.validateXPMsg(msg, guild);  
 
-            expect(result).to.throw;
+            expect(result).to.throw();
         });
 
         it('member with ignored role throws exception', () => {
-            let msg: any = { member: { roles: { cache: [ '123' ] }}};
+            const guild = mock<GuildDocument>();
+            let msg: any = { member: { roles: { cache: [{ id: '123' }] }}};
+            guild.xp.ignoredRoles = ['123'];
 
-            const result = () => Leveling.validateXPMsg(msg);
+            const result = () => Leveling.validateXPMsg(msg, guild);
 
-            expect(result).to.throw;
-        });
-
-        it('member with ignored role throws exception', () => {
-            let msg: any = { member: { roles: { cache: [ '123' ] }}};
-
-            const result = () => Leveling.validateXPMsg(msg);
-
-            expect(result).to.throw;
+            expect(result).to.throw();
         });
     });
 

@@ -1,14 +1,11 @@
-import Module from "./module";
 import { Message, GuildMember } from "discord.js";
 import GuildUsers from "../data/guild-users";
-import Guilds from "../data/guilds";
 import { GuildDocument } from "../models/guild";
 
 export default class Leveling {
-    static async validateXPMsg(msg: Message) {
-        const guild = msg.guild ? await Guilds.get(msg.guild) : null;
+    static async validateXPMsg(msg: Message, guild: GuildDocument) {
         if (!msg?.member || !guild || Leveling.hasIgnoredXPRole(msg.member, guild)) {
-            throw new Error();
+            throw new Error('Member cannot earn XP');
         }
 
         const guildUser = await GuildUsers.get(msg.member);
@@ -25,6 +22,8 @@ export default class Leveling {
     }
     private static hasIgnoredXPRole(member: GuildMember, guild: GuildDocument) {
         member.roles.cache.forEach(role => {
+            console.log(role);
+            
             if (guild.xp.ignoredRoles.some(id => id == role.id)) {
                 return true;
             }

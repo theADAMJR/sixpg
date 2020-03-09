@@ -1,6 +1,16 @@
 import { model, Schema, Document } from 'mongoose';
 import Module from '../modules/module';
 
+export class AutoModModule extends Module {
+    ignoreRoles: string[] = [];
+    autoDeleteMessages = true;
+    filters: MessageFilter[] = [];
+    banWords: string[] = [];
+    banLinks: string[] = [];
+}
+
+export enum MessageFilter { Words, Links }
+
 export class GeneralModule extends Module {
     prefix = '/';
     isPrivate = false;
@@ -21,6 +31,7 @@ export interface LevelRole {
 
 const guildSchema = new Schema({
     _id: String,
+    autoMod: { type: Object, default: new AutoModModule() }, 
     general: { type: Object, default: new GeneralModule() },
     music: Object,
     xp: { type: Object, default: new XPModule() }
@@ -28,6 +39,7 @@ const guildSchema = new Schema({
 
 export interface GuildDocument extends Document {
     _id: string;
+    autoMod: AutoModModule;
     general: GeneralModule;
     music: object;
     xp: XPModule;

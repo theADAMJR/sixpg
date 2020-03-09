@@ -3,7 +3,7 @@ import { Collection, Message,  TextChannel, DMChannel } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
 import Leveling from '../modules/leveling';
 import Guilds from '../data/guilds';
-import AutoMod from '../modules/auto-mod';
+import AutoMod from '../modules/auto-mod/auto-mod';
 
 export default class CommandHandler {
     private static _commands: Collection<string, Command>;
@@ -48,8 +48,8 @@ export default class CommandHandler {
             }
         } else {
             try {
-                AutoMod.validateMsg(msg);
-                Leveling.validateXPMsg(msg);
+                guild.autoMod.enabled && AutoMod.validateMsg(msg, guild);
+                guild.xp.enabled && Leveling.validateXPMsg(msg, guild);
             } catch {}
         }
     }
