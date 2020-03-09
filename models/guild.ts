@@ -1,6 +1,11 @@
 import { model, Schema, Document } from 'mongoose';
-import { GeneralModule } from '../modules/general';
 import Module from '../modules/module';
+
+export class GeneralModule extends Module {
+    prefix = '/';
+    isPrivate = false;
+    ignoredChannels: string[] = [];
+}
 
 export class XPModule extends Module {
     levelRoles: LevelRole[] = [];

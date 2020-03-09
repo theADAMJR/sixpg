@@ -4,7 +4,7 @@ import GuildUsers from "../data/guild-users";
 import Guilds from "../data/guilds";
 import { GuildDocument } from "../models/guild";
 
-export class Leveling {
+export default class Leveling {
     static async validateXPMsg(msg: Message) {
         const guild = msg.guild ? await Guilds.get(msg.guild) : null;
         if (!msg?.member || !guild || Leveling.hasIgnoredXPRole(msg.member, guild)) {
@@ -14,9 +14,9 @@ export class Leveling {
         const guildUser = await GuildUsers.get(msg.member);
         if (!guildUser) return;
 
-        const oldLevel = Leveling.getXPInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
+        const oldLevel = Leveling.xpInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
         guildUser.xpMessages++;
-        const newLevel = Leveling.getXPInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
+        const newLevel = Leveling.xpInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
 
         if (newLevel > oldLevel) {
             Leveling.handleLevelUp(msg, newLevel, guild);
@@ -46,13 +46,13 @@ export class Leveling {
         return guild.xp.levelRoles.find(r => r.level == level)?.role;
     }
 
-    static getXPInfo(messages: number, xpPerMessage: number) {
-        const exp = xpPerMessage * messages;
-        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - exp))) / 150;
+    static xpInfo(messages: number, xpPerMessage: number) {
+        const xp = xpPerMessage * messages;
+        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
 
-        const xpForNextLevel = this.xpForNextLevel();
         const level = Math.floor(preciseLevel);
-        return { level, exp, xpForNextLevel };
+        const xpForNextLevel = this.xpForNextLevel(level, xp);
+        return { level, exp: xp, xpForNextLevel };
     }
     private static xpForNextLevel(currentLevel: number, xp: number) {
         return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - xp;

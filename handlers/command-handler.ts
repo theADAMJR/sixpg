@@ -1,8 +1,9 @@
 import fs from 'fs';
 import { Collection, Message,  TextChannel, DMChannel } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
-import { Leveling } from '../modules/leveling';
+import Leveling from '../modules/leveling';
 import Guilds from '../data/guilds';
+import AutoMod from '../modules/auto-mod';
 
 export default class CommandHandler {
     private static _commands: Collection<string, Command>;
@@ -29,9 +30,10 @@ export default class CommandHandler {
     }
 
     static async handle(msg: Message) {
-        if (!msg.member || msg.author.bot) return;
+        if (!msg.member || !msg.content || !msg.guild || msg.author.bot) return;
         
-        const prefix = '/'; // TODO: get from guild document
+        const guild = await Guilds.get(msg.guild);
+        const prefix = guild.general.prefix;
         const content = msg.content.toLowerCase();
 
         const isCommand = content?.startsWith(prefix);
@@ -41,12 +43,12 @@ export default class CommandHandler {
 
                 await CommandHandler.findCommand(content)?.execute(new CommandContext(msg));
             }
-            catch (error) {
-                console.error(error);                
+            catch (error) {               
                 msg.channel.send(error || 'Un unknown error occurred');
             }
         } else {
             try {
+                AutoMod.validateMsg(msg);
                 Leveling.validateXPMsg(msg);
             } catch {}
         }
