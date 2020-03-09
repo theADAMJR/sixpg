@@ -2,15 +2,11 @@ import { Guild as DiscordGuild } from "discord.js";
 import { GuildDocument, SavedGuild } from "../models/guild";
 
 export default class Guilds {
-    static get(guild: DiscordGuild | null) {
+    static get(guild: DiscordGuild) {
         return this.getOrCreate(guild);
     }
 
-    private static async getOrCreate(guild: DiscordGuild | null) {
-        if (!guild) {
-            return null;
-        }
-
+    private static async getOrCreate(guild: DiscordGuild) {
         const savedGuild = await SavedGuild.findById(guild.id);
         return savedGuild ?? this.create(guild);
     }

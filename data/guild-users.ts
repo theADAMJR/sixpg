@@ -2,14 +2,11 @@ import { GuildMember, User } from "discord.js";
 import { GuildUser } from "../models/guild-user";
 
 export default class GuildUsers {
-    static async get(member: GuildMember | null) {
+    static async get(member: GuildMember) {
         return this.getOrCreate(member);
     }
 
-    private static async getOrCreate(member: GuildMember | null) {
-        if (member == null) {
-            return null;
-        }
+    private static async getOrCreate(member: GuildMember) {
         const user = await GuildUser.findById(member.id);
         return user ?? this.create(member);
     }

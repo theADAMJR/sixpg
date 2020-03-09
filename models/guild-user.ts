@@ -3,8 +3,8 @@ import { model, Schema, Document } from 'mongoose';
 const guildUserSchema = new Schema({
     _id: String,
     guildId: String,
-    xpMessages: Number,
-    warnings: Object
+    xpMessages: { type: Number, default: 0 },
+    warnings: { type: Array, default: [] }
 });
 
 export interface GuildUser extends Document {

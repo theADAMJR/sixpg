@@ -6,7 +6,7 @@ import { GuildDocument } from "../models/guild";
 
 export class Leveling {
     static async validateXPMsg(msg: Message) {
-        const guild = await Guilds.get(msg?.guild);
+        const guild = msg.guild ? await Guilds.get(msg.guild) : null;
         if (!msg?.member || !guild || Leveling.hasIgnoredXPRole(msg.member, guild)) {
             throw new Error();
         }
@@ -14,9 +14,9 @@ export class Leveling {
         const guildUser = await GuildUsers.get(msg.member);
         if (!guildUser) return;
 
-        const oldLevel = Leveling.getLevel(guildUser.xpMessages, guild?.xp.xpPerMessage);
+        const oldLevel = Leveling.getXPInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
         guildUser.xpMessages++;
-        const newLevel = Leveling.getLevel(guildUser.xpMessages, guild?.xp.xpPerMessage);
+        const newLevel = Leveling.getXPInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;
 
         if (newLevel > oldLevel) {
             Leveling.handleLevelUp(msg, newLevel, guild);
@@ -30,11 +30,6 @@ export class Leveling {
             }
         });
         return false;
-    }
-    static getLevel(messages: number, xpPerMessage: number) {
-        const exp = xpPerMessage * messages;
-        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - exp))) / 150;
-        return Math.floor(preciseLevel);
     }
 
     private static handleLevelUp(msg: Message, newLevel: number, guild: GuildDocument) {
@@ -51,7 +46,15 @@ export class Leveling {
         return guild.xp.levelRoles.find(r => r.level == level)?.role;
     }
 
-    static xpForNextLevel(currentLevel: number, exp: number) {
-        return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - exp;
+    static getXPInfo(messages: number, xpPerMessage: number) {
+        const exp = xpPerMessage * messages;
+        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - exp))) / 150;
+
+        const xpForNextLevel = this.xpForNextLevel();
+        const level = Math.floor(preciseLevel);
+        return { level, exp, xpForNextLevel };
+    }
+    private static xpForNextLevel(currentLevel: number, xp: number) {
+        return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - xp;
     }
 }

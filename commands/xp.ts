@@ -1,6 +1,7 @@
 import { Command, CommandContext } from "./Command";
 import GuildUsers from "../data/guild-users";
-import { Leveling } from "../modules/xp";
+import { Leveling } from "../modules/leveling";
+import Guilds from "../data/guilds";
 
 export default class XPCommand implements Command {
     name = 'xp';
@@ -8,11 +9,14 @@ export default class XPCommand implements Command {
     cooldown = 10;
     execute = async(ctx: CommandContext) =>  {
         const guildUser = await GuildUsers.get(ctx.member);
-        console.log(guildUser);
-        
+        const guild = await Guilds.get(ctx.guild);
+
+        const level = Leveling.getLevel(guildUser.xpMessages, guild.xp.xpPerMessage);   
+        const xp = guild.xp.xpPerMessage * guildUser.xpMessages;     
+        const xpForNextLevel = Leveling.xpForNextLevel(level, xp);      
 
         await ctx.channel.send(`
-            **XP**: ${guildUser?.xpMessages}\n**Next Level**: 123`);
+            **Level**: ${level}\n**XP**: ${xp}\n**Next Level**: ${xpForNextLevel}`);
     };
 }
 

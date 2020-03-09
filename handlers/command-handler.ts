@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { Collection, Message,  TextChannel, DMChannel } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
-import { Leveling } from '../modules/xp';
+import { Leveling } from '../modules/leveling';
 import Guilds from '../data/guilds';
 
 export default class CommandHandler {
