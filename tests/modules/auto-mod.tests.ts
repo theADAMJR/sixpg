@@ -81,4 +81,9 @@ describe('AutoMod', () => {
             result().should.not.eventually.throw();
         });
     });
+
+    describe('warnMember', () =>
+    {
+        it('warned user, warnings pushed')
+    });
 });

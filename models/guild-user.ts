@@ -16,6 +16,7 @@ export interface GuildUser extends Document {
 
 export interface Warning {
     reason: string;
+    instigatorId: string;
     at: Date;
 }
 
