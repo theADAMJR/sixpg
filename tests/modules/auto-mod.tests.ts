@@ -1,8 +1,12 @@
-import { expect, assert } from 'chai';
+import { use, should } from 'chai';
 import { GuildDocument, MessageFilter } from '../../models/guild';
 import { mock } from 'ts-mockito';
 import AutoMod from '../../modules/auto-mod/auto-mod';
-import { Message, GuildEmoji } from 'discord.js';
+import { Message } from 'discord.js';
+import chaiAsPromised from 'chai-as-promised';
+
+use(chaiAsPromised);
+should();
 
 describe('AutoMod', () => {
     describe('validateMsg', () => {
@@ -17,7 +21,7 @@ describe('AutoMod', () => {
 
             const result = () => AutoMod.validateMsg(msg, guild);
 
-            expect(result).to.throw();
+            result().should.eventually.throw();
         });
 
         it('contains ban word, no filter, ignored', async() =>
@@ -31,7 +35,7 @@ describe('AutoMod', () => {
 
             const result = () => AutoMod.validateMsg(msg, guild);
 
-            expect(result).to.not.throw();
+            result().should.not.eventually.throw();
         });
         
         it('contains ban link, has filter, error thrown', async() =>
@@ -45,7 +49,7 @@ describe('AutoMod', () => {
 
             const result = () => AutoMod.validateMsg(msg, guild);
 
-            expect(result).to.throw();
+            result().should.eventually.throw();
         });
         
         it('contains ban link, no filter, ignored', async() =>
@@ -59,7 +63,7 @@ describe('AutoMod', () => {
 
             const result = () => AutoMod.validateMsg(msg, guild);
 
-            expect(result).to.not.throw();
+            result().should.not.eventually.throw();
         });
     });
 });

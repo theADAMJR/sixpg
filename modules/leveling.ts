@@ -21,9 +21,7 @@ export default class Leveling {
         guildUser.save();
     }
     private static hasIgnoredXPRole(member: GuildMember, guild: GuildDocument) {
-        member.roles.cache.forEach(role => {
-            console.log(role);
-            
+        member.roles.cache.forEach(role => {            
             if (guild.xp.ignoredRoles.some(id => id == role.id)) {
                 return true;
             }
@@ -33,8 +31,7 @@ export default class Leveling {
 
     private static handleLevelUp(msg: Message, newLevel: number, guild: GuildDocument) {
         msg.channel.send(`
-            Level Up! ⭐\n 
-            **New Level**: ${newLevel}`);
+            Level Up! ⭐\n**New Level**: \`${newLevel}\``);
 
         const levelRole = Leveling.getLevelRole(newLevel, guild);
         if (levelRole) {
@@ -47,9 +44,10 @@ export default class Leveling {
 
     static xpInfo(messages: number, xpPerMessage: number) {
         const xp = xpPerMessage * messages;
-        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
 
-        const level = Math.floor(preciseLevel);
+        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
+        const level = ~~preciseLevel;a
+
         const xpForNextLevel = this.xpForNextLevel(level, xp);
         return { level, exp: xp, xpForNextLevel };
     }

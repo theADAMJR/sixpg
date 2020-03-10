@@ -19,8 +19,10 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.10",
+    "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^7.1.0",
     "ts-mockito": "^2.5.0"
   }

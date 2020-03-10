@@ -1,7 +1,11 @@
-import { expect } from 'chai';
+import { should, use, expect } from 'chai';
 import { mock } from 'ts-mockito';
 import Leveling from "../../modules/leveling";
 import { GuildDocument } from '../../models/guild';
+import chaiAsPromised from 'chai-as-promised';
+
+use(chaiAsPromised);
+should();
 
 describe('Leveling', () => {
     describe('validateXPMsg', () => {
@@ -11,7 +15,7 @@ describe('Leveling', () => {
 
             const result = () => Leveling.validateXPMsg(msg, guild);  
 
-            expect(result).to.throw();
+            result().should.eventually.throw();
         });
 
         it('member with ignored role throws exception', () => {
@@ -21,7 +25,7 @@ describe('Leveling', () => {
 
             const result = () => Leveling.validateXPMsg(msg, guild);
 
-            expect(result).to.throw();
+            result().should.eventually.throw();
         });
     });
 
@@ -53,7 +57,7 @@ describe('Leveling', () => {
         });
         
         it('minimum level xp returns max xp for next level', () => {
-            const result = Leveling.xpInfo(2, 300).xpForNextLevel;
+            const result = Leveling.xpInfo(1, 300).xpForNextLevel;
 
             expect(result).to.equal(450);
         });
