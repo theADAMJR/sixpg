@@ -1,21 +1,22 @@
-import { User as DiscordUser } from "discord.js";
-import { User } from "../models/user";
+import { User } from "discord.js";
+import { SavedUser, UserDocument } from "../models/user";
+import DBWrapper from "./db-wrapper";
 
-export default class Users {
-    static async get(user: DiscordUser) {
+export default class Users implements DBWrapper<UserDocument, User> {
+    get(user: User) {
         return this.getOrCreate(user);
     }
 
-    private static async getOrCreate(user: DiscordUser) {
-        if (user == null) {
-            return null;
-        }
-
-        const savedUser = await User.findById(user.id);
+    private async getOrCreate(user: User) {
+        const savedUser = await SavedUser.findById(user.id);
         return savedUser ?? this.create(user);
     }
 
-    private static async create(user: DiscordUser) {
-        return User.create(user);
+    private create(user: User) {
+        return SavedUser.create(user);
+    }
+
+    save(user: UserDocument) {
+        return user.save();
     }
 }

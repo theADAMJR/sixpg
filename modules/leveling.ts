@@ -1,14 +1,19 @@
 import { Message, GuildMember } from "discord.js";
-import GuildUsers from "../data/guild-users";
+// import Members from "../data/members";
 import { GuildDocument } from "../models/guild";
+import { MemberDocument } from "../models/member";
+import DBWrapper from "../data/db-wrapper";
+import Members from "../data/members";
 
 export default class Leveling {
+    static members: DBWrapper<MemberDocument, GuildMember> = new Members();
+
     static async validateXPMsg(msg: Message, guild: GuildDocument) {
         if (!msg?.member || !guild || Leveling.hasIgnoredXPRole(msg.member, guild)) {
             throw new Error('Member cannot earn XP');
         }
 
-        const guildUser = await GuildUsers.get(msg.member);
+        const guildUser = await this.members.get(msg.member);
         if (!guildUser) return;
 
         const oldLevel = Leveling.xpInfo(guildUser.xpMessages, guild?.xp.xpPerMessage).level;

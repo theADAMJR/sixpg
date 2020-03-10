@@ -20,4 +20,4 @@ export interface Warning {
     at: Date;
 }
 
-export const Member = model<MemberDocument>('member', memberSchema);
+export const SavedMember = model<MemberDocument>('member', memberSchema);

@@ -18,4 +18,8 @@ export default class Guilds implements DBWrapper<GuildDocument, Guild> {
 
         return newGuild.save();
     }
+
+    save(guild: GuildDocument) {
+        return guild.save();
+    }
 }

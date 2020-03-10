@@ -1,5 +1,5 @@
 import { Command, CommandContext } from "./Command";
-import GuildUsers from "../data/guild-users";
+import Members from "../data/members";
 import Leveling from "../modules/leveling";
 import Guilds from "../data/guilds";
 
@@ -8,8 +8,8 @@ export default class XPCommand implements Command {
     summary = 'Display the XP card of a user.';
     cooldown = 10;
     execute = async(ctx: CommandContext) =>  {
-        const guildUser = await GuildUsers.get(ctx.member);
-        const guild = await Guilds.get(ctx.guild);
+        const guildUser = await new Members().get(ctx.member);
+        const guild = await new Guilds().get(ctx.guild);
 
         const info = Leveling.xpInfo(guildUser.xpMessages, guild.xp.xpPerMessage);
 

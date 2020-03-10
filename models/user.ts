@@ -1,17 +1,21 @@
-import mongoose from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
 
-declare var XPCard: XPCard;
-
-const userSchema = new mongoose.Schema({
-    _id: String,
-    votes: Number,
-    xpCard: XPCard
-});
-
-export interface XPCard {
-    backgroundURL: string;
-    primary: string;
-    secondary: string;
+export class XPCard {
+    backgroundURL = '';
+    primary = '';
+    secondary = '';
 }
 
-export const User = mongoose.model('user', userSchema);
+const userSchema = new Schema({
+    _id: String,
+    votes: Number,
+    xpCard: { type: Object, default: new XPCard() }
+});
+
+export interface UserDocument extends Document {
+    _id: string;
+    votes: number;
+    xpCard: XPCard;
+}
+
+export const SavedUser = model<UserDocument>('user', userSchema);

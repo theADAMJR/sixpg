@@ -1,9 +1,12 @@
-import { use, should } from 'chai';
-import { GuildDocument, MessageFilter } from '../../models/guild';
+import { use, should, expect } from 'chai';
+import { GuildDocument, MessageFilter, SavedGuild } from '../../models/guild';
 import { mock } from 'ts-mockito';
 import AutoMod from '../../modules/auto-mod/auto-mod';
-import { Message } from 'discord.js';
+import { Message, Guild, GuildMember } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
+import DBWrapper from '../../data/db-wrapper';
+import { MemberDocument, SavedMember } from '../../models/member';
+import Members from '../../data/members';
 
 use(chaiAsPromised);
 should();
@@ -84,9 +87,34 @@ describe('AutoMod', () => {
 
     describe('warnMember', () =>
     {
-        it('warning added to user warnings', () =>
+        it('warn user, message sent to user', async() =>
         {
-            
+            AutoMod.members = mock<Members>();
+            AutoMod.members.get = (): any => {
+                return new SavedMember();
+            };
+
+            const member: any = { id: '123', send: () => { throw new Error() } };
+            const instigator: any = { id: '321' };
+
+            const result = () => AutoMod.warnMember(member, instigator);
+
+            result().should.eventually.throw();
+        });
+
+        it('warn self user, error thrown', async() =>
+        {
+            AutoMod.members = mock<Members>();
+            AutoMod.members.get = (): any => {
+                return new SavedMember();
+            };
+
+            const member: any = { id: '123' };
+            const instigator: any = { id: '123' };
+
+            const result = () => AutoMod.warnMember(member, instigator);
+
+            result().should.eventually.throw();
         });
     });
 });
