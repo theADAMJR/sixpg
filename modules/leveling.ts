@@ -46,7 +46,7 @@ export default class Leveling {
         const xp = xpPerMessage * messages;
 
         const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
-        const level = ~~preciseLevel;a
+        const level = ~~preciseLevel;
 
         const xpForNextLevel = this.xpForNextLevel(level, xp);
         return { level, exp: xp, xpForNextLevel };

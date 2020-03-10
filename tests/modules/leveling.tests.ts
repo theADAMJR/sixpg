@@ -60,8 +60,7 @@ describe('Leveling', () => {
             const result = Leveling.xpInfo(1, 300).xpForNextLevel;
 
             expect(result).to.equal(450);
-        });
-        
+        });        
         
         it('returns xp for next level', () => {
             const result = Leveling.xpInfo(1, 250).xpForNextLevel;

@@ -43,8 +43,9 @@ export default class CommandHandler {
 
                 await CommandHandler.findCommand(content)?.execute(new CommandContext(msg));
             }
-            catch (error) {               
-                msg.channel.send(error || 'Un unknown error occurred');
+            catch (error) {
+                const content = error?.message || 'Un unknown error occurred';          
+                msg.channel.send(':warning: ' + content);
             }
         } else {
             try {

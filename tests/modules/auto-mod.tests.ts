@@ -23,6 +23,21 @@ describe('AutoMod', () => {
 
             result().should.eventually.throw();
         });
+        
+        it('contains ban word, has filter, auto deleted, error thrown', async() =>
+        {            
+            const guild = mock<GuildDocument>();
+            const msg = mock<Message>();
+
+            guild.autoMod.filters = [MessageFilter.Words];
+            guild.autoMod.banWords = ['a'];
+            msg.content = 'a';
+            msg.delete = () => { throw new Error('deleted'); }
+
+            const result = () => AutoMod.validateMsg(msg, guild);
+
+            result().should.eventually.throw('deleted');
+        });
 
         it('contains ban word, no filter, ignored', async() =>
         {
