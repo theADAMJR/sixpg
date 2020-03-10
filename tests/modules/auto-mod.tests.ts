@@ -84,6 +84,9 @@ describe('AutoMod', () => {
 
     describe('warnMember', () =>
     {
-        it('warned user, warnings pushed')
+        it('warning added to user warnings', () =>
+        {
+            
+        });
     });
 });

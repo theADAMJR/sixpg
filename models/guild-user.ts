@@ -1,13 +1,13 @@
 import { model, Schema, Document } from 'mongoose';
 
-const guildUserSchema = new Schema({
+const memberSchema = new Schema({
     _id: String,
     guildId: String,
     xpMessages: { type: Number, default: 0 },
     warnings: { type: Array, default: [] }
 });
 
-export interface GuildUser extends Document {
+export interface MemberDocument extends Document {
     _id: string;
     guildId: string;
     xpMessages: number;
@@ -20,4 +20,4 @@ export interface Warning {
     at: Date;
 }
 
-export const GuildUser = model<GuildUser>('guildUser', guildUserSchema);
+export const Member = model<MemberDocument>('member', memberSchema);

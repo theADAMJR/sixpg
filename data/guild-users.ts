@@ -1,19 +1,19 @@
 import { GuildMember, Guild } from "discord.js";
-import { GuildUser } from "../models/guild-user";
+import { MemberDocument, Member } from "../models/guild-user";
 import DBWrapper from "./db-wrapper";
 
-export default class GuildUsers implements DBWrapper<GuildUser, GuildMember> {
+export default class GuildUsers implements DBWrapper<MemberDocument, GuildMember> {
     async get(member: GuildMember) {
         return this.getOrCreate(member);
     }
 
     private async getOrCreate(member: GuildMember) {
-        const user = await GuildUser.findById(member.id);
+        const user = await Member.findById(member.id);
         return user ?? this.create(member);
     }
 
     private async create(member: GuildMember) {
-        const user = new GuildUser();
+        const user = new Member();
         user._id = member.id;
         user.guildId = member.guild.id;
         return user.save();
