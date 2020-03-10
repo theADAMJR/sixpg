@@ -7,7 +7,7 @@ export class AutoModModule extends Module {
     filters: MessageFilter[] = [];
     banWords: string[] = [];
     banLinks: string[] = [];
-    alertWarnedUsers = true;
+    autoWarnUsers = true;
 }
 
 export enum MessageFilter { Words, Links }

@@ -1,4 +1,4 @@
-import { Message, GuildMember, TextChannel, Guild } from "discord.js";
+import { Message, GuildMember, TextChannel, Guild, User } from "discord.js";
 
 export interface Command {
     name: string;
@@ -12,6 +12,7 @@ export class CommandContext {
     member: GuildMember;
     channel: TextChannel;
     guild: Guild;
+    user: User;
     args: string[];
     
     constructor(msg: any) {
@@ -19,10 +20,11 @@ export class CommandContext {
         this.member = msg.member;
         this.channel = msg.channel;
         this.guild = msg.guild;
+        this.user = msg.member.user;
         this.args = this.getCommandArgs(msg.content);
     }
 
     private getCommandArgs(content: string) {
-        return content.split(' ').splice(0, 1);
+        return content.split(' ').splice(1, 1);
     }
 }

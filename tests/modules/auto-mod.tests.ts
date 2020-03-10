@@ -87,14 +87,14 @@ describe('AutoMod', () => {
 
     describe('warnMember', () =>
     {
-        it('warn user, message sent to user', async() =>
+        it('warn member, message sent to user', async() =>
         {
             AutoMod.members = mock<Members>();
             AutoMod.members.get = (): any => {
                 return new SavedMember();
             };
 
-            const member: any = { id: '123', send: () => { throw new Error() } };
+            const member: any = { id: '123', send: () => { throw new Error() }, user: { bot: false }};
             const instigator: any = { id: '321' };
 
             const result = () => AutoMod.warnMember(member, instigator);
@@ -102,15 +102,30 @@ describe('AutoMod', () => {
             result().should.eventually.throw();
         });
 
-        it('warn self user, error thrown', async() =>
+        it('warn self member, error thrown', async() =>
         {
             AutoMod.members = mock<Members>();
             AutoMod.members.get = (): any => {
                 return new SavedMember();
             };
 
-            const member: any = { id: '123' };
+            const member: any = { id: '123', user: { bot: false } };
             const instigator: any = { id: '123' };
+
+            const result = () => AutoMod.warnMember(member, instigator);
+
+            result().should.eventually.throw();
+        });
+
+        it('warn bot member, error thrown', async() =>
+        {
+            AutoMod.members = mock<Members>();
+            AutoMod.members.get = (): any => {
+                return new SavedMember();
+            };
+
+            const member: any = { id: '123', user: { bot: true }};
+            const instigator: any = { id: '321' };
 
             const result = () => AutoMod.warnMember(member, instigator);
 

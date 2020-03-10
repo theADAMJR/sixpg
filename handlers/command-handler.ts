@@ -6,6 +6,8 @@ import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
 
 export default class CommandHandler {
+    static guilds = new Guilds();
+
     private static _commands: Collection<string, Command>;
     
     static initialize() {
@@ -32,7 +34,7 @@ export default class CommandHandler {
     static async handle(msg: Message) {
         if (!msg.member || !msg.content || !msg.guild || msg.author.bot) return;
         
-        const guild = await Guilds.get(msg.guild);
+        const guild = await this.guilds.get(msg.guild);
         const prefix = guild.general.prefix;
         const content = msg.content.toLowerCase();
 
@@ -42,8 +44,7 @@ export default class CommandHandler {
                 await CommandHandler.validateChannel(msg.channel as TextChannel);
 
                 await CommandHandler.findCommand(content)?.execute(new CommandContext(msg));
-            }
-            catch (error) {
+            } catch (error) {
                 const content = error?.message || 'Un unknown error occurred';          
                 msg.channel.send(':warning: ' + content);
             }
@@ -55,7 +56,7 @@ export default class CommandHandler {
         }
     }
     private static async validateChannel(channel: TextChannel) {
-        const guild = await Guilds.get(channel.guild);
+        const guild = await this.guilds.get(channel.guild);
         const isIgnored = guild?.general.ignoredChannels
             .some((id: string) => id === channel.id);
         if (isIgnored) {

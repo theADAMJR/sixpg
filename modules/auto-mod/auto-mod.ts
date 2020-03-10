@@ -23,7 +23,7 @@ export default class AutoMod {
                 if (guild.autoMod.autoDeleteMessages) {
                     await msg.delete({ reason: validation });
                 }
-                if (guild.autoMod.alertWarnedUsers && msg.member && msg.client.user) {
+                if (guild.autoMod.autoWarnUsers && msg.member && msg.client.user) {
                     await AutoMod.warnMember(msg.member, msg.client.user, validation);
                 }
                 throw validation;
@@ -35,13 +35,19 @@ export default class AutoMod {
         if (member.id === instigator.id) {
             throw new Error('You cannot warn yourself.');
         }
-        
+        if (member.user.bot) {
+            throw new Error('Bots cannot be warned.');
+        }
         const savedMember = await this.members.get(member);
         const warning = { reason, instigatorId: instigator.id, at: new Date() };
         
         savedMember.warnings.push(warning);
-        this.members.save(savedMember);
+        console.log(savedMember.warnings.length);
+        
+        await this.members.save(savedMember);
 
-        await member.send(`${instigator} warned you for \`${reason}\``);
+        try { // TODO: add CommandUtils.mention(id: string)
+            await member.send(`<@!${instigator}> warned you for \`${reason}\``);
+        } catch {}
     }
 }
