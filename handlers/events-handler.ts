@@ -3,10 +3,11 @@ import CommandHandler from './command-handler';
 import config from '../config.json';
 import { SavedGuild } from '../models/guild';
 import { TextChannel } from 'discord.js';
+import Log from '../utils/log';
 
-export default class EventHandler {
+export default class EventsHandler {
     static initialize() {
-        bot.on('ready', () => console.log(`It's live!`));
+        bot.on('ready', () => Log.info(`It's live!`, `events`));
 
         bot.on('message', async(msg: any) => await CommandHandler.handle(msg));
 

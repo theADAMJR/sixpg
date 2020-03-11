@@ -1,9 +1,11 @@
 import fs from 'fs';
 import { Collection, Message,  TextChannel, DMChannel } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
-import Leveling from '../modules/leveling';
+import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
+import 'reflect-metadata';
+import Log from '../utils/log';
 
 export default class CommandHandler {
     static guilds = new Guilds();
@@ -26,7 +28,7 @@ export default class CommandHandler {
 
                 commandCount++;
             }
-            console.log(`Loaded: ${commandCount} commands`);
+            Log.info(`Loaded: ${commandCount} commands`, `cmds`);
         });
         CommandHandler._commands = commands;     
     }
@@ -40,12 +42,12 @@ export default class CommandHandler {
 
         const isCommand = content?.startsWith(prefix);
         if (isCommand) {
-            try {                
-                await CommandHandler.validateChannel(msg.channel as TextChannel);
+            try {
+                await this.validateChannel(msg.channel as TextChannel);
 
-                await CommandHandler.findCommand(content)?.execute(new CommandContext(msg));
+                await this.findCommand(content)?.execute(new CommandContext(msg));
             } catch (error) {
-                const content = error?.message || 'Un unknown error occurred';          
+                const content = error?.message ?? 'Un unknown error occurred';          
                 msg.channel.send(':warning: ' + content);
             }
         } else {
@@ -65,6 +67,6 @@ export default class CommandHandler {
     }
     private static findCommand(content: string) {
         const name = content.split(' ')[0].substr(1, content.length);
-        return CommandHandler._commands.get(name);
+        return this._commands.get(name);
     }
 }

@@ -7,7 +7,7 @@ import Members from "../../data/members";
 export default class AutoMod {
     static members = new Members();
 
-    static readonly validators : Map<MessageFilter, typeof BadWordValidator> = new Map([
+    static readonly validators = new Map([
         [MessageFilter.Words, BadWordValidator],
         [MessageFilter.Links, BadLinkValidator]
     ]);
@@ -24,7 +24,7 @@ export default class AutoMod {
                     await msg.delete({ reason: validation });
                 }
                 if (guild.autoMod.autoWarnUsers && msg.member && msg.client.user) {
-                    await AutoMod.warnMember(msg.member, msg.client.user, validation);
+                    await AutoMod.warnMember(msg.member, msg.client.user, validation?.message);
                 }
                 throw validation;
             }
@@ -41,9 +41,7 @@ export default class AutoMod {
         const savedMember = await this.members.get(member);
         const warning = { reason, instigatorId: instigator.id, at: new Date() };
         
-        savedMember.warnings.push(warning);
-        console.log(savedMember.warnings.length);
-        
+        savedMember.warnings.push(warning);        
         await this.members.save(savedMember);
 
         try { // TODO: add CommandUtils.mention(id: string)

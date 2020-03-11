@@ -1,5 +1,4 @@
 import { Command, CommandContext } from "./Command";
-import Leveling from "../modules/leveling";
 import AutoMod from "../modules/auto-mod/auto-mod";
 
 export default class PingCommand implements Command {

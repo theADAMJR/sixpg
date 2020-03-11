@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import CommandHandler from '../../handlers/command-handler';
+import CommandHandler from '../../../handlers/command-handler';
 
 describe('CommandHandler', () => {
     beforeEach(() => {

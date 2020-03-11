@@ -4,6 +4,10 @@
     "module": "CommonJS",
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    // used for dependency injection
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }

@@ -1,9 +1,8 @@
 import { Message, GuildMember } from "discord.js";
-// import Members from "../data/members";
-import { GuildDocument } from "../models/guild";
-import { MemberDocument } from "../models/member";
-import DBWrapper from "../data/db-wrapper";
-import Members from "../data/members";
+import { GuildDocument } from "../../models/guild";
+import { MemberDocument } from "../../models/member";
+import DBWrapper from "../../data/db-wrapper";
+import Members from "../../data/members";
 
 export default class Leveling {
     static members: DBWrapper<MemberDocument, GuildMember> = new Members();

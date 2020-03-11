@@ -1,17 +1,16 @@
 import { use, should, expect } from 'chai';
-import { GuildDocument, MessageFilter, SavedGuild } from '../../models/guild';
+import { GuildDocument, MessageFilter } from '../../../models/guild';
 import { mock } from 'ts-mockito';
-import AutoMod from '../../modules/auto-mod/auto-mod';
-import { Message, Guild, GuildMember } from 'discord.js';
+import AutoMod from '../../../modules/auto-mod/auto-mod';
+import { Message } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
-import DBWrapper from '../../data/db-wrapper';
-import { MemberDocument, SavedMember } from '../../models/member';
-import Members from '../../data/members';
+import {  SavedMember } from '../../../models/member';
+import Members from '../../../data/members';
 
 use(chaiAsPromised);
 should();
 
-describe('AutoMod', () => {
+describe('modules/auto-mod', () => {
     describe('validateMsg', () => {
         it('contains ban word, has filter, error thrown', async() =>
         {            
