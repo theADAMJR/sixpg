@@ -1,6 +1,18 @@
 import { model, Schema, Document } from 'mongoose';
 import Module from '../modules/module';
 
+export class AnnounceModule extends Module {
+    events: AnnounceEvent[] = [];
+}
+
+export enum EventType { MemberJoin, MemberLeave, MessageDeleted }
+
+export interface AnnounceEvent {
+    event: EventType;
+    channel: string;
+    message: string;
+}
+
 export class AutoModModule extends Module {
     ignoreRoles: string[] = [];
     autoDeleteMessages = true;
@@ -32,6 +44,7 @@ export interface LevelRole {
 
 const guildSchema = new Schema({
     _id: String,
+    announce: { type: Object, default: new AnnounceModule() }, 
     autoMod: { type: Object, default: new AutoModModule() }, 
     general: { type: Object, default: new GeneralModule() },
     music: Object,
@@ -40,6 +53,7 @@ const guildSchema = new Schema({
 
 export interface GuildDocument extends Document {
     _id: string;
+    announce: AnnounceModule;
     autoMod: AutoModModule;
     general: GeneralModule;
     music: object;

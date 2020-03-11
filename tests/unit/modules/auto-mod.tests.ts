@@ -20,7 +20,7 @@ describe('modules/auto-mod', () => {
             guild.autoMod.filters = [MessageFilter.Words];
             guild.autoMod.banWords = ['a'];
             msg.content = 'a';
-
+            
             const result = () => AutoMod.validateMsg(msg, guild);
 
             result().should.eventually.throw();

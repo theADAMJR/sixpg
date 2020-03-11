@@ -4,7 +4,6 @@ import { Command, CommandContext } from '../commands/command';
 import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
-import 'reflect-metadata';
 import Log from '../utils/log';
 
 export default class CommandHandler {

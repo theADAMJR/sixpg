@@ -4,6 +4,7 @@ import CommandHandler from './handlers/command-handler';
 import EventsHandler from './handlers/events-handler';
 import mongoose from 'mongoose';
 import Announce from './modules/announce/announce';
+import 'reflect-metadata';
 
 export const bot = new Client();
 
