@@ -14,4 +14,5 @@ Simple multi-purpose Discord bot made with TypeScript
 
 ### Common Errors
 `UnhandledPromiseRejectionWarning: MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017`
+
 **Possible Cause**: No MongoDB server instance running, start with `mongod`
