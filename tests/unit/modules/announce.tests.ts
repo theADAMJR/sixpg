@@ -98,4 +98,9 @@ describe('modules/announce', () =>
             result().should.eventually.throws(new Error('<@!123> joined!'));
         });
     });
+
+    describe('message-deleted.handler', () =>
+    {
+        
+    });
 });

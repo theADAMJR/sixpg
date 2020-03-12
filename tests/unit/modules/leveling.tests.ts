@@ -8,12 +8,18 @@ use(chaiAsPromised);
 should();
 
 describe('modules/leveling', () => {
+    let leveling: Leveling;
+
+    beforeEach(() => {
+        leveling = new Leveling();
+    });
+
     describe('validateXPMsg', () => {
         it('null message member throws exception', () => {
             const guild = mock<GuildDocument>();
             let msg: any = { member: null };
 
-            const result = () => Leveling.validateXPMsg(msg, guild);  
+            const result = () => leveling.validateXPMsg(msg, guild);  
 
             result().should.eventually.throw();
         });
@@ -23,7 +29,7 @@ describe('modules/leveling', () => {
             let msg: any = { member: { roles: { cache: [{ id: '123' }] }}};
             guild.xp.ignoredRoles = ['123'];
 
-            const result = () => Leveling.validateXPMsg(msg, guild);
+            const result = () => leveling.validateXPMsg(msg, guild);
 
             result().should.eventually.throw();
         });

@@ -11,9 +11,18 @@ use(chaiAsPromised);
 should();
 
 describe('modules/auto-mod', () => {
+    let autoMod: AutoMod;
+
+    beforeEach(() => {
+        const members = mock<Members>();
+        members.get = (): any => new SavedMember();
+        
+        autoMod = new AutoMod(members);
+    });
+    
     describe('validateMsg', () => {
-        it('contains ban word, has filter, error thrown', async() =>
-        {            
+
+        it('contains ban word, has filter, error thrown', async() => {            
             const guild = mock<GuildDocument>();
             const msg = mock<Message>();
 
@@ -21,13 +30,12 @@ describe('modules/auto-mod', () => {
             guild.autoMod.banWords = ['a'];
             msg.content = 'a';
             
-            const result = () => AutoMod.validateMsg(msg, guild);
+            const result = () => autoMod.validateMsg(msg, guild);
 
             result().should.eventually.throw();
         });
         
-        it('contains ban word, has filter, auto deleted, error thrown', async() =>
-        {            
+        it('contains ban word, has filter, auto deleted, error thrown', async() => {            
             const guild = mock<GuildDocument>();
             const msg = mock<Message>();
 
@@ -36,13 +44,12 @@ describe('modules/auto-mod', () => {
             msg.content = 'a';
             msg.delete = () => { throw new Error('deleted'); }
 
-            const result = () => AutoMod.validateMsg(msg, guild);
+            const result = () => autoMod.validateMsg(msg, guild);
 
             result().should.eventually.throw('deleted');
         });
 
-        it('contains ban word, no filter, ignored', async() =>
-        {
+        it('contains ban word, no filter, ignored', async() => {
             const guild = mock<GuildDocument>();
             const msg = mock<Message>();
 
@@ -50,13 +57,12 @@ describe('modules/auto-mod', () => {
             guild.autoMod.banWords = [];
             msg.content = 'a';
 
-            const result = () => AutoMod.validateMsg(msg, guild);
+            const result = () => autoMod.validateMsg(msg, guild);
 
             result().should.not.eventually.throw();
         });
         
-        it('contains ban link, has filter, error thrown', async() =>
-        {            
+        it('contains ban link, has filter, error thrown', async() => {            
             const guild = mock<GuildDocument>();
             const msg = mock<Message>();
             
@@ -64,13 +70,12 @@ describe('modules/auto-mod', () => {
             guild.autoMod.banLinks = ['a'];
             msg.content = 'a';
 
-            const result = () => AutoMod.validateMsg(msg, guild);
+            const result = () => autoMod.validateMsg(msg, guild);
 
             result().should.eventually.throw();
         });
         
-        it('contains ban link, no filter, ignored', async() =>
-        {            
+        it('contains ban link, no filter, ignored', async() => {            
             const guild = mock<GuildDocument>();
             const msg = mock<Message>();
 
@@ -78,55 +83,36 @@ describe('modules/auto-mod', () => {
             guild.autoMod.banLinks = ['a'];
             msg.content = 'a';
 
-            const result = () => AutoMod.validateMsg(msg, guild);
+            const result = () => autoMod.validateMsg(msg, guild);
 
             result().should.not.eventually.throw();
         });
     });
 
-    describe('warnMember', () =>
-    {
-        it('warn member, message sent to user', async() =>
-        {
-            AutoMod.members = mock<Members>();
-            AutoMod.members.get = (): any => {
-                return new SavedMember();
-            };
-
+    describe('warnMember', () => {
+        it('warn member, message sent to user', async() => {
             const member: any = { id: '123', send: () => { throw new Error() }, user: { bot: false }};
             const instigator: any = { id: '321' };
 
-            const result = () => AutoMod.warnMember(member, instigator);
+            const result = () => autoMod.warnMember(member, instigator);
 
             result().should.eventually.throw();
         });
 
-        it('warn self member, error thrown', async() =>
-        {
-            AutoMod.members = mock<Members>();
-            AutoMod.members.get = (): any => {
-                return new SavedMember();
-            };
-
+        it('warn self member, error thrown', async() => {
             const member: any = { id: '123', user: { bot: false } };
             const instigator: any = { id: '123' };
 
-            const result = () => AutoMod.warnMember(member, instigator);
+            const result = () => autoMod.warnMember(member, instigator);
 
             result().should.eventually.throw();
         });
 
-        it('warn bot member, error thrown', async() =>
-        {
-            AutoMod.members = mock<Members>();
-            AutoMod.members.get = (): any => {
-                return new SavedMember();
-            };
-
+        it('warn bot member, error thrown', async() => {
             const member: any = { id: '123', user: { bot: true }};
             const instigator: any = { id: '321' };
 
-            const result = () => AutoMod.warnMember(member, instigator);
+            const result = () => autoMod.warnMember(member, instigator);
 
             result().should.eventually.throw();
         });

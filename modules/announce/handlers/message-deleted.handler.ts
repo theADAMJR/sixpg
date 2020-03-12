@@ -1,10 +1,22 @@
-import EventHandler from "./event-handler";
-import { Message } from "discord.js";
+import AnnounceHandler from "./announce-handler";
+import { Message, TextChannel } from "discord.js";
+import { EventType } from "../../../models/guild";
 
-export default class MessageDeleteHandler implements EventHandler {
+export default class MessageDeleteHandler extends AnnounceHandler {
+    on = 'messageDelete';
+
     async invoke(...args: any[]) {
         const msg: Message = args[0];
+        if (msg.author.bot || !msg.guild) return;
         
-        await msg.channel.send(`Message Deleted: \`${msg.content}\``);
+        const event = await super.getEvent(EventType.MessageDeleted, msg.guild);
+        if (!event) return;
+
+        const channel = msg.guild.channels.cache.get(event.channel) as TextChannel;
+        await channel?.send(`Message Deleted: \`${msg.content}\``);
+    }
+    
+    protected applyGuildVariables(...args: any[]): string {
+        throw new Error("Method not implemented.");
     }
 }

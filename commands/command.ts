@@ -4,6 +4,7 @@ export interface Command {
     name: string;
     summary: string;
     cooldown: number;
+    
     execute: (ctx: CommandContext) => Promise<any> | void;
 }
 

@@ -5,14 +5,14 @@ import { BadLinkValidator } from "./validators/bad-link.validator";
 import Members from "../../data/members";
 
 export default class AutoMod {
-    static members = new Members();
+    constructor(private members = new Members()) {}
 
-    static readonly validators = new Map([
+    readonly validators = new Map([
         [MessageFilter.Words, BadWordValidator],
         [MessageFilter.Links, BadLinkValidator]
     ]);
     
-    static async validateMsg(msg: Message, guild: GuildDocument) {
+    async validateMsg(msg: Message, guild: GuildDocument) {
         const activeFilters = guild.autoMod.filters;
         for (const filter of activeFilters) {
             try {
@@ -24,14 +24,14 @@ export default class AutoMod {
                     await msg.delete({ reason: validation });
                 }
                 if (guild.autoMod.autoWarnUsers && msg.member && msg.client.user) {
-                    await AutoMod.warnMember(msg.member, msg.client.user, validation?.message);
+                    await this.warnMember(msg.member, msg.client.user, validation?.message);
                 }
                 throw validation;
             }
         }
     }
 
-    static async warnMember(member: GuildMember, instigator: User, reason = "No reason specified.") {
+    async warnMember(member: GuildMember, instigator: User, reason = "No reason specified.") {
         if (member.id === instigator.id) {
             throw new Error('You cannot warn yourself.');
         }

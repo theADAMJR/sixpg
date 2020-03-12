@@ -1,15 +1,20 @@
 import { bot } from '../bot';
-import CommandHandler from './command-handler';
+import CommandService from './command.service';
 import config from '../config.json';
 import { SavedGuild } from '../models/guild';
 import { TextChannel } from 'discord.js';
 import Log from '../utils/log';
+import Service from './service';
 
-export default class EventsHandler {
-    static initialize() {
+export default class EventsService implements Service {
+    constructor(private commandHandler = new CommandService()) {
+        commandHandler.initialize();
+    }
+
+    initialize() {
         bot.on('ready', () => Log.info(`It's live!`, `events`));
 
-        bot.on('message', async(msg: any) => await CommandHandler.handle(msg));
+        bot.on('message', async(msg: any) => await this.commandHandler.handle(msg));
 
         bot.on('guildCreate', (guild) =>
         {

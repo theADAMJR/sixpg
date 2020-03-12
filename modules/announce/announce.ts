@@ -1,25 +1,19 @@
 import { bot } from "../../bot";
+
 import MemberJoinHandler from "./handlers/member-join.handler";
 import MemberLeaveHandler from "./handlers/member-leave.handler";
-import EventHandler from "./handlers/event-handler";
 import MessageDeleteHandler from "./handlers/message-deleted.handler";
 
 export default class Announce {
-    private readonly events: Map<string, EventHandler> = new Map([
-        ['guildMemberAdd', new MemberJoinHandler()],
-        ['guildMemberRemove', new MemberLeaveHandler()],
-        ['messageDelete', new MessageDeleteHandler()],
-    ]);
+    private readonly handlers = [
+        new MemberJoinHandler(),
+        new MemberLeaveHandler(),
+        new MessageDeleteHandler()
+    ];
 
-    constructor() {        
-        this.subscribeToEvents();
-    }
-
-    private subscribeToEvents() {                
-        for (const event of this.events.keys()) {            
-            const handler = this.events.get(event);
-            
-            handler && bot.on(event, handler.invoke);
+    initialize() {
+        for (const handler of this.handlers) {
+            bot.on(handler.on, handler.invoke);
         }
     }
 }

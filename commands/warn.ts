@@ -5,6 +5,7 @@ export default class PingCommand implements Command {
     name = 'warn';
     summary = 'Warn a user and add a warning to their account.';
     cooldown = 5;
+    constructor(private autoMod = new AutoMod()) {}
     
     execute = async(ctx: CommandContext) => {
         const target = ctx.msg.mentions.members?.first();        
@@ -14,7 +15,7 @@ export default class PingCommand implements Command {
 
         const reason = ctx.args[1];
         
-        await AutoMod.warnMember(target, ctx.user, reason);
+        await this.autoMod.warnMember(target, ctx.user, reason);
 
         await ctx.channel.send(`${target} was warned for ${reason}`);
     };
