@@ -6,8 +6,13 @@ Simple multi-purpose Discord bot made with TypeScript
 2) `npm i` to install packages
 
 ## Hosting
-- Remember to have a local MongoDB database running `mongod`
 1) `npm start` to start the bot
+
+### Database
+- Remember to have a local MongoDB database running `mongod`
+
+### Music
+- Have Lavalink.jar running
 
 ## Troubleshooting
 - Open an issue, if you find any bugs or have any suggestions etc.

@@ -44,8 +44,9 @@ export default class CommandService {
                 await this.validateChannel(msg.channel as TextChannel);
 
                 const command = this.findCommand(content);
-                const canExecute = this.canExecute(command, msg.member);
-                if (!command || !canExecute) return;
+                if (!command) return;
+
+                this.validatePreconditions(command, msg.member);
                 
                 command.execute(new CommandContext(msg));
             } catch (error) {                
@@ -60,8 +61,9 @@ export default class CommandService {
         }
     }
 
-    canExecute(command: Command | undefined, executor: GuildMember) {
-        return !command?.precondition || executor.hasPermission(command.precondition);
+    validatePreconditions(command: Command, executor: GuildMember) {
+        if (command.precondition && !executor.hasPermission(command.precondition))
+            throw new Error(`**Required Permission**: \`${command.precondition}\``);
     }
 
     private async validateChannel(channel: TextChannel) {

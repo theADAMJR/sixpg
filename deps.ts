@@ -7,12 +7,15 @@ export default class Deps {
         }
     }
 
-    static get<T>(type: any): T {
+    static get<T>(type: any): T {        
         const service = this.deps.find(t => t instanceof type);
 
-        if (!service) {
-            throw new Error(`Service of type '${type?.name}' could not be found.`);
-        }
-        return service;
+        return !service ? this.add<T>(type) : service;
+    }
+
+    private static add<T>(type: any): T {
+        const obj = new type();
+        this.deps.push(obj);
+        return obj;
     }
 }
