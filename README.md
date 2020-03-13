@@ -14,7 +14,7 @@ Simple multi-purpose Discord bot made with TypeScript
 ### Music
 - Have Lavalink.jar running - `java -jar Lavalink.jar`
 
-[Lavalink Setup](https://github.com/Frederikam/Lavalink)
+[Lavalink Setup](https://github.com/Frederikam/Lavalink#server-configuration)
 
 ## Troubleshooting
 - Open an issue, if you find any bugs or have any suggestions etc.
