@@ -12,7 +12,8 @@ Simple multi-purpose Discord bot made with TypeScript
 - Remember to have a local MongoDB database running `mongod`
 
 ### Music
-- Have Lavalink.jar running
+- Have Lavalink.jar running - `java -jar Lavalink.jar`
+[https://github.com/Frederikam/Lavalink](Lavalink Setup)
 
 ## Troubleshooting
 - Open an issue, if you find any bugs or have any suggestions etc.
