@@ -1,7 +1,7 @@
 import { Command, CommandContext } from "./Command";
 import Deps from "../deps";
 import { music } from "../modules/music/music";
-import { VoiceChannel, Message } from "discord.js";
+import { VoiceChannel, Message, User, GuildMember } from "discord.js";
 
 export default class PlayCommand implements Command {
     name = 'play';
@@ -9,26 +9,42 @@ export default class PlayCommand implements Command {
     cooldown = 5;
     
     execute = async(ctx: CommandContext) => {
-        const voiceChannel = ctx.member.voice.channel;
-        if (!voiceChannel) {
-            throw new Error('You must be in a voice channel to play music.');
-        }        
-        const query = ctx.args[0];
+        const query = ctx.args.join();        
         if (!query) {
             throw new Error('Query must be provided.');
         }
 
-        const player = this.joinAndGetPlayer(ctx, voiceChannel);
+        const player = this.joinAndGetPlayer(ctx);
 
-        const res = await music.search(query, ctx.user);
-        player.queue.add(res.tracks[0]);
+        const maxQueueSize = 5;
+        if (player.queue.size >= maxQueueSize) {
+            throw new Error(`Max queue size of \`${maxQueueSize}\` reached.`);
+        }
+        const track = await this.searchForTrack(query, ctx.member);
+
+        player.queue.add(track);
+        
+        if (player.playing) {
+            return ctx.channel.send(`**Added**: \`${track.title}\` to list.`);
+        }
+        player.play();
     }
 
-    private joinAndGetPlayer(ctx: CommandContext, voiceChannel: VoiceChannel) {
+    private joinAndGetPlayer(ctx: CommandContext) {
+        const voiceChannel = ctx.member.voice.channel;
+        if (!voiceChannel) {
+            throw new Error('You must be in a voice channel to play music.');
+        }
+
         return music.players.spawn({
             guild: ctx.guild,
             voiceChannel: voiceChannel,
             textChannel: ctx.channel,
         });
+    }
+
+    private async searchForTrack(query: string, requestor: GuildMember) {
+        const res = await music.search(query, requestor);    
+        return res.tracks[0];
     }
 }

@@ -29,6 +29,7 @@ export class CommandContext {
     }
 
     private getCommandArgs(content: string) {
-        return content.split(' ').splice(1, 1);
+        const args = content.split(' ');
+        return args.splice(1, args.length);
     }
 }

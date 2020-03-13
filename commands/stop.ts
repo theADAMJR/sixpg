@@ -1,7 +1,7 @@
 import { Command, CommandContext } from "./Command";
 import { music } from "../modules/music/music";
 
-export default class PlayCommand implements Command {
+export default class StopCommand implements Command {
     name = 'stop';
     summary = 'Stop playback, clear list, and leave channel';
     cooldown = 5;

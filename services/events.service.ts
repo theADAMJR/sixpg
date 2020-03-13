@@ -5,6 +5,7 @@ import { SavedGuild } from '../models/guild';
 import { TextChannel } from 'discord.js';
 import Log from '../utils/log';
 import Deps from '../deps';
+import { Music } from '../modules/music/music';
 
 export default class EventsService {
     constructor(private commands = Deps.get<CommandService>(CommandService)) {
@@ -12,7 +13,10 @@ export default class EventsService {
     }
 
     private initialize() {
-        bot.on('ready', () => Log.info(`It's live!`, `events`));
+        bot.on('ready', () => {
+            Log.info(`It's live!`, `events`)
+            new Music();
+        });
 
         bot.on('message', async(msg: any) => await this.commands.handle(msg));
 
