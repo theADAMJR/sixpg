@@ -1,11 +1,12 @@
 import { Command, CommandContext } from "./Command";
 import AutoMod from "../modules/auto-mod/auto-mod";
+import Deps from "../deps";
 
 export default class PingCommand implements Command {
     name = 'warn';
     summary = 'Warn a user and add a warning to their account.';
     cooldown = 5;
-    constructor(private autoMod = new AutoMod()) {}
+    constructor(private autoMod = Deps.get<AutoMod>(AutoMod)) {}
     
     execute = async(ctx: CommandContext) => {
         const target = ctx.msg.mentions.members?.first();        

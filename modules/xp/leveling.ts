@@ -1,9 +1,10 @@
 import { Message, GuildMember } from "discord.js";
 import { GuildDocument } from "../../models/guild";
 import Members from "../../data/members";
+import Deps from "../../deps";
 
 export default class Leveling {
-    constructor(private members = new Members()) {}
+    constructor(private members = Deps.get<Members>(Members)) {}
 
     async validateXPMsg(msg: Message, guild: GuildDocument) {
         if (!msg?.member || !guild || this.hasIgnoredXPRole(msg.member, guild)) {
