@@ -44,7 +44,7 @@ describe('services/command-service', () => {
             result().should.eventually.throw();
         });
 
-        it('found command, with unmet precondition, gets ignored', async(done) => {
+        it('found command, with unmet precondition, gets ignored', async() => {
             const msg: any = { content: '/warnings', reply: () => { throw Error(); }};
 
             const result = () => service.handle(msg);

@@ -48,8 +48,9 @@ export default class CommandService {
 
                 this.validatePreconditions(command, msg.member);
                 
-                command.execute(new CommandContext(msg));
-            } catch (error) {                
+                await command.execute(new CommandContext(msg));
+            } catch (error) {
+                            
                 const content = error?.message ?? 'Un unknown error occurred';          
                 msg.channel.send(':warning: ' + content);
             }

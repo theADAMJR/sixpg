@@ -5,6 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "test": "ts-mocha tests/**/*.tests.ts",
+    "test:unit": "ts-mocha tests/unit/*/*.tests.ts",
+    "test:integration": "ts-mocha tests/integration/*/*.tests.ts",
     "start": "nodemon --exec ts-node bot.ts --watch * -e ts,json"
   },
   "keywords": [],

@@ -11,7 +11,6 @@ import Users from './data/users';
 import Members from './data/members';
 import AutoMod from './modules/auto-mod/auto-mod';
 import Leveling from './modules/xp/leveling';
-import Music from './modules/music/music';
 
 export const bot = new Client();
 
@@ -25,7 +24,6 @@ Deps.build(
     Announce,
     AutoMod,
     Leveling,
-    Music,
 
     CommandService,
     EventsService
