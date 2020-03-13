@@ -4,17 +4,17 @@ import config from '../config.json';
 import { SavedGuild } from '../models/guild';
 import { TextChannel } from 'discord.js';
 import Log from '../utils/log';
-import Service from './service';
+import Deps from '../deps';
 
-export default class EventsService implements Service {
-    constructor(private commandHandler = new CommandService()) {
-        commandHandler.initialize();
+export default class EventsService {
+    constructor(private commands = Deps.get<CommandService>(CommandService)) {
+        this.initialize();
     }
 
-    initialize() {
+    private initialize() {
         bot.on('ready', () => Log.info(`It's live!`, `events`));
 
-        bot.on('message', async(msg: any) => await this.commandHandler.handle(msg));
+        bot.on('message', async(msg: any) => await this.commands.handle(msg));
 
         bot.on('guildCreate', (guild) =>
         {

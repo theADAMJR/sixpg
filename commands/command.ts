@@ -1,9 +1,10 @@
-import { Message, GuildMember, TextChannel, Guild, User, Client } from "discord.js";
+import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionString } from "discord.js";
 
 export interface Command {
     name: string;
     summary: string;
     cooldown: number;
+    precondition?: PermissionString;
     
     execute: (ctx: CommandContext) => Promise<any> | void;
 }

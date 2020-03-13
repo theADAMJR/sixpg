@@ -1,24 +1,31 @@
 import { Client } from 'discord.js';
 import config from './config.json';
 import CommandService from './services/command.service';
-import EventsService from './services/events.service';
 import mongoose from 'mongoose';
 import Announce from './modules/announce/announce';
-import Service from './services/service';
+import Deps from './deps';
+import EventsService from './services/events.service';
+import Guilds from './data/guilds';
+import Users from './data/users';
+import Members from './data/members';
+import AutoMod from './modules/auto-mod/auto-mod';
+import Leveling from './modules/xp/leveling';
 
 export const bot = new Client();
 
 bot.login(config.token);
 
-const services: Service[] = [ 
-    new EventsService(), 
-    new CommandService()
-];
-const modules = [
-    new Announce()
-];
-for (const service of services.concat(modules)) {    
-    service.initialize();
-}
+Deps.build(
+    Members,
+    Guilds,
+    Users,
+    
+    Announce,
+    AutoMod,
+    Leveling,
+
+    CommandService,
+    EventsService
+);
 
 mongoose.connect(config.mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });

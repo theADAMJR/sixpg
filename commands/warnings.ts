@@ -1,12 +1,13 @@
 import { Command, CommandContext } from "./command";
 import Members from "../data/members";
-import { TextChannel } from "discord.js";
+import { TextChannel, PermissionFlags, PermissionString } from "discord.js";
 import { MemberDocument } from "../models/member";
 
 export default class WarningsCommand implements Command {
     name = 'warnings';
     summary = 'Display the warnings of a member.';
     cooldown = 5;
+    precondition: PermissionString = 'KICK_MEMBERS';
     
     execute = async(ctx: CommandContext) => {
         const target = ctx.msg.mentions.members?.first() ?? ctx.member;

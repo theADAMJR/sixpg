@@ -2,6 +2,9 @@ export default class Log {
     static info(message?: string, src?: string) {
         console.log(`[${this.toHHMMSS(new Date())}] ${'INFO'} [${src?.toUpperCase() || 'OTHER'}] ${message}`)
     }
+    static error(err?: Error, src?: string) {
+        console.error(`[${this.toHHMMSS(new Date())}] ${'ERROR'} [${src?.toUpperCase() || 'OTHER'}] ${err?.message ?? 'Unknown error'}`)
+    }
 
     private static toHHMMSS(time: Date)
     {

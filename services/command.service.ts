@@ -1,23 +1,25 @@
 import fs from 'fs';
-import { Message,  TextChannel } from "discord.js";
+import { Message,  TextChannel, GuildMember } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
 import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
-import Service from './service';
+import Deps from '../deps';
 
-export default class CommandService implements Service {
+export default class CommandService {
     private commands = new Map<string, Command>();
 
     constructor(
-        private guilds = new Guilds(),
-        private autoMod = new AutoMod(),
-        private leveling = new Leveling()) {}
+        private guilds = Deps.get<Guilds>(Guilds),
+        private autoMod = Deps.get<AutoMod>(AutoMod),
+        private leveling = Deps.get<Leveling>(Leveling)) {
+            this.initialize();
+        }
     
     initialize() {
         fs.readdir('./commands/', (err, files) => {
-            err && console.error(err);
+            err && Log.error(err, 'cmds');
 
             for (const file of files) {
                 const Command = require(`../commands/${file}`).default;
@@ -37,12 +39,15 @@ export default class CommandService implements Service {
         const prefix = guild.general.prefix;
         const content = msg.content.toLowerCase();
 
-        const isCommand = content?.startsWith(prefix);
-        if (isCommand) {
+        if (content?.startsWith(prefix)) {
             try {
                 await this.validateChannel(msg.channel as TextChannel);
+
+                const command = this.findCommand(content);
+                const canExecute = this.canExecute(command, msg.member);
+                if (!command || !canExecute) return;
                 
-                await this.findCommand(content)?.execute(new CommandContext(msg));
+                command.execute(new CommandContext(msg));
             } catch (error) {                
                 const content = error?.message ?? 'Un unknown error occurred';          
                 msg.channel.send(':warning: ' + content);
@@ -54,6 +59,11 @@ export default class CommandService implements Service {
             } catch {}
         }
     }
+
+    canExecute(command: Command | undefined, executor: GuildMember) {
+        return !command?.precondition || executor.hasPermission(command.precondition);
+    }
+
     private async validateChannel(channel: TextChannel) {
         const guild = await this.guilds.get(channel.guild);
         const isIgnored = guild?.general.ignoredChannels
