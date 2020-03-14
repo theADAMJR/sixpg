@@ -7,8 +7,8 @@ import chaiAsPromised from 'chai-as-promised';
 import {  SavedMember } from '../../../models/member';
 import Members from '../../../data/members';
 
-use(chaiAsPromised);
 should();
+use(chaiAsPromised);
 
 describe('modules/auto-mod', () => {
     let autoMod: AutoMod;

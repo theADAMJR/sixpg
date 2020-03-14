@@ -1,5 +1,5 @@
 export default class Log {
-    static info(message?: string, src?: string) {
+    static info(message?: any, src?: string) {
         console.log(`[${this.toHHMMSS(new Date())}] ${'INFO'} [${src?.toUpperCase() || 'OTHER'}] ${message}`)
     }
     static error(err?: any, src?: string) {

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Message,  TextChannel, GuildMember } from "discord.js";
+import { Message,  TextChannel, GuildMember, User } from "discord.js";
 import { Command, CommandContext } from '../commands/command';
 import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
@@ -9,6 +9,7 @@ import Deps from '../deps';
 
 export default class CommandService {
     private commands = new Map<string, Command>();
+    private cooldowns: CommandCooldown[] = [];
 
     constructor(
         private guilds = Deps.get<Guilds>(Guilds),
@@ -44,13 +45,14 @@ export default class CommandService {
                 await this.validateChannel(msg.channel as TextChannel);
 
                 const command = this.findCommand(content);
-                if (!command) return;
+                if (!command || this.inCooldown(msg.author, command)) return;
 
                 this.validatePreconditions(command, msg.member);
-                
+
                 await command.execute(new CommandContext(msg));
+
+                this.addCooldown(msg.author, command);
             } catch (error) {
-                            
                 const content = error?.message ?? 'Un unknown error occurred';          
                 msg.channel.send(':warning: ' + content);
             }
@@ -60,6 +62,24 @@ export default class CommandService {
                 guild.xp.enabled && await this.leveling.validateXPMsg(msg, guild);
             } catch {}
         }
+    }
+
+    private inCooldown(author: User, command: Command) {
+        return this.cooldowns
+            .some(c => c.userId === author.id && c.commandName == command.name);
+    }
+
+    private addCooldown(user: User, command: Command) {
+        const cooldown = { userId: user.id, commandName: command.name };
+        this.cooldowns.push(cooldown);
+
+        const seconds = (command.cooldown ?? 0) * 1000;
+        setInterval(() => this.removeCooldown(user, command), seconds);
+    }
+    private removeCooldown(user: User, command: Command) {
+        const index = this.cooldowns
+            .findIndex(c => c.userId === user.id && c.commandName == command.name);
+        this.cooldowns.splice(index, 1);
     }
 
     validatePreconditions(command: Command, executor: GuildMember) {
@@ -79,4 +99,9 @@ export default class CommandService {
         const name = content.split(' ')[0].substr(1, content.length);
         return this.commands.get(name);
     }
+}
+
+export interface CommandCooldown {
+    userId: string;
+    commandName: string;
 }

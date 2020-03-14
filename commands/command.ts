@@ -3,7 +3,7 @@ import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionStrin
 export interface Command {
     name: string;
     summary: string;
-    cooldown: number;
+    cooldown?: number;
     precondition?: PermissionString;
     
     execute: (ctx: CommandContext) => Promise<any> | void;
