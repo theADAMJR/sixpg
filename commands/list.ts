@@ -13,11 +13,10 @@ export default class PlayCommand implements Command {
         const { queue } = this.joinAndGetPlayer(ctx);
 
         let details = '';
-        for (let i = 0; i < queue.length; i++) {
+        for (let i = 0; i < queue.length; i++) {            
             const track = queue[i];
-            details += (i == 0) 
-                ? `**Now Playing**: \`${track.title}\` from <@!${track.requestor}>\n` 
-                : `**[${i + 1}]** \`${track.title}\` from <@!${track.requestor}>`;
+            const prefix = (i == 0) ? `**Now Playing**:` : `**[${i + 1}]**`;
+            details += `${prefix} \`${track.title}\` from <@!${track.requester.user.id}>\n`;
         }
         return ctx.channel.send(details || 'No tracks in list.');
     }

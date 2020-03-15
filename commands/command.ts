@@ -4,7 +4,7 @@ export interface Command {
     name: string;
     summary: string;
     cooldown?: number;
-    precondition?: PermissionString;
+    precondition?: PermissionString | string;
     
     execute: (ctx: CommandContext) => Promise<any> | void;
 }

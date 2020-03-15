@@ -6,7 +6,7 @@ import Music from "../modules/music/music";
 export default class PlayCommand implements Command {
     name = 'play';
     summary = 'Join and play a youtube result.';
-    cooldown = 5;
+    cooldown = 2;
 
     constructor(private music = Deps.get<Music>(Music)) {}
     
@@ -24,9 +24,9 @@ export default class PlayCommand implements Command {
         const track = await this.searchForTrack(query, ctx.member);
 
         player.queue.add(track);
-
         if (player.playing)
             return ctx.channel.send(`**Added**: \`${track.title}\` to list.`);
+
         player.play();
     }
 
