@@ -15,6 +15,7 @@ export default class ResumeCommand implements Command {
             throw new Error('Player is already resumed.');
             
         player.pause(false);
+        ctx.channel.send(`**Resumed**: \`${player.queue[0].title}\``);
     }
 
     private joinAndGetPlayer(ctx: CommandContext) {

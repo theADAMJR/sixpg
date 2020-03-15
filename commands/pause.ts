@@ -2,9 +2,9 @@ import { Command, CommandContext } from "./Command";
 import Deps from "../utils/deps";
 import Music from "../modules/music/music";
 
-export default class ResumeCommand implements Command {
-    name = 'resume';
-    summary = 'Resume playing a track if paused.';
+export default class PauseCommand implements Command {
+    name = 'pause';
+    summary = 'Pause playback if playing.';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     
@@ -13,8 +13,9 @@ export default class ResumeCommand implements Command {
 
         if (!player.playing)
             throw new Error('Player is already paused.');
-            
+        
         player.pause(true);
+        ctx.channel.send(`**Paused**: \`${player.queue[0].title}\``);
     }
 
     private joinAndGetPlayer(ctx: CommandContext) {
