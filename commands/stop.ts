@@ -1,6 +1,6 @@
 import { Command, CommandContext } from "./Command";
-import Deps from "../deps";
-import { Music } from "../modules/music/music";
+import Deps from "../utils/deps";
+import Music from "../modules/music/music";
 
 export default class StopCommand implements Command {
     name = 'stop';

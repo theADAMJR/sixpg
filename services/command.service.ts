@@ -5,7 +5,7 @@ import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
-import Deps from '../deps';
+import Deps from '../utils/deps';
 
 export default class CommandService {
     private commands = new Map<string, Command>();

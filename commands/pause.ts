@@ -1,7 +1,6 @@
 import { Command, CommandContext } from "./Command";
-import Deps from "../deps";
-import { GuildMember } from "discord.js";
-import { Music } from "../modules/music/music";
+import Deps from "../utils/deps";
+import Music from "../modules/music/music";
 
 export default class ResumeCommand implements Command {
     name = 'resume';

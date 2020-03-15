@@ -14,16 +14,15 @@ export default class WarningsCommand implements Command {
         const savedMember = await new Members().get(target);
 
         const position = Number(ctx.args[0]);
-        if (!Number.isNaN(position)) {
+        if (!Number.isNaN(position))
             return this.displayWarning(position, savedMember, ctx.channel);
-        }
+
         await ctx.channel.send(`User has \`${savedMember.warnings.length}\` warnings.`)
     }
 
     private async displayWarning(position: number, savedMember: MemberDocument, channel: TextChannel) {
-        if (position <= 0 || position > savedMember.warnings.length) {
+        if (position <= 0 || position > savedMember.warnings.length)
             throw new Error('Warning at position not found on user.');
-        }
 
         const warning = savedMember.warnings[position - 1];
         const instigator = channel.client.users.cache.get(warning.instigatorId);

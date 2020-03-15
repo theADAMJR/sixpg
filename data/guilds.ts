@@ -1,8 +1,7 @@
 import { Guild } from "discord.js";
 import { GuildDocument, SavedGuild } from "../models/guild";
-import DBWrapper from "./db-wrapper";
 
-export default class Guilds implements DBWrapper<GuildDocument, Guild> {
+export default class Guilds {
     get(guild: Guild) {
         return this.getOrCreate(guild);
     }

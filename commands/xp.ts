@@ -2,7 +2,7 @@ import { Command, CommandContext } from "./Command";
 import Members from "../data/members";
 import Leveling from "../modules/xp/leveling";
 import Guilds from "../data/guilds";
-import Deps from "../deps";
+import Deps from "../utils/deps";
 
 export default class XPCommand implements Command {
     name = 'xp';

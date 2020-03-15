@@ -2,7 +2,7 @@ import { Message, GuildMember, User, Guild } from "discord.js";
 import { GuildDocument, MessageFilter } from "../../models/guild";
 import { BadWordValidator } from "./validators/bad-word.validator";
 import { BadLinkValidator } from "./validators/bad-link.validator";
-import Deps from "../../deps";
+import Deps from "../../utils/deps";
 import Members from "../../data/members";
 
 export default class AutoMod {

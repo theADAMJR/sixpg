@@ -1,8 +1,7 @@
 import { User } from "discord.js";
 import { SavedUser, UserDocument } from "../models/user";
-import DBWrapper from "./db-wrapper";
 
-export default class Users implements DBWrapper<UserDocument, User> {
+export default class Users {
     get(user: User) {
         return this.getOrCreate(user);
     }

@@ -1,6 +1,6 @@
 import { Command, CommandContext } from "./Command";
-import Deps from "../deps";
-import { Music } from "../modules/music/music";
+import Deps from "../utils/deps";
+import Music from "../modules/music/music";
 
 export default class SkipCommand implements Command {
     name = 'skip';
@@ -11,20 +11,15 @@ export default class SkipCommand implements Command {
     
     execute = async(ctx: CommandContext) => {
         const player = this.joinAndGetPlayer(ctx);
-        if (player.queue.size <= 1) {
+        if (player.queue.size <= 1)
             throw new Error('No tracks to skip');
-        }
-        // player.play();
         player.stop();
-        // player.queue.shift();
-        // player.seek(0);
     }
 
     private joinAndGetPlayer(ctx: CommandContext) {
         const voiceChannel = ctx.member.voice.channel;
-        if (!voiceChannel) {
+        if (!voiceChannel)
             throw new Error('You must be in a voice channel to play music.');
-        }
 
         return this.music.client.players.spawn({
             guild: ctx.guild,

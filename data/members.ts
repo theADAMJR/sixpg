@@ -1,8 +1,7 @@
 import { GuildMember } from "discord.js";
 import { MemberDocument, SavedMember } from "../models/member";
-import DBWrapper from "./db-wrapper";
 
-export default class Members implements DBWrapper<MemberDocument, GuildMember> {
+export default class Members {
     async get(member: GuildMember) {
         return this.getOrCreate(member);
     }

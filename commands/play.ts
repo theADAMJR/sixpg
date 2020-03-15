@@ -1,7 +1,7 @@
 import { Command, CommandContext } from "./Command";
-import Deps from "../deps";
+import Deps from "../utils/deps";
 import { GuildMember } from "discord.js";
-import { Music } from "../modules/music/music";
+import Music from "../modules/music/music";
 
 export default class PlayCommand implements Command {
     name = 'play';

@@ -1,7 +1,7 @@
 import { Message, GuildMember } from "discord.js";
 import { GuildDocument } from "../../models/guild";
 import Members from "../../data/members";
-import Deps from "../../deps";
+import Deps from "../../utils/deps";
 
 export default class Leveling {
     constructor(private members = Deps.get<Members>(Members)) {}

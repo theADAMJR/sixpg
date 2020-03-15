@@ -2,7 +2,6 @@ import config from '../../config.json';
 import { ErelaClient } from 'erela.js';
 import { bot } from '../../bot';
 import Log from '../../utils/log';
-import Deps from '../../deps';
 
 const nodes = [{
     host: 'localhost',
@@ -10,17 +9,17 @@ const nodes = [{
     password: (config as any).lavalink.password,
 }];
 
-export class Music {
+export default class Music {
     private _client = {} as ErelaClient;
     get client() { return this._client; }
 
     constructor() {
-        bot.on('ready', this.initialize);
+        bot.on('ready', this.initialize.bind(this));
     }
 
     private initialize() {
-        const music = new ErelaClient(bot, nodes);        
-        
+        const music = new ErelaClient(bot, nodes);
+              
         music.on('nodeConnect', () => Log.info('Connected to Lavalink node', 'music'));
         music.on('nodeError', (node, error) => Log.error(error, 'music'));
         music.on('trackStuck', (player) => player.textChannel.send('❗ Error loading track.'));
