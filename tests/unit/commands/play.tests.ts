@@ -4,15 +4,14 @@ import chaiAsPromised from 'chai-as-promised';
 import { CommandContext } from '../../../commands/command';
 import PlayCommand from '../../../commands/play';
 
-use(chaiAsPromised);
 should();
+use(chaiAsPromised);
 
 describe('commands/play', () => {
     it('null query, throws error', () =>
     {
         const ctx = mock<CommandContext>();
         ctx.member = { voice: { channel: null }} as any;
-        ctx.args = [];
         
         const result = () => new PlayCommand().execute(ctx);
 
@@ -23,9 +22,8 @@ describe('commands/play', () => {
     {
         const ctx = mock<CommandContext>();
         ctx.member = { voice: { channel: null }} as any;
-        ctx.args = ['a'];
         
-        const result = () => new PlayCommand().execute(ctx);
+        const result = () => new PlayCommand().execute(ctx, 'a');
 
         result().should.eventually.throw();
     });

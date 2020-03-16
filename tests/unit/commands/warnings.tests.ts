@@ -11,9 +11,8 @@ describe('commands/warnings', () => {
     it('null channel, throws error', () =>
     {
         const ctx = mock<CommandContext>();
-        ctx.args[0];
         
-        const result = () => new WarningsCommand().execute(ctx);
+        const result = () => new WarningsCommand().execute(ctx, 1);
 
         result().should.eventually.throw();
     });

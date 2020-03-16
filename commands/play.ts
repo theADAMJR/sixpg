@@ -10,12 +10,13 @@ export default class PlayCommand implements Command {
 
     constructor(private music = Deps.get<Music>(Music)) {}
     
-    execute = async(ctx: CommandContext) => {
-        const query = ctx.args.join();        
+    execute = async(ctx: CommandContext, ...args: string[]) => 
+    {
+        const query = args.join();
         if (!query)
             throw new Error('Query must be provided.');
 
-        const player = this.joinAndGetPlayer(ctx);
+        const player = this.music.joinAndGetPlayer(ctx);
 
         const maxQueueSize = 5;
         if (player.queue.size >= maxQueueSize)
@@ -28,18 +29,6 @@ export default class PlayCommand implements Command {
             return ctx.channel.send(`**Added**: \`${track.title}\` to list.`);
 
         player.play();
-    }
-
-    private joinAndGetPlayer(ctx: CommandContext) {
-        const voiceChannel = ctx.member.voice.channel;
-        if (!voiceChannel)
-            throw new Error('You must be in a voice channel to play music.');
-
-        return this.music.client.players.spawn({
-            guild: ctx.guild,
-            voiceChannel: voiceChannel,
-            textChannel: ctx.channel,
-        });
     }
 
     private async searchForTrack(query: string, requestor: GuildMember) {

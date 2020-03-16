@@ -14,7 +14,7 @@ export default class CommandService {
     constructor(
         private guilds = Deps.get<Guilds>(Guilds),
         private autoMod = Deps.get<AutoMod>(AutoMod),
-        private leveling = Deps.get<Leveling>(Leveling)) {
+        private leveling = Deps.get<Leveling>(Leveling)) {            
             this.initialize();
         }
     
@@ -49,7 +49,8 @@ export default class CommandService {
 
                 this.validatePreconditions(command, msg.member);
 
-                await command.execute(new CommandContext(msg));
+                await command.execute(new CommandContext(msg), 
+                    ...this.getCommandArgs(msg.content));
 
                 this.addCooldown(msg.author, command);
             } catch (error) {
@@ -98,6 +99,11 @@ export default class CommandService {
     private findCommand(content: string) {        
         const name = content.split(' ')[0].substr(1, content.length);
         return this.commands.get(name);
+    }
+
+    private getCommandArgs(content: string) {
+        const args = content.split(' ');
+        return args.splice(1, args.length);
     }
 }
 

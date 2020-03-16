@@ -10,21 +10,9 @@ export default class SkipCommand implements Command {
     constructor(private music = Deps.get<Music>(Music)) {}
     
     execute = async(ctx: CommandContext) => {
-        const player = this.joinAndGetPlayer(ctx);
+        const player = this.music.joinAndGetPlayer(ctx);
         if (player.queue.size <= 1)
             throw new Error('No tracks to skip');
         player.stop();
-    }
-
-    private joinAndGetPlayer(ctx: CommandContext) {
-        const voiceChannel = ctx.member.voice.channel;
-        if (!voiceChannel)
-            throw new Error('You must be in a voice channel to play music.');
-
-        return this.music.client.players.spawn({
-            guild: ctx.guild,
-            voiceChannel: voiceChannel,
-            textChannel: ctx.channel,
-        });
     }
 }

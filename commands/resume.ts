@@ -9,24 +9,12 @@ export default class ResumeCommand implements Command {
     constructor(private music = Deps.get<Music>(Music)) {}
     
     execute = (ctx: CommandContext) => {
-        const player = this.joinAndGetPlayer(ctx);
+        const player = this.music.joinAndGetPlayer(ctx);
 
         if (player.playing)
             throw new Error('Player is already resumed.');
             
         player.pause(false);
         ctx.channel.send(`**Resumed**: \`${player.queue[0].title}\``);
-    }
-
-    private joinAndGetPlayer(ctx: CommandContext) {
-        const voiceChannel = ctx.member.voice.channel;
-        if (!voiceChannel)
-            throw new Error('You must be in a voice channel to play music.');
-
-        return this.music.client.players.spawn({
-            guild: ctx.guild,
-            voiceChannel: voiceChannel,
-            textChannel: ctx.channel,
-        });
     }
 }

@@ -4,7 +4,6 @@ import CommandService from './services/command.service';
 import mongoose from 'mongoose';
 import Deps from './utils/deps';
 
-import Announce from './modules/announce/announce';
 import EventsService from './services/events.service';
 import Guilds from './data/guilds';
 import Users from './data/users';
@@ -18,11 +17,10 @@ export const bot = new Client();
 bot.login(config.token);
 
 Deps.build(
-    Members,
     Guilds,
+    Members,
     Users,
     
-    Announce,
     AutoMod,
     Leveling,
     Music,

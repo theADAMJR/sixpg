@@ -3,7 +3,7 @@ import { SavedGuild, EventType } from '../../../models/guild';
 import { mock } from 'ts-mockito';
 import { TextChannel } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
-import MemberJoinHandler from '../../../modules/announce/handlers/member-join.handler'
+import MemberJoinHandler from '../../../services/handlers/member-join.handler'
 import Guilds from '../../../data/guilds';
 
 use(chaiAsPromised);

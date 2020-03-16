@@ -28,6 +28,7 @@ export class GeneralModule extends Module {
     prefix = '/';
     isPrivate = false;
     ignoredChannels: string[] = [];
+    autoRoles: string[] = [];
 }
 
 export class XPModule extends Module {
@@ -42,12 +43,16 @@ export interface LevelRole {
     role: string;
 }
 
+export class MusicModule extends Module {
+    
+}
+
 const guildSchema = new Schema({
     _id: String,
     announce: { type: Object, default: new AnnounceModule() }, 
     autoMod: { type: Object, default: new AutoModModule() }, 
     general: { type: Object, default: new GeneralModule() },
-    music: Object,
+    music: { type: Object, default: new MusicModule },
     xp: { type: Object, default: new XPModule() }
 });
 
@@ -56,7 +61,7 @@ export interface GuildDocument extends Document {
     announce: AnnounceModule;
     autoMod: AutoModModule;
     general: GeneralModule;
-    music: object;
+    music: MusicModule;
     xp: XPModule;
 }
 

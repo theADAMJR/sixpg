@@ -1,14 +1,16 @@
 import { GuildMember, TextChannel } from "discord.js";
-import { EventType } from "../../../models/guild";
+import { EventType } from "../../models/guild";
 import AnnounceHandler from "./announce-handler";
+import EventHandler from "./event-handler";
 
-export default class MemberLeaveHandler extends AnnounceHandler {
+export default class MemberLeaveHandler extends AnnounceHandler implements EventHandler {
     on = 'guildMemberRemove';
 
-    async invoke(...args: any[]) {
-        const member: GuildMember = args[0];
-        if (!member) return;
+    async invoke(member: GuildMember) {
+        this.announceUserLeave(member);
+    }
 
+    private async announceUserLeave(member: GuildMember) {
         const event = await super.getEvent(EventType.MemberLeave, member.guild);
         if (!event) return;
 

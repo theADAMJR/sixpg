@@ -4,9 +4,9 @@ export interface Command {
     name: string;
     summary: string;
     cooldown?: number;
-    precondition?: PermissionString | string;
+    precondition?: PermissionString;
     
-    execute: (ctx: CommandContext) => Promise<any> | void;
+    execute: (ctx: CommandContext, ...args: any) => Promise<any> | void;
 }
 
 export class CommandContext {
@@ -16,7 +16,6 @@ export class CommandContext {
     guild: Guild;
     user: User;
     bot: Client;
-    args: string[];
     
     constructor(msg: any) {
         this.msg = msg;
@@ -25,11 +24,5 @@ export class CommandContext {
         this.guild = msg.guild;
         this.user = msg.member.user;
         this.bot = msg.client;
-        this.args = this.getCommandArgs(msg.content);
-    }
-
-    private getCommandArgs(content: string) {
-        const args = content.split(' ');
-        return args.splice(1, args.length);
     }
 }

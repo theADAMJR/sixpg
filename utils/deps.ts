@@ -9,12 +9,12 @@ export default class Deps {
         }
     }
 
-    static get<T>(type: new() => T): T {        
+    static get<T>(type: any): T {
         const service = this.deps.find(t => t instanceof type);
-        return !service ? this.add<T>(new type()) : service;
+        return !service ? this.add(new type()) : service;
     }
 
-    private static add<T>(instance: any): T {
+    private static add<T>(instance: T): T {
         this.deps.push(instance);
         return instance;
     }

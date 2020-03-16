@@ -1,33 +1,32 @@
 import { bot } from '../bot';
-import CommandService from './command.service';
-import config from '../config.json';
-import { SavedGuild } from '../models/guild';
-import { TextChannel } from 'discord.js';
 import Log from '../utils/log';
-import Deps from '../utils/deps';
-import Music from "../modules/music/music";
+
+import MemberJoinHandler from "./handlers/member-join.handler";
+import MemberLeaveHandler from "./handlers/member-leave.handler";
+import MessageDeleteHandler from "./handlers/message-deleted.handler";
+import EventHandler from './handlers/event-handler';
+import ReadyHandler from './handlers/ready.handler';
+import GuildCreateHandler from './handlers/guildCreate.handler';
+import MessageHandler from './handlers/message.handler';
 
 export default class EventsService {
-    constructor(private commands = Deps.get<CommandService>(CommandService)) {
+    private readonly handlers: EventHandler[] = [
+        new ReadyHandler(),
+        new GuildCreateHandler(),
+        new MessageHandler(),
+        new MemberJoinHandler(),
+        new MemberLeaveHandler(),
+        new MessageDeleteHandler()
+    ];
+
+    constructor() {
         this.initialize();
     }
 
     private initialize() {
-        bot.on('ready', () => Log.info(`It's live!`, `events`));
-
-        bot.on('message', async(msg: any) => await this.commands.handle(msg));
-
-        bot.on('guildCreate', (guild) =>
-        {
-            const savedGuild = new SavedGuild();
-            savedGuild._id = guild.id; 
-            savedGuild.save();
-
-            sendWelcomeMessage(guild.systemChannel);
-        });
-
-        function sendWelcomeMessage(channel: TextChannel | null) {
-            channel?.send(`Hey, I'm 2PG! Customize me at ${config.webappURL}`);
+        for (const handler of this.handlers) {
+            bot.on(handler.on, handler.invoke.bind(handler));
         }
-    }  
+        Log.info(`Loaded: ${this.handlers.length} handlers`, 'events');
+    }
 }
