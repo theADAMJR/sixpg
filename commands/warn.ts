@@ -1,6 +1,7 @@
 import { Command, CommandContext } from "./Command";
 import AutoMod from "../modules/auto-mod/auto-mod";
 import Deps from "../utils/deps";
+import CommandUtils from "../utils/command-utils";
 
 export default class PingCommand implements Command {
     name = 'warn';
@@ -9,10 +10,9 @@ export default class PingCommand implements Command {
     
     constructor(private autoMod = Deps.get<AutoMod>(AutoMod)) {}
     
-    execute = async(ctx: CommandContext, reason?: string) => {
-        const target = ctx.msg.mentions.members?.first();        
-        if (!target)
-            throw new Error('User could not be found.');
+    execute = async(ctx: CommandContext, targetMention: string, reason?: string) => {
+        const target = (targetMention) ?
+            CommandUtils.getMemberFromMention(targetMention, ctx.guild) : ctx.member;
         
         await this.autoMod.warnMember(target, ctx.user, reason);
 

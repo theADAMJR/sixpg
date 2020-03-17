@@ -1,23 +1,27 @@
 import { Command, CommandContext } from "./command";
 import Members from "../data/members";
-import { TextChannel, PermissionFlags, PermissionString } from "discord.js";
+import { TextChannel, PermissionString, Client, Guild } from "discord.js";
 import { MemberDocument } from "../models/member";
 import Deps from "../utils/deps";
+import CommandUtils from "../utils/command-utils";
 
 export default class WarningsCommand implements Command {
     name = 'warnings';
     summary = 'Display the warnings of a member.';
-    cooldown = 5;
+    cooldown = 3;
     precondition: PermissionString = 'KICK_MEMBERS';
 
-    constructor(private members = Deps.get<Members>(Members)) {}
+    constructor(
+        private members = Deps.get<Members>(Members)) {}
     
-    execute = async(ctx: CommandContext, position?: number) => {
-        const target = ctx.msg.mentions.members?.first() ?? ctx.member;
-        const savedMember = await this.members.get(target);    
+    execute = async(ctx: CommandContext, userMention?: string, position?: string) => {
+        const target = (userMention) ?
+            CommandUtils.getMemberFromMention(userMention, ctx.guild) : ctx.member;
 
-        if (position && Number.isInteger(position))
-            return this.displayWarning(position, savedMember, ctx.channel);
+        const savedMember = await this.members.get(target);
+        
+        if (position)
+            return this.displayWarning(+position, savedMember, ctx.channel);
 
         await ctx.channel.send(`User has \`${savedMember.warnings.length}\` warnings.`)
     }

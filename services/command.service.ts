@@ -40,7 +40,7 @@ export default class CommandService {
         const prefix = guild.general.prefix;
         const content = msg.content.toLowerCase();
 
-        if (content?.startsWith(prefix)) {
+        if (content.startsWith(prefix)) {
             try {
                 await this.validateChannel(msg.channel as TextChannel);
 
@@ -48,7 +48,7 @@ export default class CommandService {
                 if (!command || this.inCooldown(msg.author, command)) return;
 
                 this.validatePreconditions(command, msg.member);
-
+                
                 await command.execute(new CommandContext(msg), 
                     ...this.getCommandArgs(msg.content));
 
@@ -72,7 +72,11 @@ export default class CommandService {
 
     private addCooldown(user: User, command: Command) {
         const cooldown = { userId: user.id, commandName: command.name };
-        this.cooldowns.push(cooldown);
+
+        const inCooldown = this.cooldowns
+            .some(c => c.userId === user.id && c.commandName == command.name);
+        if (!inCooldown)
+            this.cooldowns.push(cooldown);
 
         const seconds = (command.cooldown ?? 0) * 1000;
         setInterval(() => this.removeCooldown(user, command), seconds);
@@ -90,11 +94,11 @@ export default class CommandService {
 
     private async validateChannel(channel: TextChannel) {
         const guild = await this.guilds.get(channel.guild);
+
         const isIgnored = guild?.general.ignoredChannels
-            .some((id: string) => id === channel.id);
-        if (isIgnored) {
+            .some(id => id === channel.id);
+        if (isIgnored)
             throw new Error('Commands cannot be executed in this channel.');
-        }
     }
     private findCommand(content: string) {        
         const name = content.split(' ')[0].substr(1, content.length);
@@ -102,7 +106,7 @@ export default class CommandService {
     }
 
     private getCommandArgs(content: string) {
-        const args = content.split(' ');
+        let args = content.split(' ');
         return args.splice(1, args.length);
     }
 }

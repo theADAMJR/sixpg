@@ -7,6 +7,9 @@ export default class Users {
     }
 
     private async getOrCreate(user: User) {
+        if (user.bot)
+            throw new Error(`Bots don't have accounts`);
+
         const savedUser = await SavedUser.findById(user.id);
         return savedUser ?? this.create(user);
     }

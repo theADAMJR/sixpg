@@ -3,16 +3,20 @@ import Members from "../data/members";
 import Leveling from "../modules/xp/leveling";
 import Guilds from "../data/guilds";
 import Deps from "../utils/deps";
+import CommandUtils from "../utils/command-utils";
 
 export default class XPCommand implements Command {
     name = 'xp';
     summary = 'Display the XP card of a user.';
-    cooldown = 10;
+    cooldown = 3;
 
     constructor(private members = Deps.get<Members>(Members)) {}
 
-    execute = async(ctx: CommandContext) =>  {
-        const guildUser = await this.members.get(ctx.member);
+    execute = async(ctx: CommandContext, userMention: string) =>  {
+        const target = (userMention) ?
+            CommandUtils.getMemberFromMention(userMention, ctx.guild) : ctx.member;
+
+        const guildUser = await this.members.get(target);
         const guild = await new Guilds().get(ctx.guild);
 
         const info = Leveling.xpInfo(guildUser.xpMessages, guild.xp.xpPerMessage);

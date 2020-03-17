@@ -7,6 +7,9 @@ export default class Members {
     }
 
     private async getOrCreate(member: GuildMember) {
+        if (member.user.bot)
+            throw new Error(`Bots don't have accounts`);
+
         const user = await SavedMember.findById(member.id);
         return user ?? this.create(member);
     }

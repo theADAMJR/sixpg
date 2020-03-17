@@ -2,11 +2,11 @@ import { Command, CommandContext } from "./Command";
 import config from '../config.json';
 
 export default class HelpCommand implements Command {
-    name = 'leaderboard';
-    summary = `Get a link to the server's leaderboard`;
+    name = 'dashboard';
+    summary = `Get a link to the server's dashboard`;
     cooldown = 3;
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.webappURL}/servers/${ctx.guild.id}/leaderboard`);
+        ctx.channel.send(`${config.webappURL}/servers/${ctx.guild.id}`);
     }
 }
