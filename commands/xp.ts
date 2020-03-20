@@ -4,11 +4,13 @@ import Leveling from "../modules/xp/leveling";
 import Guilds from "../data/guilds";
 import Deps from "../utils/deps";
 import CommandUtils from "../utils/command-utils";
+import { ModuleString } from "../modules/module";
 
 export default class XPCommand implements Command {
     name = 'xp';
     summary = 'Display the XP card of a user.';
     cooldown = 3;
+    module: ModuleString = 'XP';
 
     constructor(private members = Deps.get<Members>(Members)) {}
 

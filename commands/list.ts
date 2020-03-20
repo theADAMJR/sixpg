@@ -1,11 +1,13 @@
 import { Command, CommandContext } from "./Command";
 import Deps from "../utils/deps";
 import Music from "../modules/music/music";
+import { ModuleString } from "../modules/module";
 
 export default class PlayCommand implements Command {
     name = 'list';
     summary = 'Display the current track list.';
     cooldown = 3;
+    module: ModuleString = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     

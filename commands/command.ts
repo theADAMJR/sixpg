@@ -1,8 +1,10 @@
 import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionString } from "discord.js";
+import { ModuleString } from "../modules/module";
 
 export interface Command {
     name: string;
     summary: string;
+    module: ModuleString;
     cooldown?: number;
     precondition?: PermissionString;
     

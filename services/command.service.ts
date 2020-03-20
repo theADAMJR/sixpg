@@ -6,6 +6,7 @@ import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
 import Deps from '../utils/deps';
+import { SavedCommand } from '../models/command';
 
 export default class CommandService {
     private commands = new Map<string, Command>();
@@ -26,11 +27,21 @@ export default class CommandService {
                 const Command = require(`../commands/${file}`).default;
                 if (!Command) continue;
 
-                const name = new Command().name;                
-                this.commands.set(name, new Command());
+                const command = new Command();
+                const name = command.name;
+
+                this.commands.set(name, command);
+                this.updateCommandData(command);
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         }); 
+    }
+
+    private async updateCommandData(command: Command) {
+        const { name, summary, module, precondition } = command;
+        await SavedCommand.updateOne({ name },
+                { name, summary, module, precondition }, 
+                { upsert: true });
     }
 
     async handle(msg: Message) {

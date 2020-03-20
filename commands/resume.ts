@@ -1,10 +1,12 @@
 import { Command, CommandContext } from "./Command";
 import Deps from "../utils/deps";
 import Music from "../modules/music/music";
+import { ModuleString } from "../modules/module";
 
 export default class ResumeCommand implements Command {
     name = 'resume';
     summary = 'Resume playing a track if paused.';
+    module: ModuleString = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     

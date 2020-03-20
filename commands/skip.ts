@@ -1,11 +1,13 @@
 import { Command, CommandContext } from "./Command";
 import Deps from "../utils/deps";
 import Music from "../modules/music/music";
+import { ModuleString } from "../modules/module";
 
 export default class SkipCommand implements Command {
     name = 'skip';
     summary = 'Skip current playing track';
     cooldown = 5;
+    module: ModuleString = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     

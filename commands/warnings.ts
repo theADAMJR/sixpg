@@ -4,12 +4,14 @@ import { TextChannel, PermissionString, Client, Guild } from "discord.js";
 import { MemberDocument } from "../models/member";
 import Deps from "../utils/deps";
 import CommandUtils from "../utils/command-utils";
+import { ModuleString } from "../modules/module";
 
 export default class WarningsCommand implements Command {
     name = 'warnings';
     summary = 'Display the warnings of a member.';
     cooldown = 3;
     precondition: PermissionString = 'KICK_MEMBERS';
+    module: ModuleString = 'Auto-mod';
 
     constructor(
         private members = Deps.get<Members>(Members)) {}
