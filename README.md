@@ -5,6 +5,20 @@ Simple multi-purpose Discord bot made with TypeScript
 1) Fork/download this respository
 2) `npm i` to install packages
 
+### Config
+`config.json` example:
+```
+{
+    "token": "yourBotToken",
+    "mongoURL": "mongodb://localhost/2PG",
+    "webappURL": "https://2pg.xyz",
+    "lavalink": {
+        "password": "youshallnotpass"
+    }
+}
+```
+
+
 ## Hosting
 1) `npm start` to start the bot
 
