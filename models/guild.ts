@@ -47,13 +47,24 @@ export class MusicModule extends Module {
     
 }
 
+export interface CommandConfig {
+    name: string;
+    enabled: boolean;
+}
+
+export class DashboardSettings {
+    privateLeaderboard = false;
+}
+
 const guildSchema = new Schema({
     _id: String,
     announce: { type: Object, default: new AnnounceModule() }, 
     autoMod: { type: Object, default: new AutoModModule() }, 
     general: { type: Object, default: new GeneralModule() },
     music: { type: Object, default: new MusicModule },
-    xp: { type: Object, default: new XPModule() }
+    xp: { type: Object, default: new XPModule() },
+    settings: { type: Object, default: new DashboardSettings() },
+    commands: { type: Array, default: [] }
 });
 
 export interface GuildDocument extends Document {
@@ -63,6 +74,8 @@ export interface GuildDocument extends Document {
     general: GeneralModule;
     music: MusicModule;
     xp: XPModule;
+    commands: CommandConfig[];
+    settings: DashboardSettings;
 }
 
 export const SavedGuild = model<GuildDocument>('guild', guildSchema);

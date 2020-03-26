@@ -15,10 +15,10 @@ export default class Members {
     }
 
     private async create(member: GuildMember) {
-        const user = new SavedMember();
-        user._id = member.id;
-        user.guildId = member.guild.id;
-        return user.save();
+        const newMember = new SavedMember();
+        newMember.id = member.id;
+        newMember.guildId = member.guild.id;
+        return newMember.save();
     }
 
     save(member: MemberDocument) {
