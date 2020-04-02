@@ -42,7 +42,7 @@ describe('modules/auto-mod', () => {
             guild.autoMod.filters = [MessageFilter.Words];
             guild.autoMod.banWords = ['a'];
             msg.content = 'a';
-            msg.delete = () => { throw new Error('deleted'); }
+            msg.delete = () => { throw new TypeError('deleted'); }
 
             const result = () => autoMod.validateMsg(msg, guild);
 
@@ -91,7 +91,7 @@ describe('modules/auto-mod', () => {
 
     describe('warnMember', () => {
         it('warn member, message sent to user', async() => {
-            const member: any = { id: '123', send: () => { throw new Error() }, user: { bot: false }};
+            const member: any = { id: '123', send: () => { throw new TypeError() }, user: { bot: false }};
             const instigator: any = { id: '321' };
 
             const result = () => autoMod.warnMember(member, instigator);

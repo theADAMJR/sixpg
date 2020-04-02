@@ -14,7 +14,7 @@ export default class SkipCommand implements Command {
     execute = async(ctx: CommandContext) => {
         const player = this.music.joinAndGetPlayer(ctx);
         if (player.queue.size <= 1)
-            throw new Error('No tracks to skip');
+            throw new TypeError('No tracks to skip');
         player.stop();
     }
 }

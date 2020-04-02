@@ -16,13 +16,13 @@ export default class PlayCommand implements Command {
     {
         const query = args.join();
         if (!query)
-            throw new Error('Query must be provided.');
+            throw new TypeError('Query must be provided.');
 
         const player = this.music.joinAndGetPlayer(ctx);
 
         const maxQueueSize = 5;
         if (player.queue.size >= maxQueueSize)
-            throw new Error(`Max queue size of \`${maxQueueSize}\` reached.`);
+            throw new TypeError(`Max queue size of \`${maxQueueSize}\` reached.`);
 
         const track = await this.searchForTrack(query, ctx.member);
 

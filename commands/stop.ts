@@ -14,7 +14,7 @@ export default class StopCommand implements Command {
     execute = (ctx: CommandContext) => {
         const players = this.music.client.players;
         if (!players)
-            throw new Error('Not currently playing any track.');
+            throw new TypeError('Not currently playing any track.');
 
         players.destroy(ctx.guild.id);
     }

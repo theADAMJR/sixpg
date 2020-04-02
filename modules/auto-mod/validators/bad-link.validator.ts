@@ -6,7 +6,7 @@ export class BadLinkValidator implements ContentValidator {
         const isExplicit = guild.autoMod.banLinks
             .some(l => content.includes(l));
         if (isExplicit) {
-            throw new Error('Message contains banned links.');
+            throw new TypeError('Message contains banned links.');
         }
     }
 }

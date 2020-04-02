@@ -14,7 +14,7 @@ export default class PauseCommand implements Command {
         const player = this.music.joinAndGetPlayer(ctx);
 
         if (!player.playing)
-            throw new Error('Player is already paused.');
+            throw new TypeError('Player is already paused.');
         
         player.pause(true);
         ctx.channel.send(`**Paused**: \`${player.queue[0].title}\``);

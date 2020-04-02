@@ -15,11 +15,7 @@ export default class CommandService {
     constructor(
         private guilds = Deps.get<Guilds>(Guilds),
         private autoMod = Deps.get<AutoMod>(AutoMod),
-        private leveling = Deps.get<Leveling>(Leveling)) {            
-            this.initialize();
-        }
-    
-    initialize() {
+        private leveling = Deps.get<Leveling>(Leveling)) {
         fs.readdir('./commands/', (err, files) => {
             err && Log.error(err, 'cmds');
 
@@ -28,15 +24,14 @@ export default class CommandService {
                 if (!Command) continue;
 
                 const command = new Command();
-                const name = command.name;
-
-                this.commands.set(name, command);
+                this.commands.set(command.name, command);
+                
                 this.updateCommandData(command);
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         }); 
     }
-
+    
     private async updateCommandData(command: Command) {
         const { name, summary, module, precondition } = command;
         await SavedCommand.updateOne({ name },
@@ -45,7 +40,7 @@ export default class CommandService {
     }
 
     async handle(msg: Message) {
-        if (!msg.member || !msg.content || !msg.guild || msg.author.bot) return;
+        if (!(msg.member && msg.content && msg.guild && !msg.author.bot)) return;
         
         const guild = await this.guilds.get(msg.guild);
         const prefix = guild.general.prefix;
@@ -75,32 +70,28 @@ export default class CommandService {
             } catch {}
         }
     }
-
     private inCooldown(author: User, command: Command) {
         return this.cooldowns
-            .some(c => c.userId === author.id && c.commandName == command.name);
+            .some(c => c.userId === author.id && c.commandName === command.name);
     }
-
     private addCooldown(user: User, command: Command) {
         const cooldown = { userId: user.id, commandName: command.name };
 
-        const inCooldown = this.cooldowns
-            .some(c => c.userId === user.id && c.commandName == command.name);
-        if (!inCooldown)
+        if (!this.inCooldown(user, command))
             this.cooldowns.push(cooldown);
 
         const seconds = (command.cooldown ?? 0) * 1000;
-        setInterval(() => this.removeCooldown(user, command), seconds);
+        setTimeout(() => this.removeCooldown(user, command), seconds);
     }
     private removeCooldown(user: User, command: Command) {
         const index = this.cooldowns
-            .findIndex(c => c.userId === user.id && c.commandName == command.name);
+            .findIndex(c => c.userId === user.id && c.commandName === command.name);
         this.cooldowns.splice(index, 1);
     }
 
-    validatePreconditions(command: Command, executor: GuildMember) {
+    private validatePreconditions(command: Command, executor: GuildMember) {
         if (command.precondition && !executor.hasPermission(command.precondition))
-            throw new Error(`**Required Permission**: \`${command.precondition}\``);
+            throw new TypeError(`**Required Permission**: \`${command.precondition}\``);
     }
 
     private async validateChannel(channel: TextChannel) {
@@ -109,10 +100,10 @@ export default class CommandService {
         const isIgnored = guild?.general.ignoredChannels
             .some(id => id === channel.id);
         if (isIgnored)
-            throw new Error('Commands cannot be executed in this channel.');
+            throw new TypeError('Commands cannot be executed in this channel.');
     }
     private findCommand(content: string) {        
-        const name = content.split(' ')[0].substr(1, content.length);
+        const name = content.split(' ')[0].substring(1, content.length);
         return this.commands.get(name);
     }
 

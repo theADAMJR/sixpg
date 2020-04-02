@@ -20,10 +20,6 @@ export default class EventsService {
     ];
 
     constructor() {
-        this.initialize();
-    }
-
-    private initialize() {
         for (const handler of this.handlers) {
             bot.on(handler.on, handler.invoke.bind(handler));
         }

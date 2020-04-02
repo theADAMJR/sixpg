@@ -5,20 +5,22 @@
   "main": "bot.js",
   "scripts": {
     "test": "ts-mocha tests/**/*.tests.ts",
-    "test:unit": "ts-mocha tests/unit/*/*.tests.ts",
-    "test:integration": "ts-mocha tests/integration/*/*.tests.ts",
+    "test:u": "ts-mocha tests/unit/*/*.tests.ts",
+    "test:i": "ts-mocha tests/integration/*/*.tests.ts",
     "start": "nodemon --exec ts-node bot.ts --watch * -e ts,json"
   },
   "keywords": [],
   "author": "ADAMJR#0001",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "discord.js": "^12.0.2",
     "erela.js": "^1.1.7",
     "mongoose": "^5.9.3",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/chai": "^4.2.10",
     "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^7.0.2",

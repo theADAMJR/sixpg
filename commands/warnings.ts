@@ -30,7 +30,7 @@ export default class WarningsCommand implements Command {
 
     private async displayWarning(position: number, savedMember: MemberDocument, channel: TextChannel) {
         if (position <= 0 || position > savedMember.warnings.length)
-            throw new Error('Warning at position not found on user.');
+            throw new TypeError('Warning at position not found on user.');
 
         const warning = savedMember.warnings[position - 1];
         const instigator = channel.client.users.cache.get(warning.instigatorId);

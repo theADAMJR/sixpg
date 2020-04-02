@@ -8,7 +8,7 @@ export class BadWordValidator implements ContentValidator {
             const isExplicit = guild.autoMod.banWords
                 .some(w => w.toLowerCase() === word.toLowerCase());
             if (isExplicit) {
-                throw new Error('Message contains banned words.');
+                throw new TypeError('Message contains banned words.');
             }
         }
     }

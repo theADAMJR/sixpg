@@ -31,7 +31,7 @@ describe('modules/announce', () =>
                         get: (id: string) => {
                             const channel = mock<TextChannel>();
                             channel.send = (message: any): any => {
-                                throw new Error(message);
+                                throw new TypeError(message);
                             }
                             return (id === '123') ? channel : null;
                         }
@@ -95,7 +95,7 @@ describe('modules/announce', () =>
 
             const result = () => new MemberJoinHandler(guilds).invoke(member);
     
-            result().should.eventually.throws(new Error('<@!123> joined!'));
+            result().should.eventually.throws(new TypeError('<@!123> joined!'));
         });
     });
 

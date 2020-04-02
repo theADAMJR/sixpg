@@ -18,7 +18,7 @@ export default class Music {
 
         this.hookEvents(music);
 
-        this._client = music;
+        this._client = music;        
     }
 
     private hookEvents(music: ErelaClient) {
@@ -35,7 +35,7 @@ export default class Music {
     joinAndGetPlayer(ctx: CommandContext) {
         const voiceChannel = ctx.member.voice.channel;
         if (!voiceChannel)
-            throw new Error('You must be in a voice channel to play music.');
+            throw new TypeError('You must be in a voice channel to play music.');
 
         return this.client.players.spawn({
             guild: ctx.guild,

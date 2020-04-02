@@ -9,7 +9,7 @@ export default abstract class AnnounceHandler {
     protected async getEvent(event: EventType, memberGuild: Guild) {
         const guild = await this.guilds.get(memberGuild);
         
-        const activeEvent = guild.announce.events.find(e => e.event == event);
+        const activeEvent = guild.announce.events.find(e => e.event === event);
         return (guild.announce.enabled && activeEvent) ? activeEvent : null;
     }
 

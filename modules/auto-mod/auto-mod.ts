@@ -34,10 +34,10 @@ export default class AutoMod {
 
     async warnMember(member: GuildMember, instigator: User, reason = "No reason specified.") {
         if (member.id === instigator.id) {
-            throw new Error('You cannot warn yourself.');
+            throw new TypeError('You cannot warn yourself.');
         }
         if (member.user.bot) {
-            throw new Error('Bots cannot be warned.');
+            throw new TypeError('Bots cannot be warned.');
         }
         const savedMember = await this.members.get(member);
         const warning = { reason, instigatorId: instigator.id, at: new Date() };

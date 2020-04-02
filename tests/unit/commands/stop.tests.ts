@@ -17,7 +17,7 @@ describe('commands/stop', () => {
 
     it('active player, destroyed', () =>
     {
-        const music = { client: { players: { destroy: () => { throw new Error() }}}};
+        const music = { client: { players: { destroy: () => { throw new TypeError() }}}};
 
         const result = () => new StopCommand(music as any);
 

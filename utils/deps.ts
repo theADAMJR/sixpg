@@ -5,13 +5,13 @@ export default class Deps {
         for (const Type of types)
         {
             try { this.deps.push(new Type()); }
-            catch { throw new Error(`Type '${Type}' could not be instantiated`); }
+            catch { throw new TypeError(`Type '${Type}' could not be instantiated`); }
         }
     }
 
     static get<T>(type: any): T {
         const service = this.deps.find(t => t instanceof type);
-        return !service ? this.add(new type()) : service;
+        return service || this.add(new type());
     }
 
     private static add<T>(instance: T): T {
