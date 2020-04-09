@@ -9,14 +9,32 @@ Simple multi-purpose Discord bot made with TypeScript
 `config.json` example:
 ```
 {
-    "token": "yourBotToken",
-    "mongoURL": "mongodb://localhost/2PG",
-    "webappURL": "https://2pg.xyz",
-    "lavalink": {
+    "bot": {
+        "token": "yourBotToken", // used for bot user login
+        "secret": "oauthSecret", // used for webapp login integration
+        "id": "discordBotId" // used for webapp login integration
+    },
+    "api": {
+        "url": "https://2pg.xyz/api", // used for xp cards etc.
+        "managerPermission": "MANAGE_GUILD" // required permission for managing dashboard 
+    },
+    "webapp": {
+        "url": "https://2pg.xyz", // the URL of the dashboard
+        "distPath": "/Documents/Projects/twopg-dashboard/dist/twopg-dashboard" // the compiled webapp; contains index.html (created with 'ng build --prod' in webapp)
+    },
+    "lavalink": { // used for music server
         "password": "youshallnotpass"
-    }
+    },
+    "tests": {
+        "guild": {
+            "id": "685862664223850497" // used for integration tests
+        }
+    },
+    "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)
+    "modules": ["announce", "auto-mod", "general", "music", "xp"] // enabled modules used for validation in API
 }
 ```
+- Remove Comments
 
 
 ## Hosting

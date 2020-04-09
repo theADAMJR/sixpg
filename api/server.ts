@@ -13,7 +13,7 @@ export const app = express(),
 export default class API {
     constructor() {
         AuthClient.setRedirect(`${config.webapp.url}/auth`);
-        AuthClient.setScopes("identify", "guilds");
+        AuthClient.setScopes('identify', 'guilds');
 
         app.use(cors());
         app.use(bodyParser.json());

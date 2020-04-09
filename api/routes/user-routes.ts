@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import { SavedMember } from '../../models/member';
 import { AuthClient } from '../server';
-import { bot } from '../server';
+import { bot } from '../../bot';
 import { SavedUser } from '../../models/user';
 
 export const router = Router();
@@ -29,7 +29,7 @@ router.get('/xp-card-preview', async (req, res) => {
         const user = await getUser(req.query.key);
         const savedUser = await getOrCreateSavedUser(user.id);
         if (!savedUser)
-            return res.status(404).send("User not found");
+            return res.status(404).send('User not found');
 
         const rank = 1;
         const generator = new XPCardGenerator(savedUser, rank);

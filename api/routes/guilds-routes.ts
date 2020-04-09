@@ -1,4 +1,4 @@
-import { Router, Request } from 'express';
+import { Router } from 'express';
 import config from '../../config.json';
 import { SavedUser } from '../../models/user';
 import { SavedGuild } from '../../models/guild';
@@ -6,7 +6,7 @@ import { SavedMember } from '../../models/member';
 import Leveling from '../../modules/xp/leveling';
 import { AuthClient } from '../server';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
-import { bot } from '../server';
+import { bot } from '../../bot';
 import { Guild } from 'discord.js';
 
 export const router = Router();
@@ -110,7 +110,7 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         
         const savedUser = await getOrCreateSavedUser(memberId);
         if (!savedUser)
-            return res.status(404).send("User not found");
+            return res.status(404).send('User not found');
 
         const rank = 1;//Ranks.getUserRank(user, users);
         const generator = new XPCardGenerator(savedUser, rank);

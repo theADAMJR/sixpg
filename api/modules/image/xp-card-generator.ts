@@ -1,4 +1,4 @@
-import { bot } from '../../server';
+import { bot } from '../../../bot';
 import ImageGenerator from './image-generator';
 import { Canvas, createCanvas } from 'canvas';
 import { User } from 'discord.js';

@@ -32,7 +32,7 @@ export default class AutoMod {
         }
     }
 
-    async warnMember(member: GuildMember, instigator: User, reason = "No reason specified.") {
+    async warnMember(member: GuildMember, instigator: User, reason = 'No reason specified.') {
         if (member.id === instigator.id) {
             throw new TypeError('You cannot warn yourself.');
         }

@@ -18,6 +18,6 @@ export default class MessageDeleteHandler extends AnnounceHandler implements Eve
     }
     
     protected applyGuildVariables(...args: any[]): string {
-        throw new TypeError("Method not implemented.");
+        throw new TypeError('Method not implemented.');
     }
 }
