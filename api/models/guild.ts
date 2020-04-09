@@ -25,8 +25,8 @@ export class AutoModModule extends Module {
     autoWarnUsers = true;
 }
 
-export class CommandsModule extends Module {
-    configs: CommandConfig[] = [];
+export class CommandsModule {
+    configs: CommandConfig[]
 }
 
 export enum MessageFilter { Words, Links }
