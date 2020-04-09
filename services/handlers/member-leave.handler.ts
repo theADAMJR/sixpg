@@ -1,7 +1,7 @@
-import { GuildMember, TextChannel } from "discord.js";
-import { EventType } from "../../models/guild";
-import AnnounceHandler from "./announce-handler";
-import EventHandler from "./event-handler";
+import { GuildMember, TextChannel } from 'discord.js';
+import { EventType } from '../../models/guild';
+import AnnounceHandler from './announce-handler';
+import EventHandler from './event-handler';
 
 export default class MemberLeaveHandler extends AnnounceHandler implements EventHandler {
     on = 'guildMemberRemove';

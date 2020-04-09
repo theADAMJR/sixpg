@@ -1,7 +1,7 @@
 import config from '../../config.json';
-import EventHandler from "./event-handler";
-import { SavedGuild } from "../../models/guild";
-import { Guild, TextChannel } from "discord.js";
+import EventHandler from './event-handler';
+import { SavedGuild } from '../../models/guild';
+import { Guild, TextChannel } from 'discord.js';
 
 export default class GuildCreateHandler implements EventHandler {
     on = 'guildCreate';
@@ -15,6 +15,6 @@ export default class GuildCreateHandler implements EventHandler {
     }
 
     private sendWelcomeMessage(channel: TextChannel | null) {
-        channel?.send(`Hey, I'm 2PG! Customize me at ${config.webappURL}`);
+        channel?.send(`Hey, I'm 2PG! Customize me at ${config.webapp.url}`);
     }    
 }

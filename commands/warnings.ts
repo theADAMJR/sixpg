@@ -1,10 +1,10 @@
-import { Command, CommandContext } from "./command";
-import Members from "../data/members";
-import { TextChannel, PermissionString, Client, Guild } from "discord.js";
-import { MemberDocument } from "../models/member";
-import Deps from "../utils/deps";
-import CommandUtils from "../utils/command-utils";
-import { ModuleString } from "../modules/module";
+import { Command, CommandContext } from './command';
+import Members from '../data/members';
+import { TextChannel, PermissionString, Client, Guild } from 'discord.js';
+import { MemberDocument } from '../models/member';
+import Deps from '../utils/deps';
+import CommandUtils from '../utils/command-utils';
+import { ModuleString } from '../models/guild';
 
 export default class WarningsCommand implements Command {
     name = 'warnings';

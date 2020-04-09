@@ -1,6 +1,6 @@
-import { Command, CommandContext } from "./Command";
+import { Command, CommandContext } from './Command';
 import config from '../config.json';
-import { ModuleString } from "../modules/module";
+import { ModuleString } from '../models/guild';
 
 export default class LeaderboardCommand implements Command {
     name = 'leaderboard';
@@ -9,6 +9,6 @@ export default class LeaderboardCommand implements Command {
     module: ModuleString = 'XP';
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.webappURL}/servers/${ctx.guild.id}/leaderboard`);
+        ctx.channel.send(`${config.webapp.url}/servers/${ctx.guild.id}/leaderboard`);
     }
 }

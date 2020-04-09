@@ -1,5 +1,5 @@
-import { Guild } from "discord.js";
-import { Document } from "mongoose";
+import { Guild } from 'discord.js';
+import { Document } from 'mongoose';
 
 export default abstract class DBWrapper<T1, T2 extends Document> {
     get(type: T1) {

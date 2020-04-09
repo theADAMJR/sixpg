@@ -11,10 +11,11 @@ import Members from './data/members';
 import AutoMod from './modules/auto-mod/auto-mod';
 import Leveling from './modules/xp/leveling';
 import Music from './modules/music/music';
+import API from './api/server';
 
 export const bot = new Client();
 
-bot.login(config.token);
+bot.login(config.bot.token);
 
 Deps.build(
     Guilds,
@@ -26,7 +27,8 @@ Deps.build(
     Music,
 
     CommandService,
-    EventsService
+    EventsService,
+    API
 );
 
 mongoose.connect(config.mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });

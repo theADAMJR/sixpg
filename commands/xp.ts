@@ -1,6 +1,6 @@
-import { Command, CommandContext } from "./Command";
-import CommandUtils from "../utils/command-utils";
-import { ModuleString } from "../modules/module";
+import { Command, CommandContext } from './Command';
+import CommandUtils from '../utils/command-utils';
+import { ModuleString } from '../models/guild';
 import config from '../config.json';
 
 export default class XPCommand implements Command {
@@ -13,7 +13,7 @@ export default class XPCommand implements Command {
         const target = (userMention) ?
             CommandUtils.getMemberFromMention(userMention, ctx.guild) : ctx.member;
 
-        const xpCardURL = `${config.apiURL}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
+        const xpCardURL = `${config.api.url}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
         return ctx.channel.send({ files: [{
             attachment: xpCardURL,
             name: 'xp-card.png'

@@ -1,9 +1,9 @@
-import { Message, GuildMember, User, Guild } from "discord.js";
-import { GuildDocument, MessageFilter } from "../../models/guild";
-import { BadWordValidator } from "./validators/bad-word.validator";
-import { BadLinkValidator } from "./validators/bad-link.validator";
-import Deps from "../../utils/deps";
-import Members from "../../data/members";
+import { Message, GuildMember, User, Guild } from 'discord.js';
+import { GuildDocument, MessageFilter } from '../../models/guild';
+import { BadWordValidator } from './validators/bad-word.validator';
+import { BadLinkValidator } from './validators/bad-link.validator';
+import Deps from '../../utils/deps';
+import Members from '../../data/members';
 
 export default class AutoMod {
     constructor(private members = Deps.get<Members>(Members)) {}

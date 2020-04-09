@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { XPCardGenerator } from "../modules/image/xp-card-generator";
-import { SavedMember } from "../models/member";
-import { AuthClient, bot } from "../server";
-import { SavedUser } from "../models/user";
+import { Router } from 'express';
+import { XPCardGenerator } from '../modules/image/xp-card-generator';
+import { SavedMember } from '../../models/member';
+import { AuthClient } from '../server';
+import { bot } from '../server';
+import { SavedUser } from '../../models/user';
 
 export const router = Router();
 

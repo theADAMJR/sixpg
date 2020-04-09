@@ -2,12 +2,9 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "downlevelIteration": true,
-    // used for dependency injection
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "downlevelIteration": true
   }
 }

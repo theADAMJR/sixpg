@@ -1,5 +1,5 @@
-import { GuildDocument } from "../../../models/guild";
-import { ContentValidator } from "./content-validator";
+import { GuildDocument } from '../../../models/guild';
+import { ContentValidator } from './content-validator';
 
 export class BadLinkValidator implements ContentValidator {
     validate(content: string, guild: GuildDocument) {

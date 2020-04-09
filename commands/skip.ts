@@ -1,7 +1,7 @@
-import { Command, CommandContext } from "./Command";
-import Deps from "../utils/deps";
-import Music from "../modules/music/music";
-import { ModuleString } from "../modules/module";
+import { Command, CommandContext } from './Command';
+import Deps from '../utils/deps';
+import Music from '../modules/music/music';
+import { ModuleString } from '../models/guild';
 
 export default class SkipCommand implements Command {
     name = 'skip';

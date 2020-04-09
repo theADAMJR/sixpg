@@ -1,7 +1,7 @@
-import { Message, GuildMember } from "discord.js";
-import { GuildDocument } from "../../models/guild";
-import Members from "../../data/members";
-import Deps from "../../utils/deps";
+import { Message, GuildMember } from 'discord.js';
+import { GuildDocument } from '../../models/guild';
+import Members from '../../data/members';
+import Deps from '../../utils/deps';
 
 export default class Leveling {
     constructor(private members = Deps.get<Members>(Members)) {}
@@ -50,5 +50,17 @@ export default class Leveling {
         const xp = xpPerMessage * messages;
         const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
         return Math.floor(preciseLevel);
+    }
+    static xpInfo(messages: number, xpPerMessage: number) { // TODO: replace with getLevel
+        const xp = xpPerMessage * messages;
+
+        const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
+        const level = ~~preciseLevel;
+
+        const xpForNextLevel = this.xpForNextLevel(level, xp);
+        return { level, exp: xp, xpForNextLevel };
+    }
+    private static xpForNextLevel(currentLevel: number, xp: number) { // TODO: remove - will be handled in webapp xp card
+        return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - xp;
     }
 }

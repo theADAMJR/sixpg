@@ -1,6 +1,6 @@
-import { User } from "discord.js";
-import { SavedUser, UserDocument } from "../models/user";
-import DBWrapper from "./db-wrapper";
+import { User } from 'discord.js';
+import { SavedUser, UserDocument } from '../models/user';
+import DBWrapper from './db-wrapper';
 
 export default class Users extends DBWrapper<User, UserDocument> {
     protected async getOrCreate(user: User) {

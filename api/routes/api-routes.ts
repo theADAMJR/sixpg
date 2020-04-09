@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SavedCommand, CommandDocument } from '../models/command';
+import { SavedCommand, CommandDocument } from '../../models/command';
 import { AuthClient } from '../server';
 
 import { router as guildsRoutes } from './guilds-routes';

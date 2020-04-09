@@ -1,6 +1,6 @@
-import { GuildMember } from "discord.js";
-import { MemberDocument, SavedMember } from "../models/member";
-import DBWrapper from "./db-wrapper";
+import { GuildMember } from 'discord.js';
+import { MemberDocument, SavedMember } from '../models/member';
+import DBWrapper from './db-wrapper';
 
 export default class Members extends DBWrapper<GuildMember, MemberDocument> {
     protected async getOrCreate(member: GuildMember) {

@@ -1,9 +1,9 @@
 import { bot } from '../bot';
 import Log from '../utils/log';
 
-import MemberJoinHandler from "./handlers/member-join.handler";
-import MemberLeaveHandler from "./handlers/member-leave.handler";
-import MessageDeleteHandler from "./handlers/message-deleted.handler";
+import MemberJoinHandler from './handlers/member-join.handler';
+import MemberLeaveHandler from './handlers/member-leave.handler';
+import MessageDeleteHandler from './handlers/message-deleted.handler';
 import EventHandler from './handlers/event-handler';
 import ReadyHandler from './handlers/ready.handler';
 import GuildCreateHandler from './handlers/guildCreate.handler';

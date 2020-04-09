@@ -1,6 +1,6 @@
-import { Command, CommandContext } from "./Command";
+import { Command, CommandContext } from './Command';
 import config from '../config.json';
-import { ModuleString } from "../modules/module";
+import { ModuleString } from '../models/guild';
 
 export default class HelpCommand implements Command {
     name = 'help';
@@ -9,6 +9,6 @@ export default class HelpCommand implements Command {
     module: ModuleString = 'General';
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.webappURL}/commands`);
+        ctx.channel.send(`${config.webapp.url}/commands`);
     }
 }

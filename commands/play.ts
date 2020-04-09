@@ -1,8 +1,8 @@
-import { Command, CommandContext } from "./Command";
-import Deps from "../utils/deps";
-import { GuildMember } from "discord.js";
-import Music from "../modules/music/music";
-import { ModuleString } from "../modules/module";
+import { Command, CommandContext } from './Command';
+import Deps from '../utils/deps';
+import { GuildMember } from 'discord.js';
+import Music from '../modules/music/music';
+import { ModuleString } from '../models/guild';
 
 export default class PlayCommand implements Command {
     name = 'play';

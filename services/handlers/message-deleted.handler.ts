@@ -1,7 +1,7 @@
-import AnnounceHandler from "./announce-handler";
-import { Message, TextChannel } from "discord.js";
-import { EventType } from "../../models/guild";
-import EventHandler from "./event-handler";
+import AnnounceHandler from './announce-handler';
+import { Message, TextChannel } from 'discord.js';
+import { EventType } from '../../models/guild';
+import EventHandler from './event-handler';
 
 export default class MessageDeleteHandler extends AnnounceHandler implements EventHandler {
     on = 'messageDelete';

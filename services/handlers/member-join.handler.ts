@@ -1,7 +1,7 @@
-import AnnounceHandler from "./announce-handler";
-import { GuildMember, TextChannel } from "discord.js";
-import { EventType } from "../../models/guild";
-import EventHandler from "./event-handler";
+import AnnounceHandler from './announce-handler';
+import { GuildMember, TextChannel } from 'discord.js';
+import { EventType } from '../../models/guild';
+import EventHandler from './event-handler';
 
 export default class MemberJoinHandler extends AnnounceHandler implements EventHandler {
     on = 'guildMemberAdd';

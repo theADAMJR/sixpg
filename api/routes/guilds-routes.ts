@@ -1,12 +1,13 @@
-import { Router, Request } from "express";
+import { Router, Request } from 'express';
 import config from '../../config.json';
-import { SavedUser } from "../models/user";
-import { SavedGuild } from '../models/guild';
-import { SavedMember } from '../models/member';
-import Leveling from '../modules/leveling';
-import { AuthClient, bot } from '../server';
+import { SavedUser } from '../../models/user';
+import { SavedGuild } from '../../models/guild';
+import { SavedMember } from '../../models/member';
+import Leveling from '../../modules/xp/leveling';
+import { AuthClient } from '../server';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
-import { Guild } from "discord.js";
+import { bot } from '../server';
+import { Guild } from 'discord.js';
 
 export const router = Router();
 
@@ -94,7 +95,7 @@ async function getManagableGuilds(key: string) {
     for (const id of userGuilds.keys()) {
         const authGuild = userGuilds.get(id);
         const hasManager = authGuild._permissions
-            .some(p => p === config.dashboard.managerPermission);
+            .some(p => p === config.api.managerPermission);
 
         if (!hasManager)
             userGuilds.delete(id);      

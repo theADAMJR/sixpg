@@ -1,5 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
+export type ModuleString = 'Auto-mod' | 'Announce' | 'General' | 'Music' | 'XP';
+
 export class Module {
     enabled = true;
 }

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Message,  TextChannel, GuildMember, User } from "discord.js";
+import { Message,  TextChannel, GuildMember, User } from 'discord.js';
 import { Command, CommandContext } from '../commands/command';
 import Leveling from '../modules/xp/leveling';
 import Guilds from '../data/guilds';
