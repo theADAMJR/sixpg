@@ -25,9 +25,9 @@ Simple multi-purpose Discord bot made with TypeScript
     "lavalink": { // used for music server
         "password": "youshallnotpass"
     },
-    "tests": {
+    "tests": { // optional -> used for tests
         "guild": {
-            "id": "685862664223850497" // used for integration tests
+            "id": "yourTestGuildId" // used for integration tests
         }
     },
     "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)

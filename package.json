@@ -23,6 +23,7 @@
     "erela.js": "^1.1.7",
     "express": "^4.17.1",
     "mongoose": "^5.9.3",
+    "stripe": "^8.39.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {

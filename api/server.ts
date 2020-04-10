@@ -3,12 +3,15 @@ import config from '../config.json';
 import cors from 'cors';
 import OAuthClient from 'disco-oauth';
 import bodyParser from 'body-parser';
+import { Stripe } from 'stripe';
 
 import { router as apiRoutes } from './routes/api-routes';
 import Log from '../utils/log';
 
 export const app = express(),
-             AuthClient = new OAuthClient(config.bot.id, config.bot.secret);
+             AuthClient = new OAuthClient(config.bot.id, config.bot.secret),
+             stripe = new Stripe(config.api.stripe.apiKey, 
+                { apiVersion: '2020-03-02' });
 
 export default class API {
     constructor() {

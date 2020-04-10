@@ -1,14 +1,14 @@
-import { model, Schema, Document } from 'mongoose';
+import { model, Schema, Document, Types } from 'mongoose';
 
 const memberSchema = new Schema({
-    _id: String,
+    userId: String,
     guildId: String,
     xpMessages: { type: Number, default: 0 },
     warnings: { type: Array, default: [] }
 });
 
 export interface MemberDocument extends Document {
-    _id: string;
+    userId: string;
     guildId: string;
     xpMessages: number;
     warnings: Warning[];

@@ -3,7 +3,8 @@ import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import { SavedMember } from '../../models/member';
 import { AuthClient } from '../server';
 import { bot } from '../../bot';
-import { SavedUser } from '../../models/user';
+import Deps from '../../utils/deps';
+import Users from '../../data/users';
 
 export const router = Router();
 
@@ -16,9 +17,9 @@ router.get('/', async (req, res) => {
 
 router.get('/saved', async (req, res) => {
     try {        
-        const { id } = await getUser(req.query.key);
-        const user = await getOrCreateSavedUser(id);
-        res.json(user);
+        const user = await getUser(req.query.key);
+        const savedUser = await Deps.get<Users>(Users).get(user);
+        res.json(savedUser);
     } catch { res.status(400).send('Bad Request'); }
 });
 
@@ -27,12 +28,12 @@ router.get('/xp-card-preview', async (req, res) => {
         delete req.query.cache;
 
         const user = await getUser(req.query.key);
-        const savedUser = await getOrCreateSavedUser(user.id);
+        const savedUser = await Deps.get<Users>(Users).get(user);
         if (!savedUser)
             return res.status(404).send('User not found');
 
         const rank = 1;
-        const generator = new XPCardGenerator(savedUser, rank);
+        const generator = new XPCardGenerator(savedUser, rank, 50);
 
         const member = new SavedMember();
         member.xpMessages = 50;
@@ -46,9 +47,9 @@ router.get('/xp-card-preview', async (req, res) => {
 
 router.put('/xp-card', async (req, res) => {        
     try {
-        const { id } = await getUser(req.query.key);
+        const user = await getUser(req.query.key);
+        const savedUser = await Deps.get<Users>(Users).get(user);
 
-        const savedUser = await getOrCreateSavedUser(id);
         savedUser.xpCard = req.body;
         await savedUser.save();
         
@@ -59,18 +60,4 @@ router.put('/xp-card', async (req, res) => {
 async function getUser(key: string) {
     const { id } = await AuthClient.getUser(key);
     return bot.users.cache.get(id);
-}
-
-async function getOrCreateSavedUser(id: string) {
-    const user = bot.users.cache.get(id);
-    if (!user)
-        throw new Error('Invalid user');
-
-    let savedUser = await SavedUser.findById(id);
-    if (!savedUser) {
-        savedUser = new SavedUser();
-        savedUser._id = id;
-        savedUser.save();
-    }
-    return savedUser;
 }

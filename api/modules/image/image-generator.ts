@@ -1,4 +1,5 @@
-import { registerFont, loadImage, Canvas } from 'canvas';
+import { loadImage, Canvas } from 'canvas';
+import config from '../../../config.json';
 
 export default class ImageGenerator 
 {
@@ -8,7 +9,7 @@ export default class ImageGenerator
 
         let background = null;
         try {
-          background = await loadImage(backgroundURL || 'modules/image/wallpaper.png') 
+          background = await loadImage(backgroundURL || config.api.defaultBackgroundPath) 
         }
         catch { return; }
         

@@ -11,7 +11,7 @@ export default class Users extends DBWrapper<User, UserDocument> {
         return savedUser ?? this.create(user);
     }
 
-    protected create(user: User) {
-        return SavedUser.create(user);
+    protected async create(user: User) {
+        return new SavedUser({ _id: user.id }).save();
     }
 }
