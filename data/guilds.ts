@@ -9,9 +9,6 @@ export default class Guilds extends DBWrapper<Guild, GuildDocument> {
     }
 
     protected create(guild: Guild) {
-        const newGuild = new SavedGuild();
-        newGuild._id = guild.id;
-
-        return newGuild.save();
+        return new SavedGuild({ _id: guild.id }).save();
     }
 }

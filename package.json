@@ -8,7 +8,7 @@
     "test:u": "ts-mocha tests/unit/*/*.tests.ts",
     "test:i": "ts-mocha tests/integration/*/*.tests.ts",
     "start": "nodemon --exec ts-node bot.ts --watch * -e ts,json",
-    "start:api": "cd api && nodemon --exec ts-node server.ts --watch * -e ts,js"
+    "start:music": "cd dist/lavalink && java -jar Lavalink.jar"
   },
   "keywords": [],
   "author": "ADAMJR#0001",

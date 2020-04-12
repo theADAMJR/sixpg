@@ -4,6 +4,7 @@ import cors from 'cors';
 import OAuthClient from 'disco-oauth';
 import bodyParser from 'body-parser';
 import { Stripe } from 'stripe';
+import { join } from 'path';
 
 import { router as apiRoutes } from './routes/api-routes';
 import Log from '../utils/log';
@@ -22,10 +23,10 @@ export default class API {
         app.use(bodyParser.json());
         app.use('/api', apiRoutes);
         
-        app.use(express.static(config.webapp.distPath)); // use only for production
+        app.use(express.static(join(__dirname, '..', config.webapp.distPath)));
         
         app.all('*', (req, res) => res.status(200).sendFile(
-            config.webapp.distPath + '/index.html'));
+            join(__dirname, '..', config.webapp.distPath, '/index.html')));
     }
 }
 

@@ -31,4 +31,8 @@ Deps.build(
     API
 );
 
-mongoose.connect(config.mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(config.mongoURL, { 
+    useUnifiedTopology: true, 
+    useNewUrlParser: true, 
+    useFindAndModify: false 
+});

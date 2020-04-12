@@ -1,9 +1,5 @@
-import { Guild } from 'discord.js';
 import { Document } from 'mongoose';
 
-/*
- * DBWrapper<Input, Output>
-*/
 export default abstract class DBWrapper<T1, T2 extends Document> {
     get(type: T1) {
         return this.getOrCreate(type);

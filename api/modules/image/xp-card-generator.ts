@@ -21,7 +21,7 @@ export class XPCardGenerator extends ImageGenerator {
         private xpPerMessage: number) {
         super();
 
-        this.discordUser = bot.users.cache.get(user._id);
+        this.discordUser = bot.users.cache.get(user.id);
         if (!this.discordUser)
             throw Error('Could not find Discord user!');
         if (this.discordUser.bot)

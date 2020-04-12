@@ -2,11 +2,14 @@ import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../models/command';
 import { AuthClient, stripe } from '../server';
 import * as config from '../../config.json';
+import Stripe from 'stripe';
+import bodyParser from 'body-parser';
 
 import { router as guildsRoutes } from './guilds-routes';
 import { router as userRoutes } from './user-routes';
 
-export const router = Router();
+export const router = Router(),
+             endpointSecret = 'whsec_uNgUHx7T0J1vbOgcTuRCEjXGZYTMvqs0';
 
 let commands: CommandDocument[] = [];
 SavedCommand.find().then(cmds => commands = cmds);
@@ -24,8 +27,8 @@ router.get('/auth', async (req, res) => {
 
 const items = [
     {
-        name: 'Plus',
-        description: 'Support 2PG',
+        name: '2PG+',
+        description: 'Support 2PG, and unlock exclusive user features!',
         amount: 500,
         currency: 'usd',
         quantity: 1,
@@ -37,7 +40,6 @@ router.get('/pay', async(req, res) => {
             success_url: `${config.webapp.url}/payment-success`,
             cancel_url: `${config.webapp.url}/plus`,
             payment_method_types: ['card'],
-            mode: 'payment',
             line_items: items
         });
         res.send(session);

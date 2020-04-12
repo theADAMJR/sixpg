@@ -1,22 +1,21 @@
 import { model, Schema, Document } from 'mongoose';
 
 export class Change {
-    private at = new Date();
+    public at = new Date();
 
     constructor(
-        private by: string,
-        private oldValue: any,
-        private newValue: any,
-        private module: string) {}
+        public by: string,
+        public changes: { old: {}, new: {}},
+        public module: string) {}
 }
 
 const LogSchema = new Schema({
-    _id: String,
+    id: String,
     changes: { type: Array, default: [] }
 });
 
 export interface AuditLog extends Document {
-    _id: string;
+    id: string;
     changes: Change[];
 }
 
