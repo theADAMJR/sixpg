@@ -38,9 +38,8 @@ export default class Leveling {
             Level Up! ⭐\n**New Level**: \`${newLevel}\``);
 
         const levelRole = this.getLevelRole(newLevel, guild);
-        if (levelRole) {
+        if (levelRole)
             msg.member?.roles.add(levelRole);
-        }
     }
     private getLevelRole(level: number, guild: GuildDocument) {
         return guild.xp.levelRoles.find(r => r.level === level)?.role;
@@ -51,16 +50,20 @@ export default class Leveling {
         const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
         return Math.floor(preciseLevel);
     }
-    static xpInfo(messages: number, xpPerMessage: number) { // TODO: replace with getLevel
+    static xpInfo(messages: number, xpPerMessage: number) {
         const xp = xpPerMessage * messages;
 
         const preciseLevel = (-75 + Math.sqrt(Math.pow(75, 2) - 300 * (-150 - xp))) / 150;
-        const level = ~~preciseLevel;
+        const level = Math.floor(preciseLevel);
 
         const xpForNextLevel = this.xpForNextLevel(level, xp);
-        return { level, exp: xp, xpForNextLevel };
+        const nextLevelXP = xp + xpForNextLevel;        
+         
+        const levelCompletion = preciseLevel - level;
+
+        return { level, exp: xp, xpForNextLevel, levelCompletion, nextLevelXP };
     }
-    private static xpForNextLevel(currentLevel: number, xp: number) { // TODO: remove - will be handled in webapp xp card
+    private static xpForNextLevel(currentLevel: number, xp: number) {
         return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - xp;
     }
 }

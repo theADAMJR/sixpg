@@ -71,26 +71,28 @@ export class XPCardGenerator extends ImageGenerator {
         const position = { x: 275, y: canvas.height * 0.775 };
         const height = 25;
         
-        const info = Leveling.xpInfo(member.xpMessages, this.xpPerMessage);
-        const nextLevelEXP = info.exp + info.xpForNextLevel;
+        const { exp, nextLevelXP, level, levelCompletion } = Leveling.xpInfo(member.xpMessages, 
+                this.xpPerMessage);   
 
         context.fillStyle = card.secondary || this.colors.secondary;
         context.fillRect(position.x, position.y, canvas.width - sizeOffset - 1, height);
         context.fillStyle = card.primary || this.colors.tertiary;
         context.fillRect(position.x, position.y, 
-            (canvas.width - sizeOffset) * (info.exp / nextLevelEXP), height);
+            (canvas.width - sizeOffset) * (levelCompletion), height);
 
         context.fillStyle = card.primary || this.colors.primary;
         context.font = '16px Roboto, sans-serif';
-        context.fillText(info.exp, canvas.width / 2.5, canvas.height / 1.175);
+        context.fillText(exp, canvas.width / 2.5, canvas.height / 1.175);
         
         context.fillStyle = '#0F0F0F';
-        context.fillText(`/`, canvas.width / 2.5 + context.measureText(info.exp).width, canvas.height / 1.175);
+        context.fillText(`/`, canvas.width / 2.5 + 
+            context.measureText(exp).width, canvas.height / 1.175);
 
         context.fillStyle = card.secondary || this.colors.secondary;
-        context.fillText(`${nextLevelEXP}XP`, canvas.width / 2.5 + context.measureText(`${info.exp}/`).width, canvas.height / 1.175);
+        context.fillText(`${nextLevelXP}XP`, canvas.width / 2.5 + 
+            context.measureText(`${exp}/`).width, canvas.height / 1.175);
         
         context.fillStyle = card.primary || this.colors.primary;
-        context.fillText(`LEVEL ${info.level}`, canvas.width / 2.5, canvas.height / 1.35);
+        context.fillText(`LEVEL ${level}`, canvas.width / 2.5, canvas.height / 1.35);
     }
 }

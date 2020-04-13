@@ -100,12 +100,15 @@ router.get('/:id/roles', async (req, res) => {
 router.get('/:id/members', async (req, res) => {
     try {
         const members = await SavedMember.find({ guildId: req.params.id }).lean();
-        const guild = await SavedGuild.findById(req.params.id).lean();
+        const guild = bot.guilds.cache.get(req.params.id)
+        const savedGuild = await guilds.get(guild);
         
         let rankedMembers = [];
         for (const savedMember of members) {
-            const member = bot.users.cache.get(savedMember.id);
-            const xp = Leveling.xpInfo(savedMember.xpMessages, guild.xp.xpPerMessage);
+            const member = bot.users.cache.get(savedMember.userId);
+            if (!member) continue;
+
+            const xp = Leveling.xpInfo(savedMember.xpMessages, savedGuild.xp.xpPerMessage);
     
             rankedMembers.push({
                 id: member.id,
@@ -119,7 +122,7 @@ router.get('/:id/members', async (req, res) => {
         rankedMembers.sort((a, b) => b.xpMessages - a.xpMessages);
     
         res.json(rankedMembers);
-    } catch { res.status(400).send('Bad Request'); }
+    } catch (error) { res.status(400).send(error?.message); }
 });
 
 async function getManagableGuilds(key: string) {
@@ -166,11 +169,11 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
 
 async function validateGuildManager(key: string, id: string) {
     if (!key)
-        throw new Error();
+        throw new TypeError();
     const guilds = await getManagableGuilds(key);        
         
     if (!guilds.has(id))
-        throw Error();
+        throw TypeError();
 }
 
 async function getUser(key: string) {

@@ -87,10 +87,24 @@ describe('modules/leveling', () => {
             expect(result).to.equal(450);
         });        
         
-        it('returns xp for next level', () => {
+        it('250XP returns 50XP for next level', () => {
             const result = Leveling.xpInfo(1, 250).xpForNextLevel;
 
             expect(result).to.equal(50);
+        });
+    });
+
+    describe('levelCompletion', () => {
+        it('no level completion, returns 0', () => {
+            const result = Leveling.xpInfo(0, 50).levelCompletion;
+
+            expect(result).to.equal(0);
+        });
+
+        it('250/300 level completion, returns 0.83333...', () => {
+            const result = Leveling.xpInfo(5, 50).levelCompletion;
+
+            expect(result).to.be.approximately(0.833, 0.05);
         });
     });
 });

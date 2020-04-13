@@ -10,12 +10,12 @@ export class Change {
 }
 
 const LogSchema = new Schema({
-    id: String,
+    _id: String,
     changes: { type: Array, default: [] }
 });
 
 export interface AuditLog extends Document {
-    id: string;
+    _id: string;
     changes: Change[];
 }
 
