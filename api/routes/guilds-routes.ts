@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/:id/:module', async (req, res) => {
-    try {             
+    try {
         const { id, module } = req.params; 
         
         const isValidModule = config.modules.some(m => m.toLowerCase() === module);
@@ -56,7 +56,7 @@ router.put('/:id/:module', async (req, res) => {
         await log.save();
             
         res.json(savedGuild);
-    } catch (error) { res.status(400).send(error); console.log(error) }
+    } catch (error) { res.status(400).send(error); }
 });
 
 router.get('/:id/config', async (req, res) => {
@@ -163,8 +163,7 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         
         res.set({'Content-Type': 'image/png'}).send(image);
     }
-    catch (error) { res.status(400).send('Bad Request'); console.log(error);
-     }
+    catch (error) { res.status(400).send(error?.message); }
 });
 
 async function validateGuildManager(key: string, id: string) {

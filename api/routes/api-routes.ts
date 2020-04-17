@@ -2,11 +2,12 @@ import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../models/command';
 import { AuthClient, stripe } from '../server';
 import * as config from '../../config.json';
-import Stripe from 'stripe';
-import bodyParser from 'body-parser';
 
 import { router as guildsRoutes } from './guilds-routes';
 import { router as userRoutes } from './user-routes';
+import Stripe from 'stripe';
+import bodyParser from 'body-parser';
+import { SavedUser } from '../../models/user';
 
 export const router = Router(),
              endpointSecret = 'whsec_uNgUHx7T0J1vbOgcTuRCEjXGZYTMvqs0';
@@ -25,26 +26,28 @@ router.get('/auth', async (req, res) => {
     } catch { res.status(400).send('Bad Request'); }
 });
 
-const items = [
-    {
-        name: '2PG+',
-        description: 'Support 2PG, and unlock exclusive user features!',
-        amount: 500,
-        currency: 'usd',
-        quantity: 1,
+router.post('/webhook', async(req, res) => {
+  try {
+    // stripe.webhooks.signature
+      // .parseHeader(req.headers['stripe-signature']);
+
+    const id = req.body.data.object.metadata.id;
+    if (req.body.type === 'checkout.session.completed') {
+      await giveUserPlus(id);
+      return res.json({ success: true });
     }
-];
-router.get('/pay', async(req, res) => {
-    try {
-        const session = await stripe.checkout.sessions.create({
-            success_url: `${config.webapp.url}/payment-success`,
-            cancel_url: `${config.webapp.url}/plus`,
-            payment_method_types: ['card'],
-            line_items: items
-        });
-        res.send(session);
-    } catch (error) { res.status(400).send(error); }
+    res.json({ received: true });
+  } catch (error) { res.status(400).send(error); console.log(error);
+  } 
 });
+
+async function giveUserPlus(id: string) {
+  console.log('give ' + id + ' premium');
+  
+  const savedUser = await SavedUser.findById(id);
+  savedUser.premium = true;
+  savedUser.save();
+}
 
 router.get('/invite', (req, res) => 
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.webapp.url}/dashboard&permissions=8&scope=bot`));

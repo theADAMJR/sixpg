@@ -9,12 +9,14 @@ export class XPCard {
 
 const userSchema = new Schema({
     _id: String,
+    premium: Boolean,
     votes: Number,
     xpCard: { type: Object, default: new XPCard() }
 });
 
 export interface UserDocument extends Document {
     _id: string;
+    premium: boolean;
     votes: number;
     xpCard: XPCard;
 }
