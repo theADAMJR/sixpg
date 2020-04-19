@@ -9,8 +9,7 @@ import Stripe from 'stripe';
 import bodyParser from 'body-parser';
 import { SavedUser } from '../../models/user';
 
-export const router = Router(),
-             endpointSecret = 'whsec_uNgUHx7T0J1vbOgcTuRCEjXGZYTMvqs0';
+export const router = Router();
 
 let commands: CommandDocument[] = [];
 SavedCommand.find().then(cmds => commands = cmds);
@@ -28,6 +27,9 @@ router.get('/auth', async (req, res) => {
 
 router.post('/webhook', async(req, res) => {
   try {
+    // TODO: ensure it matches a stripe signature
+    // -> this will prevent anyone giving themselves 2PG+ for free
+    if (!req.headers['stripe-signature']) return;
     // stripe.webhooks.signature
       // .parseHeader(req.headers['stripe-signature']);
 
@@ -37,13 +39,10 @@ router.post('/webhook', async(req, res) => {
       return res.json({ success: true });
     }
     res.json({ received: true });
-  } catch (error) { res.status(400).send(error); console.log(error);
-  } 
+  } catch (error) { res.status(400).send(error); } 
 });
 
-async function giveUserPlus(id: string) {
-  console.log('give ' + id + ' premium');
-  
+async function giveUserPlus(id: string) {  
   const savedUser = await SavedUser.findById(id);
   savedUser.premium = true;
   savedUser.save();
