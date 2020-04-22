@@ -9,7 +9,7 @@ export default class ImageGenerator
 
         let background = null;
         try {
-          background = await loadImage(backgroundURL || config.api.defaultBackgroundPath) 
+          background = await loadImage(backgroundURL || 'api/modules/image/wallpaper.png') 
         }
         catch { return; }
         

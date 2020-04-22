@@ -1,12 +1,14 @@
 import request from 'supertest';
 import { app } from '../../../../api/server';
 import config from '../../../../config.json';
+import Deps from '../../../../utils/deps';
 
 describe('routes/api/guilds', () => {
     let url: string;
 
     beforeEach(() => {
         url = '/api/guilds';
+        Deps.testing = true;
     });
 
     describe('GET /:id/log', () => {

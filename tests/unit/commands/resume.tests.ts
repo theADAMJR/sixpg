@@ -7,7 +7,7 @@ import { Player } from 'erela.js';
 use(chaiAsPromised);
 should();
 
-describe('commands/pause', () => {
+describe.skip('commands/pause', () => {
     it('no player, error thrown', () =>
     {
         const music = { client: { players: null }};

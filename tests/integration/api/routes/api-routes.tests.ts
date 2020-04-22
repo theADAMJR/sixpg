@@ -1,7 +1,10 @@
 import request from 'supertest';
 import { app } from '../../../../api/server';
+import Deps from '../../../../utils/deps';
 
 describe('routes/api', () => {
+    beforeEach(() => Deps.testing = true);
+
     describe('/', () => {
         it('returns 200', (done) => {
             request(app).get('/api')

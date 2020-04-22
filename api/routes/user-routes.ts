@@ -61,7 +61,7 @@ router.get('/xp-card-preview', async (req, res) => {
         const generator = new XPCardGenerator(savedUser, rank, 50);
 
         const member = new SavedMember();
-        member.xpMessages = 50;
+        member.xp = 1800;
         
         delete req.query.key;        
         const image = await generator.generate(member, { ...savedUser.xpCard, ...req.query });
@@ -82,7 +82,7 @@ router.put('/xp-card', async (req, res) => {
     } catch { res.status(400).send('Bad Request'); }
 });
 
-async function getUser(key: string) {
+async function getUser(key: string) {    
     const { id } = await AuthClient.getUser(key);
     return bot.users.cache.get(id);
 }

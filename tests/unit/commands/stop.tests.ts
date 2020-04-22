@@ -5,7 +5,7 @@ import StopCommand from '../../../commands/skip';
 use(chaiAsPromised);
 should();
 
-describe('commands/stop', () => {
+describe.skip('commands/stop', () => {
     it('no player, error thrown', () =>
     {
         const music = { client: { players: null }};

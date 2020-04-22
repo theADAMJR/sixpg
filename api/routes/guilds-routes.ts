@@ -175,7 +175,7 @@ async function validateGuildManager(key: string, id: string) {
         throw TypeError();
 }
 
-async function getUser(key: string) {
+async function getUser(key: string) {    
     const { id } = await AuthClient.getUser(key);
     return bot.users.cache.get(id);
 }

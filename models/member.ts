@@ -3,14 +3,14 @@ import { model, Schema, Document } from 'mongoose';
 const memberSchema = new Schema({
     userId: String,
     guildId: String,
-    xpMessages: { type: Number, default: 0 },
+    xp: { type: Number, default: 0 },
     warnings: { type: Array, default: [] }
 });
 
 export interface MemberDocument extends Document {
     userId: string;
     guildId: string;
-    xpMessages: number;
+    xp: number;
     warnings: Warning[];
 }
 

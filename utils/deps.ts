@@ -8,7 +8,8 @@ export default class Deps {
                           
         for (const Type of types) {
             try { this.deps.push(new Type()); }
-            catch { throw new TypeError(`Type '${Type}' could not be instantiated`); }
+            // catch { throw new TypeError(`Type '${Type}' could not be instantiated`); }
+            catch {}
         }
     }
 
