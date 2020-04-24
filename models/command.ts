@@ -5,7 +5,8 @@ import { PermissionString } from 'discord.js';
 const commandSchema = new Schema({
     name: String,
     summary: String,
-    cooldown: Number,
+    module: String,
+    usage: String,
     precondition: String
 });
 

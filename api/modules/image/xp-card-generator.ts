@@ -17,8 +17,7 @@ export class XPCardGenerator extends ImageGenerator {
 
     constructor(
         private user: UserDocument,
-        private rank: number,
-        private xp: number) {
+        private rank: number) {
         super();
 
         this.discordUser = bot.users.cache.get(user.id);
@@ -88,7 +87,7 @@ export class XPCardGenerator extends ImageGenerator {
         context.fillText(`/`, canvas.width / 2.5 + 
             context.measureText(xp).width, canvas.height / 1.175);
 
-        context.fillStyle = card.secondary || this.colors.secondary;
+        context.fillStyle = card.primary || this.colors.primary;
         context.fillText(`${nextLevelXP}XP`, canvas.width / 2.5 + 
             context.measureText(`${xp}/`).width, canvas.height / 1.175);
         

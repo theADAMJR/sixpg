@@ -6,7 +6,7 @@ import Guilds from '../data/guilds';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
 import Deps from '../utils/deps';
-import { SavedCommand } from '../models/command';
+import Commands from '../data/commands';
 
 export default class CommandService {
     private commands = new Map<string, Command>();
@@ -15,7 +15,8 @@ export default class CommandService {
     constructor(
         private guilds = Deps.get<Guilds>(Guilds),
         private autoMod = Deps.get<AutoMod>(AutoMod),
-        private leveling = Deps.get<Leveling>(Leveling)) {
+        private leveling = Deps.get<Leveling>(Leveling),
+        commands = Deps.get<Commands>(Commands)) {
         fs.readdir('./commands/', (err, files) => {
             err && Log.error(err, 'cmds');
 
@@ -26,17 +27,10 @@ export default class CommandService {
                 const command = new Command();
                 this.commands.set(command.name, command);
                 
-                this.updateCommandData(command);
+                commands.get(command);
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         }); 
-    }
-    
-    private async updateCommandData(command: Command) {
-        const { name, summary, module, precondition } = command;
-        await SavedCommand.updateOne({ name },
-                { name, summary, module, precondition }, 
-                { upsert: true });
     }
 
     async handle(msg: Message) {

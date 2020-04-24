@@ -26,7 +26,7 @@ describe('services/command-service', () => {
 
             const result = () => service.handle(msg);
 
-            expect(result()).to.throw();
+            expect(result()).to.eventually.throw();
         });
 
         it('no found command message gets ignored', () => {

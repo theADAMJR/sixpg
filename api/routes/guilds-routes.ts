@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import config from '../../config.json';
-import { SavedGuild } from '../../models/guild';
-import { SavedMember } from '../../models/member';
-import Leveling from '../../modules/xp/leveling';
+import { SavedMember, MemberDocument } from '../../models/member';
 import { AuthClient } from '../server';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import { bot } from '../../bot';
@@ -13,6 +11,7 @@ import Users from '../../data/users';
 import Guilds from '../../data/guilds';
 import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
+import { User } from 'discord.js';
 
 export const router = Router();
 
@@ -39,7 +38,8 @@ router.put('/:id/:module', async (req, res) => {
         await validateGuildManager(req.query.key, id);
 
         const user = await getUser(req.query.key);
-        const savedGuild = await SavedGuild.findById(id).lean();
+        const guild = bot.guilds.cache.get(id); 
+        const savedGuild = await guilds.get(guild);
         
         const change = AuditLogger.getChanges({
             old: savedGuild[module],
@@ -47,9 +47,8 @@ router.put('/:id/:module', async (req, res) => {
         }, module, user.id);
 
         savedGuild[module] = req.body;
-        await SavedGuild.findByIdAndUpdate(id, savedGuild);
-
-        const guild = bot.guilds.cache.get(id);        
+        await guilds.save(savedGuild);
+       
         const log = await logs.get(guild);
         
         log.changes.push(change);
@@ -61,8 +60,8 @@ router.put('/:id/:module', async (req, res) => {
 
 router.get('/:id/config', async (req, res) => {
     try {
-        const id = req.params.id;
-        const savedGuild = await SavedGuild.findById(id).lean();
+        const guild = bot.guilds.cache.get(req.params.id);
+        const savedGuild = await guilds.get(guild);
         res.json(savedGuild);
     } catch { res.status(400).send('Bad Request'); }
 });
@@ -77,9 +76,10 @@ router.get('/:id/channels', async (req, res) => {
 router.get('/:id/log', async(req, res) => {
     try {
         const id = req.params.id;
+        // TODO: add auth protection
         // await validateGuildManager(req.query.key, id);
 
-        const guild = bot.guilds.cache.get(id);
+        const guild = bot.guilds.cache.get(req.params.id);
         const log = await logs.get(guild);
         res.send(log);
     } catch { res.status(400).send('Bad Request'); }
@@ -100,30 +100,29 @@ router.get('/:id/roles', async (req, res) => {
 router.get('/:id/members', async (req, res) => {
     try {
         const members = await SavedMember.find({ guildId: req.params.id }).lean();
-        const guild = bot.guilds.cache.get(req.params.id)
-        const savedGuild = await guilds.get(guild);
         
         let rankedMembers = [];
         for (const savedMember of members) {
-            const member = bot.users.cache.get(savedMember.userId);
-            if (!member) continue;
-
-            const xp = Leveling.xpInfo(savedMember.xpMessages, savedGuild.xp.xpPerMessage);
-    
-            rankedMembers.push({
-                id: member.id,
-                username: member.username,
-                tag: '#' + member.discriminator,
-                displayAvatarURL: member.displayAvatarURL(),
-                ...xp,
-                xpMessages: savedMember.xpMessages
-            });
+            const user = bot.users.cache.get(savedMember.userId);
+            if (user) continue;
+            
+            rankedMembers.push(leaderboardMember(user, savedMember));
         }
-        rankedMembers.sort((a, b) => b.xpMessages - a.xpMessages);
+        rankedMembers.sort((a, b) => b.xp - a.xp);
     
         res.json(rankedMembers);
     } catch (error) { res.status(400).send(error?.message); }
 });
+
+function leaderboardMember(user: User, savedMember: MemberDocument) {
+    return {
+        id: user.id,
+        username: user.username,
+        tag: '#' + user.discriminator,
+        displayAvatarURL: user.displayAvatarURL({ dynamic: true }),
+        xp: savedMember.xp
+    };
+}
 
 async function getManagableGuilds(key: string) {
     const manageableGuilds = [];
@@ -156,9 +155,7 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         const savedMembers = await SavedMember.find({ guildId });
         const rank = Ranks.get(member, savedMembers);
         
-        const savedGuild = await guilds.get(guild);
-        const generator = new XPCardGenerator(savedUser, rank, 
-            savedGuild.xp.xpPerMessage);
+        const generator = new XPCardGenerator(savedUser, rank);
         const image = await generator.generate(savedMember);
         
         res.set({'Content-Type': 'image/png'}).send(image);

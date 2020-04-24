@@ -3,10 +3,8 @@ import { GuildMember } from "discord.js";
 
 export default class Ranks {
     static get(member: GuildMember, savedMembers: MemberDocument[]) {
-        const savedMember = savedMembers
-            .sort((a, b) => b.xpMessages - a.xpMessages)
-            .find(m => m.userId === member.id);
-        
-        return savedMembers.indexOf(savedMember) + 1;
+        return savedMembers
+            .sort((a, b) => b.xp - a.xp)
+            .findIndex(m => m.userId === member.id) + 1;
     }
 }

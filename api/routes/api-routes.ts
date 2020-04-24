@@ -5,8 +5,6 @@ import * as config from '../../config.json';
 
 import { router as guildsRoutes } from './guilds-routes';
 import { router as userRoutes } from './user-routes';
-import Stripe from 'stripe';
-import bodyParser from 'body-parser';
 import { SavedUser } from '../../models/user';
 
 export const router = Router();
@@ -22,7 +20,7 @@ router.get('/auth', async (req, res) => {
     try {
         const key = await AuthClient.getAccess(req.query.code);
         res.json(key);
-    } catch { res.status(400).send('Bad Request'); }
+    } catch (error) { res.status(400).send(error); }
 });
 
 router.post('/webhook', async(req, res) => {

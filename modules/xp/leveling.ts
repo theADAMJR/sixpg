@@ -2,6 +2,7 @@ import { Message, GuildMember } from 'discord.js';
 import { GuildDocument } from '../../models/guild';
 import Members from '../../data/members';
 import Deps from '../../utils/deps';
+import { MemberDocument } from '../../models/member';
 
 export default class Leveling {
     constructor(private members = Deps.get<Members>(Members)) {}
@@ -14,7 +15,7 @@ export default class Leveling {
         if (!savedMember) return;
 
         const oldLevel = this.getLevel(savedMember.xp);
-        savedMember.xp++;
+        savedMember.xp += guild.xp.xpPerMessage;
         const newLevel = this.getLevel(savedMember.xp);
 
         if (newLevel > oldLevel) {
@@ -59,5 +60,11 @@ export default class Leveling {
     }
     private static xpForNextLevel(currentLevel: number, xp: number) {
         return ((75 * Math.pow(currentLevel + 1, 2)) + (75 * (currentLevel + 1)) - 150) - xp;
+    }
+
+    static getRank(member: MemberDocument, members: MemberDocument[]) {
+        return members
+            .sort((a, b) => b.xp - a.xp)
+            .findIndex(m => m.id === member.id) + 1;
     }
 }

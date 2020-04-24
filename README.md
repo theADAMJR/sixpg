@@ -38,13 +38,13 @@ Simple multi-purpose Discord bot made with TypeScript
 
 
 ## Hosting
-1) `npm start` to start the bot
+1) `npm start` to start the bot, and Lavalink
 
 ### Database
 - Remember to have a local MongoDB database running `mongod`
 
 ### Music
-- Have Lavalink.jar running - `java -jar Lavalink.jar`
+- Have Lavalink.jar running - `java -jar Lavalink.jar` (done with npm start)
 
 [Lavalink Setup](https://github.com/Frederikam/Lavalink#server-configuration)
 
