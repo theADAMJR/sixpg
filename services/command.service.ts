@@ -7,6 +7,8 @@ import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
 import Deps from '../utils/deps';
 import Commands from '../data/commands';
+import { SavedCommand } from '../models/command';
+import Logs from '../data/logs';
 
 export default class CommandService {
     private commands = new Map<string, Command>();
@@ -16,6 +18,7 @@ export default class CommandService {
         private guilds = Deps.get<Guilds>(Guilds),
         private autoMod = Deps.get<AutoMod>(AutoMod),
         private leveling = Deps.get<Leveling>(Leveling),
+        private logs = Deps.get<Logs>(Logs),
         commands = Deps.get<Commands>(Commands)) {
         fs.readdir('./commands/', (err, files) => {
             err && Log.error(err, 'cmds');
@@ -27,7 +30,7 @@ export default class CommandService {
                 const command = new Command();
                 this.commands.set(command.name, command);
                 
-                commands.save(command);
+                commands.save(new SavedCommand(command));
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         }); 
@@ -38,32 +41,46 @@ export default class CommandService {
         
         const guild = await this.guilds.get(msg.guild);
         const prefix = guild.general.prefix;
-        const content = msg.content.toLowerCase();
 
-        if (content.startsWith(prefix)) {
-            try {
-                await this.validateChannel(msg.channel as TextChannel);
-
-                const command = this.findCommand(content);
-                if (!command || this.inCooldown(msg.author, command)) return;
-
-                this.validatePreconditions(command, msg.member);
-                
-                await command.execute(new CommandContext(msg), 
-                    ...this.getCommandArgs(msg.content));
-
-                this.addCooldown(msg.author, command);
-            } catch (error) {
-                const content = error?.message ?? 'Un unknown error occurred';          
-                msg.channel.send(':warning: ' + content);
-            }
-        } else {
-            try {
-                guild.autoMod.enabled && await this.autoMod.validateMsg(msg, guild);
-                guild.xp.enabled && await this.leveling.validateXPMsg(msg, guild);
-            } catch {}
-        }
+        if (msg.content.startsWith(prefix))
+            return this.handleCommand(msg);
+            
+        try {
+            guild.autoMod.enabled && await this.autoMod.validateMsg(msg, guild);
+            guild.xp.enabled && await this.leveling.validateXPMsg(msg, guild);
+        } catch {}
     }
+    private async handleCommand(msg: Message, ) {
+        const content = msg.content.toLowerCase();
+        try {
+            await this.validateChannel(msg.channel as TextChannel);
+
+            const command = this.findCommand(content);
+            if (!command || this.inCooldown(msg.author, command)) return;
+
+            this.validatePreconditions(command, msg.member);
+            
+            await command.execute(new CommandContext(msg), 
+                ...this.getCommandArgs(msg.content));
+
+            this.addCooldown(msg.author, command);
+
+            await this.logCommand(msg, command);
+        } catch (error) {
+            const content = error?.message ?? 'Un unknown error occurred';          
+            msg.channel.send(':warning: ' + content);
+        }        
+    }
+    private async logCommand(msg: Message, command: Command) {
+        const log = await this.logs.get(msg.guild);
+        log.commands.push({
+            name: command.name,
+            by: msg.author.id,
+            at: new Date()
+        });
+        await this.logs.save(log);
+    }
+
     private inCooldown(author: User, command: Command) {
         return this.cooldowns
             .some(c => c.userId === author.id && c.commandName === command.name);

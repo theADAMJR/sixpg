@@ -90,3 +90,96 @@
 2020-04-26 11:32:38.104  INFO 15884 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
 2020-04-26 11:32:38.392  INFO 15884 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
 2020-04-26 11:32:38.398  INFO 15884 --- [main] lavalink.server.Launcher                 : Started Launcher in 3.421 seconds (JVM running for 3.89)
+2020-04-26 11:36:51.785  INFO 15884 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-26 11:36:51.785  INFO 15884 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-26 11:36:51.886  INFO 15884 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 100 ms
+2020-04-26 11:36:51.972  INFO 15884 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51698
+2020-04-26 11:36:52.063  INFO 15884 --- [XNIO-1 task-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 11:36:52.243  INFO 15884 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51698
+2020-04-26 12:17:33.515  INFO 15884 --- [XNIO-1 I/O-14] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51698 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:17:33.516  INFO 15884 --- [XNIO-1 I/O-14] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:17:33.517  INFO 15884 --- [XNIO-1 I/O-14] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:17:45.023  INFO 15884 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53518
+2020-04-26 12:17:45.027  INFO 15884 --- [XNIO-1 task-2] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:17:45.032  INFO 15884 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53518
+2020-04-26 12:21:20.181  INFO 15884 --- [XNIO-1 I/O-10] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53518 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:21:20.181  INFO 15884 --- [XNIO-1 I/O-10] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:21:20.182  INFO 15884 --- [XNIO-1 I/O-10] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:21:23.704  INFO 15884 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53555
+2020-04-26 12:21:23.708  INFO 15884 --- [XNIO-1 task-3] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:21:23.714  INFO 15884 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53555
+2020-04-26 12:23:30.393  INFO 15884 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53555 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:23:30.393  INFO 15884 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:23:30.394  INFO 15884 --- [XNIO-1 I/O-7] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:23:33.862  INFO 15884 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53593
+2020-04-26 12:23:33.865  INFO 15884 --- [XNIO-1 task-4] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:23:33.871  INFO 15884 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53593
+2020-04-26 12:23:40.850  INFO 15884 --- [XNIO-1 I/O-13] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53593 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:23:40.851  INFO 15884 --- [XNIO-1 I/O-13] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:23:40.851  INFO 15884 --- [XNIO-1 I/O-13] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:23:44.531  INFO 15884 --- [XNIO-1 task-5] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53607
+2020-04-26 12:23:44.534  INFO 15884 --- [XNIO-1 task-5] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:23:44.541  INFO 15884 --- [XNIO-1 task-5] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53607
+2020-04-26 12:26:25.223  INFO 15884 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53607 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:26:25.224  INFO 15884 --- [XNIO-1 I/O-11] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:26:25.225  INFO 15884 --- [XNIO-1 I/O-11] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:26:28.841  INFO 15884 --- [XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53650
+2020-04-26 12:26:28.845  INFO 15884 --- [XNIO-1 task-6] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:26:28.852  INFO 15884 --- [XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53650
+2020-04-26 12:27:51.402  INFO 11864 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4f53d09491ba5254eb5c55c234a63b208388d3ef-SNAPSHOT
+	Build:          982
+	Build time:     18.02.2020 01:14:32 UTC
+	Branch          master
+	Commit:         4f53d09
+	Commit time:    28.12.2019 17:00:51 UTC
+	JVM:            13.0.2
+	Lavaplayer      1.3.32
+
+2020-04-26 12:27:51.442  INFO 11864 --- [main] o.s.boot.SpringApplication               : 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.8.RELEASE)
+
+
+2020-04-26 12:27:51.538  INFO 11864 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 11864 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
+2020-04-26 12:27:51.539  INFO 11864 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2020-04-26 12:27:51.584  WARN 11864 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-04-26 12:27:53.401  WARN 11864 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-04-26 12:27:53.426  INFO 11864 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-04-26 12:27:53.426  INFO 11864 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1844 ms
+2020-04-26 12:27:53.745  WARN 11864 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2020-04-26 12:27:53.751  INFO 11864 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
+2020-04-26 12:27:53.751  INFO 11864 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
+2020-04-26 12:27:53.751  INFO 11864 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
+2020-04-26 12:27:53.751  INFO 11864 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
+2020-04-26 12:27:53.998  INFO 11864 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:27:54.325  INFO 11864 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-26 12:27:54.607  INFO 11864 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2020-04-26 12:27:54.618  INFO 11864 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-04-26 12:27:54.952  INFO 11864 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
+2020-04-26 12:27:54.959  INFO 11864 --- [main] lavalink.server.Launcher                 : Started Launcher in 4.058 seconds (JVM running for 4.481)
+2020-04-26 12:27:55.137  INFO 11864 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-26 12:27:55.137  INFO 11864 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-26 12:27:55.144  INFO 11864 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-04-26 12:27:55.165  INFO 11864 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53701
+2020-04-26 12:27:55.212  INFO 11864 --- [XNIO-1 task-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:27:55.266  INFO 11864 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53701
+2020-04-26 12:28:31.068  INFO 11864 --- [XNIO-1 I/O-9] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53701 -- CloseStatus[code=1006, reason=]
+2020-04-26 12:28:31.071  INFO 11864 --- [XNIO-1 I/O-9] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-26 12:28:31.072  INFO 11864 --- [XNIO-1 I/O-9] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-04-26 12:28:33.287  INFO 11864 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53759
+2020-04-26 12:28:33.290  INFO 11864 --- [XNIO-1 task-2] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-04-26 12:28:33.297  INFO 11864 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53759

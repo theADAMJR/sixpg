@@ -6,6 +6,8 @@ import Leveling from '../../../modules/xp/leveling';
 import { mock } from 'ts-mockito';
 import chaiAsPromised from 'chai-as-promised';
 import Deps from '../../../utils/deps';
+import Logs from '../../../data/logs';
+import Commands from '../../../data/commands';
 
 use(chaiAsPromised);
 
@@ -17,7 +19,9 @@ describe('services/command-service', () => {
         service = new CommandService(
             mock<Guilds>(),
             mock<AutoMod>(),
-            mock<Leveling>());
+            mock<Leveling>(),
+            mock<Logs>(),
+            mock(Commands));
     });
 
     describe('handle', () => {

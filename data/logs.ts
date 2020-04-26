@@ -1,6 +1,6 @@
 import { Guild } from 'discord.js';
 import DBWrapper from './db-wrapper';
-import { AuditLog as LogDocument, SavedLog } from '../models/log';
+import { LogDocument, SavedLog } from '../models/log';
 
 export default class Logs extends DBWrapper<Guild, LogDocument> {
     protected async getOrCreate(guild: Guild) {
