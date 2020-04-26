@@ -27,7 +27,7 @@ export default class CommandService {
                 const command = new Command();
                 this.commands.set(command.name, command);
                 
-                commands.get(command);
+                commands.save(command);
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         }); 

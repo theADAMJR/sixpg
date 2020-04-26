@@ -9,6 +9,6 @@ export default class LeaderboardCommand implements Command {
     module: ModuleString = 'XP';
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.webapp.url}/servers/${ctx.guild.id}/leaderboard`);
+        ctx.channel.send(`${config.webapp.url}/leaderboard/${ctx.guild.id}`);
     }
 }
