@@ -35,7 +35,7 @@ Simple multi-purpose Discord bot made with TypeScript
         }
     },
     "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)
-    "modules": ["announce", "auto-mod", "general", "music", "xp"] // enabled modules used for validation in API
+    "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"] // enabled modules used for validation in API
 }
 ```
 - Remove Comments
