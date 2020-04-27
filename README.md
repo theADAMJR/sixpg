@@ -1,5 +1,9 @@
-# 2PG
+# 2PG - Simple, powerful Discord bot
+**Dashboard**: https://github.com/theADAMJR/2PG-Dashboard
+
 Simple multi-purpose Discord bot made with TypeScript
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d6c9610e0eb4ae5a4045ab3b92f80bc)](https://www.codacy.com/manual/ADAMJR/2PG?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=theADAMJR/2PG&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 1) Fork/download this respository
@@ -34,7 +38,7 @@ Simple multi-purpose Discord bot made with TypeScript
         }
     },
     "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)
-    "modules": ["announce", "auto-mod", "general", "music", "xp"] // enabled modules used for validation in API
+    "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"] // enabled modules used for validation in API
 }
 ```
 - Remove Comments
