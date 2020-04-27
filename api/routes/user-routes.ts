@@ -58,7 +58,7 @@ router.get('/xp-card-preview', async (req, res) => {
             return res.status(404).send('User not found');
 
         const rank = 1;
-        const generator = new XPCardGenerator(savedUser, rank, 50);
+        const generator = new XPCardGenerator(savedUser, rank);
 
         const member = new SavedMember();
         member.xp = 1800;
