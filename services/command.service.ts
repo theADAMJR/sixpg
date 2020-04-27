@@ -11,16 +11,15 @@ import { SavedCommand } from '../models/command';
 import Logs from '../data/logs';
 import { GuildDocument } from '../models/guild';
 import Cooldowns from './cooldowns';
+import Validators from './validators';
 
 export default class CommandService {
     private commands = new Map<string, Command>();
 
     constructor(
-        private guilds = Deps.get<Guilds>(Guilds),
-        private autoMod = Deps.get<AutoMod>(AutoMod),
-        private leveling = Deps.get<Leveling>(Leveling),
         private logs = Deps.get<Logs>(Logs),
         private cooldowns = Deps.get<Cooldowns>(Cooldowns),
+        private validators = Deps.get<Validators>(Validators),
         commands = Deps.get<Commands>(Commands)) {
         this.loadCommandFiles(commands); 
     }
@@ -40,68 +39,33 @@ export default class CommandService {
         });
     }
 
-    async handle(msg: Message) {
+    async handle(msg: Message, guild: GuildDocument) {
         if (!(msg.member && msg.content && msg.guild && !msg.author.bot)) return;
-        
-        const guild = await this.guilds.get(msg.guild);
-        const prefix = guild.general.prefix;
 
-        if (msg.content.startsWith(prefix))
-            return this.handleCommand(msg, guild);
-            
-        try {
-            guild.autoMod.enabled && await this.autoMod.validateMsg(msg, guild);
-            guild.xp.enabled && await this.leveling.validateXPMsg(msg, guild);
-        } catch {}
+        return (msg.content.startsWith(guild.general.prefix)) ?
+            this.handleCommand(msg, guild) : false;
     }
     private async handleCommand(msg: Message, guild: GuildDocument) {
         const content = msg.content.toLowerCase();
         try {
-            await this.validateChannel(msg.channel as TextChannel);
+            await this.validators.checkChannel(msg.channel as TextChannel);
 
             const command = this.findCommand(content);
             if (!command || this.cooldowns.active(msg.author, command)) return;
 
-            this.validateCommand(command, guild);
-            this.validatePreconditions(command, msg.member);
+            await this.validators.checkCommand(command, guild);
+            this.validators.checkPreconditions(command, msg.member);
             
             await command.execute(new CommandContext(msg), 
                 ...this.getCommandArgs(msg.content));
 
             this.cooldowns.add(msg.author, command);
 
-            await this.logCommand(msg, command);
+            await this.logs.logCommand(msg, command);
         } catch (error) {
             const content = error?.message ?? 'Un unknown error occurred';          
             msg.channel.send(':warning: ' + content);
-        }        
-    }
-    private async validateCommand(command: Command, guild: GuildDocument) {
-        const config = guild.commands.configs.find(c => c.name === command.name);
-        if (config && !config.enabled)
-            throw new TypeError('Command not enabled!');
-    }
-    private async logCommand(msg: Message, command: Command) {
-        const log = await this.logs.get(msg.guild);
-        log.commands.push({
-            name: command.name,
-            by: msg.author.id,
-            at: new Date()
-        });
-        await this.logs.save(log);
-    }
-
-    private validatePreconditions(command: Command, executor: GuildMember) {
-        if (command.precondition && !executor.hasPermission(command.precondition))
-            throw new TypeError(`**Required Permission**: \`${command.precondition}\``);
-    }
-    private async validateChannel(channel: TextChannel) {
-        const guild = await this.guilds.get(channel.guild);
-
-        const isIgnored = guild?.general.ignoredChannels
-            .some(id => id === channel.id);
-        if (isIgnored)
-            throw new TypeError('Commands cannot be executed in this channel.');
+        } finally { return true; }
     }
 
     private findCommand(content: string) {        
