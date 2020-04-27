@@ -16,7 +16,10 @@ Simple multi-purpose Discord bot made with TypeScript
     },
     "api": {
         "url": "https://2pg.xyz/api", // used for xp cards etc.
-        "managerPermission": "MANAGE_GUILD" // required permission for managing dashboard 
+        "managerPermission": "MANAGE_GUILD" // required permission for managing dashboard ,
+        "stripe": { // used for payments/donations
+            "apiKey": "stripeAPIKey" // your https://stripe.com/dashboard API key
+        }
     },
     "webapp": {
         "url": "https://2pg.xyz", // the URL of the dashboard

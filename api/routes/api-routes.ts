@@ -24,13 +24,11 @@ router.get('/auth', async (req, res) => {
     } catch (error) { res.status(400).send(error); }
 });
 
-router.post('/stripe-webhook', bodyParser.raw({ type: 'application/json' }), async(req, res) => {
+router.post('/stripe-webhook', async(req, res) => {
   try {
-    console.log(req.headers);
+    // TODO: add better validation
+    if (!req.headers['stripe-signature']) return;
     
-    stripe.webhooks.signature
-      .parseHeader(req.headers['stripe-signature']);
-
     const id = req.body.data.object.metadata.id;
     if (req.body.type === 'checkout.session.completed') {
       await giveUserPlus(id);
@@ -40,9 +38,7 @@ router.post('/stripe-webhook', bodyParser.raw({ type: 'application/json' }), asy
   } catch (error) { res.status(400).send(error); } 
 });
 
-async function giveUserPlus(id: string) {
-  console.log('give user plus');
-   
+async function giveUserPlus(id: string) {   
   const savedUser = await SavedUser.findById(id);
   savedUser.premium = true;
   savedUser.save();

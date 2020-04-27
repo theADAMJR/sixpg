@@ -1,13 +1,9 @@
 import fs from 'fs';
 import { Message,  TextChannel, GuildMember, User } from 'discord.js';
 import { Command, CommandContext } from '../commands/command';
-import Leveling from '../modules/xp/leveling';
-import Guilds from '../data/guilds';
-import AutoMod from '../modules/auto-mod/auto-mod';
 import Log from '../utils/log';
 import Deps from '../utils/deps';
 import Commands from '../data/commands';
-import { SavedCommand } from '../models/command';
 import Logs from '../data/logs';
 import { GuildDocument } from '../models/guild';
 import Cooldowns from './cooldowns';
@@ -25,7 +21,7 @@ export default class CommandService {
     }
 
     private loadCommandFiles(commands: Commands) {
-        fs.readdir('./commands/', (err, files) => {
+        fs.readdir('./commands/', async(err, files) => {
             err && Log.error(err, 'cmds');
             for (const file of files) {
                 const Command = require(`../commands/${file}`).default;
@@ -33,7 +29,7 @@ export default class CommandService {
                 
                 const command = new Command();
                 this.commands.set(command.name, command);
-                commands.save(new SavedCommand(command));
+                await commands.get(command);
             }
             Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
         });

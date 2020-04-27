@@ -1,17 +1,17 @@
 import DBWrapper from './db-wrapper';
-import { AuditLog as LogDocument, SavedLog } from '../models/log';
+import { LogDocument } from '../models/log';
 import { Command } from '../commands/command';
-import { SavedCommand } from '../models/command';
+import { SavedCommand, CommandDocument } from '../models/command';
 
-export default class Commands extends DBWrapper<Command, LogDocument> {
+export default class Commands extends DBWrapper<Command, CommandDocument> {
     protected async getOrCreate(command: Command) {
         return this.create(command);
     }
 
-    protected async create(command: Command) {                
+    protected async create(command: Command) {        
         return SavedCommand.updateOne({ name: command.name },
-                { ...command, usage: this.getCommandUsage(command) }, 
-                { upsert: true });
+            { ...command, usage: this.getCommandUsage(command) },
+            { upsert: true });
     }
 
     getCommandUsage(command: Command) {
