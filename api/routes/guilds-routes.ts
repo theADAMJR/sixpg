@@ -12,6 +12,7 @@ import Guilds from '../../data/guilds';
 import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
 import { User } from 'discord.js';
+import Leveling from '../../modules/xp/leveling';
 
 export const router = Router();
 
@@ -99,14 +100,14 @@ router.get('/:id/roles', async (req, res) => {
 
 router.get('/:id/members', async (req, res) => {
     try {
-        const members = await SavedMember.find({ guildId: req.params.id }).lean();
-        
+        const members = await SavedMember.find({ guildId: req.params.id }).lean();        
         let rankedMembers = [];
         for (const savedMember of members) {
             const user = bot.users.cache.get(savedMember.userId);
             if (!user) continue;
             
-            rankedMembers.push(leaderboardMember(user, savedMember));
+            const xpInfo = Leveling.xpInfo(savedMember.xp);
+            rankedMembers.push(leaderboardMember(user, xpInfo));
         }
         rankedMembers.sort((a, b) => b.xp - a.xp);
     
@@ -114,13 +115,13 @@ router.get('/:id/members', async (req, res) => {
     } catch (error) { res.status(400).send(error?.message); }
 });
 
-function leaderboardMember(user: User, savedMember: MemberDocument) {
+function leaderboardMember(user: User, xpInfo: any) {
     return {
         id: user.id,
         username: user.username,
         tag: '#' + user.discriminator,
         displayAvatarURL: user.displayAvatarURL({ dynamic: true }),
-        xp: savedMember.xp
+        ...xpInfo
     };
 }
 

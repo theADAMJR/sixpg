@@ -12,6 +12,7 @@ import AutoMod from './modules/auto-mod/auto-mod';
 import Leveling from './modules/xp/leveling';
 import Music from './modules/music/music';
 import API from './api/server';
+import Cooldowns from './services/cooldowns';
 
 export const bot = new Client();
 
@@ -27,6 +28,7 @@ Deps.build(
     Music,
 
     CommandService,
+    Cooldowns,
     EventsService,
     API
 );
