@@ -104,7 +104,7 @@ router.get('/:id/members', async (req, res) => {
         let rankedMembers = [];
         for (const savedMember of members) {
             const user = bot.users.cache.get(savedMember.userId);
-            if (user) continue;
+            if (!user) continue;
             
             rankedMembers.push(leaderboardMember(user, savedMember));
         }

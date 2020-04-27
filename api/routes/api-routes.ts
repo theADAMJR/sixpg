@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../models/command';
 import { AuthClient, stripe } from '../server';
 import * as config from '../../config.json';
+import bodyParser from 'body-parser';
 
 import { router as guildsRoutes } from './guilds-routes';
 import { router as userRoutes } from './user-routes';
@@ -23,13 +24,12 @@ router.get('/auth', async (req, res) => {
     } catch (error) { res.status(400).send(error); }
 });
 
-router.post('/webhook', async(req, res) => {
+router.post('/stripe-webhook', bodyParser.raw({ type: 'application/json' }), async(req, res) => {
   try {
-    // TODO: ensure it matches a stripe signature
-    // -> this will prevent anyone giving themselves 2PG+ for free
-    if (!req.headers['stripe-signature']) return;
-    // stripe.webhooks.signature
-      // .parseHeader(req.headers['stripe-signature']);
+    console.log(req.headers);
+    
+    stripe.webhooks.signature
+      .parseHeader(req.headers['stripe-signature']);
 
     const id = req.body.data.object.metadata.id;
     if (req.body.type === 'checkout.session.completed') {
@@ -40,7 +40,9 @@ router.post('/webhook', async(req, res) => {
   } catch (error) { res.status(400).send(error); } 
 });
 
-async function giveUserPlus(id: string) {  
+async function giveUserPlus(id: string) {
+  console.log('give user plus');
+   
   const savedUser = await SavedUser.findById(id);
   savedUser.premium = true;
   savedUser.save();

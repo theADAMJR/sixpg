@@ -11,13 +11,18 @@ import Log from '../utils/log';
 
 export const app = express(),
              AuthClient = new OAuthClient(config.bot.id, config.bot.secret),
-             stripe = new Stripe(config.api.stripe.apiKey, 
+             stripe = new Stripe(config.api.stripe.apiKey,
                 { apiVersion: '2020-03-02' });
 
 export default class API {
     constructor() {
         AuthClient.setRedirect(`${config.webapp.url}/auth`);
         AuthClient.setScopes('identify', 'guilds');
+
+        stripe.webhookEndpoints.create({
+            url: config.api.url + '/stripe-webhook',
+            enabled_events: ['charge.succeeded']
+        });
 
         app.use(cors());
         app.use(bodyParser.json());
