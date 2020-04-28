@@ -19,6 +19,7 @@ Simple multi-purpose Discord bot made with TypeScript
         "id": "discordBotId"
     },
     "api": {
+        "port": "3000",
         "url": "https://2pg.xyz/api",
         "managerPermission": "MANAGE_GUILD",
         "stripe": { // https://dashboard.stripe.com/test/apikeys
