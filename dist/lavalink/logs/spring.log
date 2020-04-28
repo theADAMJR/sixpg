@@ -169,3 +169,6 @@
 2020-04-28 11:00:20.965  INFO 9640 --- [XNIO-1 task-21] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58619
 2020-04-28 11:00:20.968  INFO 9640 --- [XNIO-1 task-21] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
 2020-04-28 11:00:21.005  INFO 9640 --- [XNIO-1 task-21] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58619
+2020-04-28 11:31:34.394  INFO 9640 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58619 -- CloseStatus[code=1006, reason=]
+2020-04-28 11:31:34.395  INFO 9640 --- [XNIO-1 I/O-15] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-04-28 11:31:34.400  INFO 9640 --- [XNIO-1 I/O-15] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.

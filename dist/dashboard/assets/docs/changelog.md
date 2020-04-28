@@ -4,6 +4,16 @@
 
 # Beta
 
+![v0.1.1b Dashboard](assets/docs/img/dashboard-v0.1.1.png)
+
+## Bot v0.1.0b
++ more auto mod inputs
+* fix dashboard faulty data loading
+* fully secure 404 page assets
+* disabled navigation with unsaved changes
+
+## Dashboard v0.1.0b
+
 ![v0.1.0b Dashboard](assets/docs/img/dashboard-v0.1.0b.png)
 
 ## Bot v0.1.0b
