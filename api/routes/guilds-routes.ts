@@ -13,6 +13,7 @@ import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
 import { User } from 'discord.js';
 import Leveling from '../../modules/xp/leveling';
+import Log from '../../utils/log';
 
 export const router = Router();
 
@@ -32,9 +33,9 @@ router.put('/:id/:module', async (req, res) => {
     try {
         const { id, module } = req.params; 
         
-        const isValidModule = config.modules.some(m => m.toLowerCase() === module);
+        const isValidModule = config.modules.some(m => m === module);        
         if (!isValidModule)
-            throw new TypeError();
+            throw new TypeError('Module not configured');
 
         await validateGuildManager(req.query.key, id);
 
@@ -56,7 +57,10 @@ router.put('/:id/:module', async (req, res) => {
         await log.save();
             
         res.json(savedGuild);
-    } catch (error) { res.status(400).send(error); }
+    } catch (error) {
+        res.status(400).send(error);        
+        Log.error(error, 'api');
+    }
 });
 
 router.get('/:id/config', async (req, res) => {
@@ -100,13 +104,13 @@ router.get('/:id/roles', async (req, res) => {
 
 router.get('/:id/members', async (req, res) => {
     try {
-        const members = await SavedMember.find({ guildId: req.params.id }).lean();        
+        const savedMembers = await SavedMember.find({ guildId: req.params.id }).lean();        
         let rankedMembers = [];
-        for (const savedMember of members) {
-            const user = bot.users.cache.get(savedMember.userId);
+        for (const member of savedMembers) {
+            const user = bot.users.cache.get(member.userId);
             if (!user) continue;
             
-            const xpInfo = Leveling.xpInfo(savedMember.xp);
+            const xpInfo = Leveling.xpInfo(member.xp);
             rankedMembers.push(leaderboardMember(user, xpInfo));
         }
         rankedMembers.sort((a, b) => b.xp - a.xp);

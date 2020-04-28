@@ -6,8 +6,8 @@ export default class Log {
         console.log(`[${this.toHHMMSS(new Date())}] INFO [${this.getSource(src)}] ${message}`)
     }
     static error(err?: any, src?: string) {
-        const message = err?.message ?? err ?? 'Unknown error';
-        console.error(`[${this.toHHMMSS(new Date())}] 'ERROR [${this.getSource(src)}] ${message}`)
+        const message = err?.message || err || 'Unknown error';
+        console.error(`[${this.toHHMMSS(new Date())}] ERROR [${this.getSource(src)}] ${message}`)
     }
 
     private static toHHMMSS(time: Date) {

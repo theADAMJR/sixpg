@@ -19,7 +19,7 @@ export interface AnnounceEvent {
 }
 
 export class AutoModModule extends Module {
-    ignoreRoles: string[] = [];
+    ignoredRoles: string[] = [];
     autoDeleteMessages = true;
     filters: MessageFilter[] = [];
     banWords: string[] = [];
