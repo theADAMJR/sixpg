@@ -13,32 +13,32 @@ Simple multi-purpose Discord bot made with TypeScript
 `config.json` example:
 ```
 {
-    "bot": {
-        "token": "yourBotToken", // used for bot user login
-        "secret": "oauthSecret", // used for webapp login integration
-        "id": "discordBotId" // used for webapp login integration
+    "bot": { // https://discordapp.com/developers/applications
+        "token": "yourBotToken",
+        "secret": "oauthSecret",
+        "id": "discordBotId"
     },
     "api": {
-        "url": "https://2pg.xyz/api", // used for xp cards etc.
-        "managerPermission": "MANAGE_GUILD" // required permission for managing dashboard ,
-        "stripe": { // used for payments/donations
-            "apiKey": "stripeAPIKey" // your https://stripe.com/dashboard API key
+        "url": "https://2pg.xyz/api",
+        "managerPermission": "MANAGE_GUILD",
+        "stripe": { // https://dashboard.stripe.com/test/apikeys
+            "apiKey": "stripeAPIKey"
         }
     },
     "webapp": {
-        "url": "https://2pg.xyz", // the URL of the dashboard
-        "distPath": "/Documents/Projects/twopg-dashboard/dist/twopg-dashboard" // the compiled webapp; contains index.html (created with 'ng build --prod' in webapp)
+        "url": "https://2pg.xyz",
+        "distPath": "/dist/dashboard"
     },
-    "lavalink": { // used for music server
+    "lavalink": {
         "password": "youshallnotpass"
     },
     "tests": { // optional -> used for tests
         "guild": {
-            "id": "yourTestGuildId" // used for integration tests
+            "id": "yourTestGuildId"
         }
     },
-    "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)
-    "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"] // enabled modules used for validation in API
+    "mongoURL": "mongodb://localhost/2PG",
+    "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"]
 }
 ```
 - Remove Comments
