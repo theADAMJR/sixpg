@@ -1,16 +1,15 @@
 import { use, should } from 'chai';
-import { SavedGuild, EventType } from '../../../models/guild';
+import { SavedGuild, EventType } from '../../../../models/guild';
 import { mock } from 'ts-mockito';
-import { TextChannel } from 'discord.js';
+import { TextChannel, GuildMember } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
-import MemberJoinHandler from '../../../services/handlers/member-join.handler'
-import Guilds from '../../../data/guilds';
+import MemberJoinHandler from '../../../../services/handlers/member-join.handler'
+import Guilds from '../../../../data/guilds';
 
 use(chaiAsPromised);
 should();
 
-describe('modules/announce', () =>
-{
+describe('modules/announce', () => {
     let guilds: Guilds;
 
     beforeEach(() => {
@@ -18,9 +17,9 @@ describe('modules/announce', () =>
         guilds.get = (): any => new SavedGuild();
     });
 
-    describe('member-join.handler', () =>
+    describe('member join handler', () =>
     {
-        let member = {};
+        let member: GuildMember;
 
         beforeEach(() => {
             member = {
@@ -38,11 +37,11 @@ describe('modules/announce', () =>
                     }},
                     memberCount: 2
                 }
-            }
+            } as any;
         });
 
         it('member join, member undefined, returns', () => {
-            const result = () => new MemberJoinHandler(guilds).invoke();
+            const result = () => new MemberJoinHandler(guilds).invoke(member);
     
             result().should.eventually.not.throw();
         });
@@ -99,8 +98,7 @@ describe('modules/announce', () =>
         });
     });
 
-    describe('message-deleted.handler', () =>
-    {
-        
+    describe('message deleted handler', () => {
+        it('')
     });
 });

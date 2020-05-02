@@ -1,24 +1,15 @@
 import AnnounceHandler from './announce-handler';
-import { GuildMember, TextChannel } from 'discord.js';
+import { GuildMember } from 'discord.js';
 import { EventType } from '../../models/guild';
-import EventHandler from './event-handler';
+import EventVariables from '../../modules/announce/event-variables';
 
-export default class MemberJoinHandler extends AnnounceHandler implements EventHandler {
+export default class MemberJoinHandler extends AnnounceHandler {
     on = 'guildMemberAdd';
+    event = EventType.MemberJoin;
 
     async invoke(member: GuildMember) {
-        await this.announceUserJoin(member);
+        await super.announce(member.guild, [ member ]);
         await this.addAutoRoles(member);
-    }
-
-    private async announceUserJoin(member: GuildMember) {
-        const event = await super.getEvent(EventType.MemberJoin, member.guild);
-        if (!event) return;
-
-        const message = this.applyGuildVariables(event.message, member);
-        const channel = member.guild.channels.cache.get(event.channel) as TextChannel;
-
-        await channel?.send(message);
     }
 
     private async addAutoRoles(member: GuildMember) {
@@ -27,11 +18,11 @@ export default class MemberJoinHandler extends AnnounceHandler implements EventH
         await member.roles.add(guild.general.autoRoles, 'Auto role');
     }
 
-    protected applyGuildVariables(content: string, member: GuildMember) {
-        content
-            .replace(/[USER]/g, `<@!${member.id}>`) // TODO: CommandUtils.mention
-            .replace(/[GUILD]/g, member.guild.name)
-            .replace(/[MEMBER_COUNT]/g, member.guild.memberCount.toString())
-        return content;
+    protected applyEventVariables(content: string, member: GuildMember) {
+        return new EventVariables(content)
+            .user(member.user)
+            .guild(member.guild)
+            .memberCount(member.guild)
+            .toString();
     }
 }

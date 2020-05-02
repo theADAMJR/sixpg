@@ -1,30 +1,21 @@
 import { GuildMember, TextChannel } from 'discord.js';
 import { EventType } from '../../models/guild';
 import AnnounceHandler from './announce-handler';
-import EventHandler from './event-handler';
+import EventVariables from '../../modules/announce/event-variables';
 
-export default class MemberLeaveHandler extends AnnounceHandler implements EventHandler {
+export default class MemberLeaveHandler extends AnnounceHandler {
     on = 'guildMemberRemove';
+    event = EventType.MemberLeave;
 
     async invoke(member: GuildMember) {
-        this.announceUserLeave(member);
+        await super.announce(member.guild, [ member ]);
     }
 
-    private async announceUserLeave(member: GuildMember) {
-        const event = await super.getEvent(EventType.MemberLeave, member.guild);
-        if (!event) return;
-
-        const message = this.applyGuildVariables(event.message, member);
-        const channel = member.guild.channels.cache.get(event.channel) as TextChannel;
-
-        await channel?.send(message);
-    }
-
-    protected applyGuildVariables(content: string, member: GuildMember) {
-        content
-            .replace(/[USER]/g, `<@!${member.id}>`) // TODO: CommandUtils.mention
-            .replace(/[GUILD]/g, member.guild.name)
-            .replace(/[MEMBER_COUNT]/g, member.guild.memberCount.toString())
-        return content;
+    protected applyEventVariables(content: string, member: GuildMember) {
+        return new EventVariables(content)
+            .user(member.user)
+            .guild(member.guild)
+            .memberCount(member.guild)
+            .toString();
     }
 }

@@ -1,4 +1,4 @@
-import config from '../../config.json';
+import * as config from '../../config.json';
 import { ErelaClient } from 'erela.js';
 import { bot } from '../../bot';
 import Log from '../../utils/log';
@@ -12,7 +12,7 @@ export default class Music {
         const nodes = [{
             host: 'localhost',
             port: 2333,
-            password: (config as any).lavalink.password,
+            password: config.lavalink.password,
         }];
         const music = new ErelaClient(bot, nodes);
 

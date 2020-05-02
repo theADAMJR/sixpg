@@ -1,17 +1,39 @@
-import { EventType } from '../../models/guild';
+import { EventType, AnnounceEvent } from '../../models/guild';
 import Guilds from '../../data/guilds';
-import { Guild } from 'discord.js';
+import { Guild, TextChannel } from 'discord.js';
 import Deps from '../../utils/deps';
+import EventHandler from './event-handler';
 
-export default abstract class AnnounceHandler {
+export default abstract class AnnounceHandler implements EventHandler {
+    abstract on: string;
+    abstract event: EventType;
+
     constructor(protected guilds = Deps.get<Guilds>(Guilds)) {}
 
-    protected async getEvent(event: EventType, memberGuild: Guild) {
-        const guild = await this.guilds.get(memberGuild);
+    protected async getEvent(guild: Guild) {
+        const savedGuild = await this.guilds.get(guild);
         
-        const activeEvent = guild.announce.events.find(e => e.event === event);
-        return (guild.announce.enabled && activeEvent) ? activeEvent : null;
+        const activeEvent = savedGuild.announce.events.find(e => e.event === this.event);
+        return (savedGuild.announce.enabled && activeEvent) ? activeEvent : null;
     }
 
-    protected abstract applyGuildVariables(...args: any[]): string;
+    protected getChannel(config: AnnounceEvent, guild: Guild) {
+        return guild.channels.cache.get(config?.channel) as TextChannel;
+    }
+
+    protected async announce(guild: Guild, applyEventArgs: any[]) {
+        const config = await this.getEvent(guild);        
+        if (!config) return;
+
+        const message = await this.applyEventVariables(config.message, ...applyEventArgs);
+
+        if (message.length <= 0) return;
+        
+        let channel = this.getChannel(config, guild);
+        await channel?.send(message);
+    }
+
+    protected abstract applyEventVariables(...args: any[]): string | Promise<string>;
+
+    abstract invoke(...args: any[]): Promise<any> | void;
 }
