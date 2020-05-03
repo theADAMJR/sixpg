@@ -52,3 +52,5 @@
 2020-05-02 08:24:47.977  INFO 21972 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2020-05-02 08:24:52.785  INFO 21972 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53312
 2020-05-02 08:24:52.796  INFO 21972 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53312
+2020-05-02 08:36:13.919  INFO 21972 --- [XNIO-1 I/O-12] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53312 -- CloseStatus[code=1006, reason=]
+2020-05-02 08:36:13.920  INFO 21972 --- [XNIO-1 I/O-12] lavalink.server.io.SocketContext         : Shutting down 0 playing players.

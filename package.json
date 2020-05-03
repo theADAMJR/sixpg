@@ -24,8 +24,7 @@
     "erela.js": "^1.1.7",
     "express": "^4.17.1",
     "mongoose": "^5.9.3",
-    "stripe": "^8.39.1",
-    "typescript": "^3.8.3"
+    "stripe": "^8.39.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -41,6 +40,8 @@
     "nodemon": "^2.0.3",
     "supertest": "^4.0.2",
     "ts-mocha": "^6.0.0",
-    "ts-mockito": "^2.5.0"
+    "ts-mockito": "^2.5.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
   }
 }
