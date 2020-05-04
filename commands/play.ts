@@ -12,9 +12,8 @@ export default class PlayCommand implements Command {
 
     constructor(private music = Deps.get<Music>(Music)) {}
     
-    execute = async(ctx: CommandContext, ...args: string[]) => 
-    {
-        const query = args.join();
+    execute = async(ctx: CommandContext, ...args: string[]) => {
+        const query = args.join('');
         if (!query)
             throw new TypeError('Query must be provided.');
 
