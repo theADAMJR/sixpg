@@ -1,7 +1,9 @@
 # 2PG - Simple, powerful Discord bot
+Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
+
 **Dashboard**: https://github.com/theADAMJR/2PG-Dashboard
 
-Simple multi-purpose Discord bot made with TypeScript
+![2PG Avatar](https://2pg.xyz/assets/img/2PGAvatarTransparent.png)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d6c9610e0eb4ae5a4045ab3b92f80bc)](https://www.codacy.com/manual/ADAMJR/2PG?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=theADAMJR/2PG&amp;utm_campaign=Badge_Grade)
 
