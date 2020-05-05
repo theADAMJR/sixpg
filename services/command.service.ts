@@ -53,7 +53,7 @@ export default class CommandService {
             this.validators.checkPreconditions(command, msg.member);
             
             await command.execute(new CommandContext(msg), 
-                ...this.getCommandArgs(msg.content));
+                ...this.getCommandArgs(msg.content, guild.general.prefix));
 
             this.cooldowns.add(msg.author, command);
 
@@ -68,8 +68,8 @@ export default class CommandService {
         const name = content.split(' ')[0].substring(1, content.length);
         return this.commands.get(name);
     }
-    private getCommandArgs(content: string) {
+    private getCommandArgs(content: string, prefix: string) {
         let args = content.split(' ');
-        return args.splice(1, args.length);
+        return args.splice(prefix.length, args.length);
     }
 }
