@@ -21,7 +21,7 @@ export default class API {
 
         stripe.webhookEndpoints.create({
             url: config.api.url + '/stripe-webhook',
-            enabled_events: ['charge.succeeded']
+            enabled_events: ['charge.succeeded', 'checkout.session.completed']
         });
 
         app.use(cors());

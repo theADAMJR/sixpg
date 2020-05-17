@@ -41,19 +41,20 @@ export default class CommandService {
         return (msg.content.startsWith(guild.general.prefix)) ?
             this.handleCommand(msg, guild) : false;
     }
-    private async handleCommand(msg: Message, guild: GuildDocument) {
+    private async handleCommand(msg: Message, savedGuild: GuildDocument) {
         const content = msg.content.toLowerCase();
         try {
             await this.validators.checkChannel(msg.channel as TextChannel);
 
-            const command = this.findCommand(content);
+            const prefix = savedGuild.general.prefix;
+            const command = this.findCommand(prefix, content);
             if (!command || this.cooldowns.active(msg.author, command)) return;
 
-            await this.validators.checkCommand(command, guild);
+            await this.validators.checkCommand(command, savedGuild);
             this.validators.checkPreconditions(command, msg.member);
             
             await command.execute(new CommandContext(msg), 
-                ...this.getCommandArgs(msg.content, guild.general.prefix));
+                ...this.getCommandArgs(prefix, msg.content));
 
             this.cooldowns.add(msg.author, command);
 
@@ -64,11 +65,11 @@ export default class CommandService {
         } finally { return true; }
     }
 
-    private findCommand(content: string) {        
-        const name = content.split(' ')[0].substring(1, content.length);
+    private findCommand(prefix: string, content: string) {        
+        const name = content.split(' ')[0].substring(prefix.length, content.length);
         return this.commands.get(name);
     }
-    private getCommandArgs(content: string, prefix: string) {
+    private getCommandArgs(prefix: string, content: string) {
         let args = content.split(' ');
         return args.splice(prefix.length, args.length);
     }
