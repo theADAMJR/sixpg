@@ -218,3 +218,96 @@
 2020-05-24 10:50:01.760  INFO 16820 --- [XNIO-1 task-28] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56383
 2020-05-24 10:52:40.704  INFO 16820 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56383 -- CloseStatus[code=1006, reason=]
 2020-05-24 10:52:40.705  INFO 16820 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:53:55.976  INFO 16820 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56586
+2020-05-24 10:53:56.002  INFO 16820 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56586
+2020-05-24 10:54:47.309  INFO 16820 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56586 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:54:47.310  INFO 16820 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:54:55.425  INFO 16820 --- [XNIO-1 task-30] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56629
+2020-05-24 10:54:55.456  INFO 16820 --- [XNIO-1 task-30] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56629
+2020-05-24 10:54:59.617  INFO 16820 --- [XNIO-1 I/O-9] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56629 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:54:59.618  INFO 16820 --- [XNIO-1 I/O-9] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:55:05.434  INFO 16820 --- [XNIO-1 task-31] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56644
+2020-05-24 10:55:05.450  INFO 16820 --- [XNIO-1 task-31] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56644
+2020-05-24 10:55:06.988  INFO 16820 --- [XNIO-1 I/O-16] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56644 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:55:06.989  INFO 16820 --- [XNIO-1 I/O-16] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:55:12.771  INFO 16820 --- [XNIO-1 task-32] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56659
+2020-05-24 10:55:12.803  INFO 16820 --- [XNIO-1 task-32] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56659
+2020-05-24 10:55:48.274  INFO 16820 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56659 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:55:48.277  INFO 16820 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:55:54.224  INFO 16820 --- [XNIO-1 task-33] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56729
+2020-05-24 10:55:54.230  INFO 16820 --- [XNIO-1 task-33] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56729
+2020-05-24 10:57:13.225  INFO 16820 --- [XNIO-1 I/O-13] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56729 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:57:13.225  INFO 16820 --- [XNIO-1 I/O-13] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:57:18.962  INFO 16820 --- [XNIO-1 task-34] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56831
+2020-05-24 10:57:18.969  INFO 16820 --- [XNIO-1 task-34] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56831
+2020-05-24 10:57:22.502  INFO 16820 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56831 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:57:22.503  INFO 16820 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:57:28.546  INFO 16820 --- [XNIO-1 task-35] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56842
+2020-05-24 10:57:28.551  INFO 16820 --- [XNIO-1 task-35] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56842
+2020-05-24 10:57:28.860  INFO 16820 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56842 -- CloseStatus[code=1006, reason=]
+2020-05-24 10:57:28.861  INFO 16820 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 10:57:35.206  INFO 16820 --- [XNIO-1 task-36] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56853
+2020-05-24 10:57:35.238  INFO 16820 --- [XNIO-1 task-36] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56853
+2020-05-24 11:04:57.743  INFO 16820 --- [XNIO-1 I/O-9] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56853 -- CloseStatus[code=1006, reason=]
+2020-05-24 11:04:57.746  INFO 16820 --- [XNIO-1 I/O-9] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 11:05:03.582  INFO 16820 --- [XNIO-1 task-37] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57505
+2020-05-24 11:05:03.612  INFO 16820 --- [XNIO-1 task-37] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57505
+2020-05-24 11:05:40.183  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"9db566e8df6e81e258bd4594130c0b0c","op":"voiceUpdate","guildId":"685862664223850497","event":{"token":"87eba1e1b175d941","guild_id":"685862664223850497","endpoint":"eu-central812.discord.media:80"}}
+2020-05-24 11:05:40.289  INFO 16820 --- [XNIO-1 task-38] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:05:40.362  INFO 16820 --- [parallel-6] com.jcabi.manifests.Manifests            : 73 attributes loaded from 84 stream(s) in 94ms, 73 saved, 1240 ignored: ["Ant-Version", "Archiver-Version", "Automatic-Module-Name", "Bnd-LastModified", "Build-Jdk", "Build-Jdk-Spec", "Build-Time", "Built-By", "Bundle-ActivationPolicy", "Bundle-Activator", "Bundle-Category", "Bundle-Description", "Bundle-DocURL", "Bundle-License", "Bundle-ManifestVersion", "Bundle-Name", "Bundle-NativeCode", "Bundle-RequiredExecutionEnvironment", "Bundle-SymbolicName", "Bundle-Vendor", "Bundle-Version", "Copyright", "Created-By", "Export-Package", "Extension-Name", "Git-Revision", "Implementation-Build", "Implementation-Build-Date", "Implementation-Title", "Implementation-URL", "Implementation-Vendor", "Implementation-Vendor-Id", "Implementation-Version", "Import-Package", "Include-Resource", "JCabi-Build", "JCabi-Date", "JCabi-Version", "Jar-Name", "Jar-Version", "Java-Vendor", "Java-Version", "Kotlin-Runtime-Component", "Kotlin-Version", "Log4jReleaseKey", "Log4jReleaseManager", "Log4jReleaseVersion", "Magma-Version", "Main-Class", "Manifest-Version", "Multi-Release", "Originally-Created-By", "Os-Arch", "Os-Name", "Os-Version", "Private-Package", "Provide-Capability", "Require-Bundle", "Require-Capability", "Scm-Connection", "Scm-Revision", "Scm-Url", "Specification-Title", "Specification-Vendor", "Specification-Version", "Spring-Boot-Classes", "Spring-Boot-Lib", "Spring-Boot-Version", "Start-Class", "Tool", "X-Compile-Source-JDK", "X-Compile-Target-JDK", "url"]
+2020-05-24 11:05:42.665  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: test
+2020-05-24 11:05:42.693  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAkAIAK0EgU2ltcGxlIFRlc3QgV2lsbCBSZXZlYWwgWW91ciBEZWVwZXN0IEZlYXIAC0JSSUdIVCBTSURFAAAAAAAKd7AAC3B5S21WeTJUQzJFAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9cHlLbVZ5MlRDMkUAB3lvdXR1YmUAAAAAAAAAAA==","volume":100}
+2020-05-24 11:05:53.503  INFO 16820 --- [XNIO-1 task-40] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:05:54.106  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: test
+2020-05-24 11:06:57.841  INFO 16820 --- [XNIO-1 task-42] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:06:58.733  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: test
+2020-05-24 11:07:07.126  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"685862664223850497"}
+2020-05-24 11:07:09.662  INFO 16820 --- [XNIO-1 task-44] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:07:09.935  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"9db566e8df6e81e258bd4594130c0b0c","op":"voiceUpdate","guildId":"685862664223850497","event":{"token":"73f0e0e045795d72","guild_id":"685862664223850497","endpoint":"eu-central812.discord.media:80"}}
+2020-05-24 11:07:10.146  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: testing123
+2020-05-24 11:07:10.150  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAnAIANUJhcmVuYWtlZCBMYWRpZXMgLSBUZXN0aW5nIDEyMyBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAA1OZXR0d2Vya011c2ljAAAAAAADMGgAC2NQZUVNTm8yNl9RAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9Y1BlRU1ObzI2X1EAB3lvdXR1YmUAAAAAAAAAAA==","volume":100}
+2020-05-24 11:07:10.973 ERROR 16820 --- [lava-daemon-pool-playback-1-thread-1] c.s.d.l.t.p.LocalAudioTrackExecutor      : Error in playback of cPeEMNo26_Q
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Something broke when playing the track.
+	at com.sedmelluq.discord.lavaplayer.tools.ExceptionTools.wrapUnfriendlyExceptions(ExceptionTools.java:43) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:103) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.38.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.NullPointerException: null
+	at java.base/java.net.URI$Parser.parse(URI.java:3127) ~[na:na]
+	at java.base/java.net.URI.<init>(URI.java:623) ~[na:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeTrackFormat.getUrl(YoutubeTrackFormat.java:66) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeSignatureCipherManager.resolveFormatUrl(YoutubeSignatureCipherManager.java:97) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:87) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.38.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:91) ~[lavaplayer-1.3.38.jar!/:na]
+	... 4 common frames omitted
+
+2020-05-24 11:07:11.005  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57505 -- CloseStatus[code=1006, reason=]
+2020-05-24 11:07:11.008  INFO 16820 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 11:07:40.837  INFO 16820 --- [XNIO-1 task-46] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57755
+2020-05-24 11:07:40.861  INFO 16820 --- [XNIO-1 task-46] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57755
+2020-05-24 11:07:57.790  INFO 16820 --- [XNIO-1 task-47] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:07:58.045  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"sessionId":"c05805c816f989888eeca9c90ee6fe33","op":"voiceUpdate","guildId":"685862664223850497","event":{"token":"73f0e0e045795d72","guild_id":"685862664223850497","endpoint":"eu-central812.discord.media:80"}}
+2020-05-24 11:07:58.383  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: keemstar
+2020-05-24 11:07:58.395  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAgAIAF0NvbnRlbnQgTnVrZSAtIEtlZW1zdGFyAA9oM2gzUHJvZHVjdGlvbnMAAAAAACqiEAALdzNnWGNJaWZjM28AAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj13M2dYY0lpZmMzbwAHeW91dHViZQAAAAAAAAAA","volume":100}
+2020-05-24 11:08:00.078  INFO 16820 --- [XNIO-1 task-49] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:08:00.600  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: keemstar
+2020-05-24 11:08:02.294  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"stop","guildId":"685862664223850497"}
+2020-05-24 11:08:02.298  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAgAIAF0NvbnRlbnQgTnVrZSAtIEtlZW1zdGFyAA9oM2gzUHJvZHVjdGlvbnMAAAAAACqiEAALdzNnWGNJaWZjM28AAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj13M2dYY0lpZmMzbwAHeW91dHViZQAAAAAAAAAA","volume":100}
+2020-05-24 11:08:03.429  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"685862664223850497","volume":52}
+2020-05-24 11:08:03.451  INFO 16820 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: loading with filter com.sedmelluq.discord.lavaplayer.natives.ConnectorNativeLibLoader$$Lambda$659/0x000000080125a840@704735f0
+2020-05-24 11:08:03.541  INFO 16820 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: successfully loaded.
+2020-05-24 11:08:03.544  INFO 16820 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: loading with filter null
+2020-05-24 11:08:03.752  INFO 16820 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: successfully loaded.
+2020-05-24 11:08:10.304  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"685862664223850497","volume":58}
+2020-05-24 11:08:10.453  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"685862664223850497","volume":51}
+2020-05-24 11:08:10.700  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"685862664223850497","volume":47}
+2020-05-24 11:08:10.957  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"685862664223850497","volume":36}
+2020-05-24 11:08:59.035  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"685862664223850497"}
+2020-05-24 11:19:55.653  INFO 16820 --- [XNIO-1 task-51] l.server.player.AudioLoaderRestHandler   : GET /loadtracks
+2020-05-24 11:19:55.920  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"sessionId":"c05805c816f989888eeca9c90ee6fe33","op":"voiceUpdate","guildId":"685862664223850497","event":{"token":"765f840533e271c4","guild_id":"685862664223850497","endpoint":"eu-central812.discord.media:80"}}
+2020-05-24 11:19:56.154  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: testing123
+2020-05-24 11:19:56.159  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAnAIANUJhcmVuYWtlZCBMYWRpZXMgLSBUZXN0aW5nIDEyMyBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAA1OZXR0d2Vya011c2ljAAAAAAADMGgAC2NQZUVNTm8yNl9RAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9Y1BlRU1ObzI2X1EAB3lvdXR1YmUAAAAAAAAAAA==","volume":100}

@@ -15,7 +15,7 @@ export const router = Router();
 let commands: CommandDocument[] = [];
 SavedCommand.find().then(cmds => commands = cmds);
 
-router.get('/', (req, res) => res.json({ hello: 'earth' }));
+router.get('/', (req, res) => res.json({ hello: '' }));
 
 router.get('/commands', async (req, res) => res.json(commands));
 
@@ -23,7 +23,7 @@ router.get('/auth', async (req, res) => {
     try {
         const key = await AuthClient.getAccess(req.query.code);
         res.json(key);
-    } catch (error) { res.status(400).send(error); }
+    } catch (error) { res.status(400).send(error?.message); console.log(error); }
 });
 
 router.post('/stripe-webhook', async(req, res) => {

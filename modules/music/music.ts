@@ -26,9 +26,9 @@ export default class Music {
         music.on('nodeConnect', () => Log.info('Connected to Lavalink node', 'music'));
         music.on('nodeError', (node, error) => Log.error(error, 'music'));
         music.on('trackStuck', (player) => player.textChannel.send('❗ Error loading track.'));
-        music.on('trackStart', (player, track) => player.textChannel.send(`**Now Playing**: \`${track.title}\` 🎵`));
+        music.on('trackStart', (player, track) => player.textChannel?.send(`**Now Playing**: \`${track.title}\` 🎵`));
         music.on('queueEnd', (player) => {
-            player.textChannel.send('Queue has ended.');
+            player.textChannel?.send('Queue has ended.');
             music.players.destroy(player.guild.id);
         });
     }
