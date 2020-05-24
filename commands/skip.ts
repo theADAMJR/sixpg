@@ -1,4 +1,4 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 import Deps from '../utils/deps';
 import Music from '../modules/music/music';
 

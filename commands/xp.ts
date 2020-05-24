@@ -1,4 +1,4 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 import CommandUtils from '../utils/command-utils';
 import config from '../config.json';
 

@@ -1,4 +1,4 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 
 export default class PingCommand implements Command {
     name = 'ping';

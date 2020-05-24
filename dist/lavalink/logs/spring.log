@@ -311,3 +311,14 @@ Caused by: java.lang.NullPointerException: null
 2020-05-24 11:19:55.920  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"sessionId":"c05805c816f989888eeca9c90ee6fe33","op":"voiceUpdate","guildId":"685862664223850497","event":{"token":"765f840533e271c4","guild_id":"685862664223850497","endpoint":"eu-central812.discord.media:80"}}
 2020-05-24 11:19:56.154  INFO 16820 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: testing123
 2020-05-24 11:19:56.159  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"play","guildId":"685862664223850497","track":"QAAAnAIANUJhcmVuYWtlZCBMYWRpZXMgLSBUZXN0aW5nIDEyMyBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAA1OZXR0d2Vya011c2ljAAAAAAADMGgAC2NQZUVNTm8yNl9RAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9Y1BlRU1ObzI2X1EAB3lvdXR1YmUAAAAAAAAAAA==","volume":100}
+2020-05-24 11:20:02.615  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"685862664223850497"}
+2020-05-24 11:52:25.866  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57755 -- CloseStatus[code=1006, reason=]
+2020-05-24 11:52:25.867  INFO 16820 --- [XNIO-1 I/O-15] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 11:52:31.765  INFO 16820 --- [XNIO-1 task-53] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:59485
+2020-05-24 11:52:31.784  INFO 16820 --- [XNIO-1 task-53] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:59485
+2020-05-24 11:57:32.697  INFO 16820 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:59485 -- CloseStatus[code=1006, reason=]
+2020-05-24 11:57:32.698  INFO 16820 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-05-24 11:57:38.527  INFO 16820 --- [XNIO-1 task-54] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:59597
+2020-05-24 11:57:38.546  INFO 16820 --- [XNIO-1 task-54] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:59597
+2020-05-24 12:01:23.997  INFO 16820 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:59597 -- CloseStatus[code=1006, reason=]
+2020-05-24 12:01:23.998  INFO 16820 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.

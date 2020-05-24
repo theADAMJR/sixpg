@@ -1,4 +1,4 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Deps from '../utils/deps';
 import CommandUtils from '../utils/command-utils';

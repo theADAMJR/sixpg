@@ -1,4 +1,4 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 import config from '../config.json';
 
 export default class LeaderboardCommand implements Command {
