@@ -1,13 +1,13 @@
-import { Command, CommandContext } from './Command';
+import { Command, CommandContext, Permission } from './Command';
 import CommandUtils from '../utils/command-utils';
-import { ModuleString } from '../data/models/guild';
 import config from '../config.json';
 
 export default class XPCommand implements Command {
     name = 'xp';
     summary = 'Display the XP card of a user.';
+    precondition: Permission = '';
     cooldown = 3;
-    module: ModuleString = 'XP';
+    module = 'XP';
 
     execute = (ctx: CommandContext, userMention: string) =>  {
         const target = (userMention) ?

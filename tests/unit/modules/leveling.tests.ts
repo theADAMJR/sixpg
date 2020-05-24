@@ -27,7 +27,7 @@ describe('modules/leveling', () => {
         it('member with ignored role throws exception', () => {
             const guild = mock<GuildDocument>();
             let msg: any = { member: { roles: { cache: [{ id: '123' }] }}};
-            guild.xp.ignoredRoles = ['123'];
+            guild.leveling.ignoredRoles = ['123'];
 
             const result = () => leveling.validateXPMsg(msg, guild);
 

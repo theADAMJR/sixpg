@@ -1,14 +1,14 @@
-import { Command, CommandContext } from './Command';
+import { Command, CommandContext, Permission } from './Command';
 import Deps from '../utils/deps';
 import { GuildMember } from 'discord.js';
 import Music from '../modules/music/music';
-import { ModuleString } from '../data/models/guild';
 
 export default class PlayCommand implements Command {
     name = 'play';
     summary = 'Join and play a youtube result.';
+    precondition: Permission = 'SPEAK';
     cooldown = 2;
-    module: ModuleString = 'Music';
+    module = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     

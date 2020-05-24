@@ -1,11 +1,11 @@
-import { Command, CommandContext } from './Command';
-import { ModuleString } from '../data/models/guild';
+import { Command, CommandContext, Permission } from './Command';
 
 export default class PingCommand implements Command {
     name = 'ping';
     summary = 'Probably the best command ever created.';
+    precondition: Permission = '';
     cooldown = 3;
-    module: ModuleString = 'General';
+    module = 'General';
     
     execute = (ctx: CommandContext) => ctx.channel.send(`🏓 Pong! \`${ctx.bot.ws.ping}ms\``);
 }

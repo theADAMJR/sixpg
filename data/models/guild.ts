@@ -25,13 +25,19 @@ export class AutoModModule extends Module {
     banWords: string[] = [];
     banLinks: string[] = [];
     autoWarnUsers = true;
+    filterThreshold = 5;
 }
 
 export class CommandsModule extends Module {
     configs: CommandConfig[] = [];
 }
 
-export enum MessageFilter { Words, Links }
+export enum MessageFilter {
+    Links = 'LINKS',
+    MassCaps = 'MASS_CAPS',
+    MassMention = 'MASS_MENTION',
+    Words = 'WORDS'
+}
 
 export class GeneralModule extends Module {
     prefix = '/';
@@ -39,7 +45,7 @@ export class GeneralModule extends Module {
     autoRoles: string[] = [];
 }
 
-export class XPModule extends Module {
+export class LevelingModule extends Module {
     levelRoles: LevelRole[] = [];
     ignoredRoles: string[] = [];
     xpPerMessage = 50;
@@ -70,8 +76,8 @@ const guildSchema = new Schema({
     autoMod: { type: Object, default: new AutoModModule() }, 
     commands: { type: Object, default: new CommandsModule() },
     general: { type: Object, default: new GeneralModule() },
+    leveling: { type: Object, default: new LevelingModule() },
     music: { type: Object, default: new MusicModule },
-    xp: { type: Object, default: new XPModule() },
     settings: { type: Object, default: new DashboardSettings() }
 });
 
@@ -81,7 +87,7 @@ export interface GuildDocument extends Document {
     autoMod: AutoModModule;
     general: GeneralModule;
     music: MusicModule;
-    xp: XPModule;
+    leveling: LevelingModule;
     commands: CommandsModule;
     settings: DashboardSettings;
 }

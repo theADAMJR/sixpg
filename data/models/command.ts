@@ -1,5 +1,4 @@
 import { model, Schema, Document } from 'mongoose';
-import { ModuleString } from './guild';
 import { PermissionString } from 'discord.js';
 
 const commandSchema = new Schema({
@@ -13,7 +12,7 @@ const commandSchema = new Schema({
 export interface CommandDocument extends Document {
     name: string;
     summary: string;
-    module: ModuleString;
+    module: string;
     usage: string;
     precondition?: PermissionString;
 }

@@ -1,12 +1,12 @@
-import { Command, CommandContext } from './Command';
+import { Command, CommandContext, Permission } from './Command';
 import Deps from '../utils/deps';
 import Music from '../modules/music/music';
-import { ModuleString } from '../data/models/guild';
 
 export default class PauseCommand implements Command {
     name = 'pause';
     summary = 'Pause playback if playing.';
-    module: ModuleString = 'Music';
+    precondition: Permission = 'SPEAK';
+    module = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     

@@ -7,26 +7,26 @@ import { MemberDocument } from '../../data/models/member';
 export default class Leveling {
     constructor(private members = Deps.get<Members>(Members)) {}
 
-    async validateXPMsg(msg: Message, guild: GuildDocument) {
-        if (!msg?.member || !guild || this.hasIgnoredXPRole(msg.member, guild))
+    async validateXPMsg(msg: Message, savedGuild: GuildDocument) {
+        if (!msg?.member || !savedGuild || this.hasIgnoredXPRole(msg.member, savedGuild))
             throw new TypeError('Member cannot earn XP');
 
         const savedMember = await this.members.get(msg.member);
         if (!savedMember) return;
 
         const oldLevel = this.getLevel(savedMember.xp);
-        savedMember.xp += guild.xp.xpPerMessage;
+        savedMember.xp += savedGuild.leveling.xpPerMessage;
         const newLevel = this.getLevel(savedMember.xp);
 
         if (newLevel > oldLevel) {
-            this.handleLevelUp(msg, newLevel, guild);
+            this.handleLevelUp(msg, newLevel, savedGuild);
         }
         savedMember.save();
     }
-    private hasIgnoredXPRole(member: GuildMember, guild: GuildDocument) {
+    private hasIgnoredXPRole(member: GuildMember, savedGuild: GuildDocument) {
         for (const entry of member.roles.cache) { 
             const role = entry[1];
-            if (guild.xp.ignoredRoles.some(id => id === role.id))
+            if (savedGuild.leveling.ignoredRoles.some(id => id === role.id))
                 return true;
         }
         return false;
@@ -39,8 +39,9 @@ export default class Leveling {
         if (levelRole)
             msg.member?.roles.add(levelRole);
     }
-    private getLevelRole(level: number, guild: GuildDocument) {
-        return guild.xp.levelRoles.find(r => r.level === level)?.role;
+    private getLevelRole(level: number, savedGuild: GuildDocument) {
+        return savedGuild.leveling.levelRoles
+            .find(r => r.level === level)?.role;
     }
 
     getLevel(xp: number) {
