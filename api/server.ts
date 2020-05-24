@@ -11,8 +11,7 @@ import Log from '../utils/log';
 
 export const app = express(),
              AuthClient = new OAuthClient(config.bot.id, config.bot.secret),
-             stripe = new Stripe(config.api.stripe.apiKey,
-                { apiVersion: '2020-03-02' });
+             stripe = new Stripe(config.api.stripe.apiKey, { apiVersion: '2020-03-02' });
 
 export default class API {
     constructor() {
@@ -21,7 +20,7 @@ export default class API {
 
         stripe.webhookEndpoints.create({
             url: config.api.url + '/stripe-webhook',
-            enabled_events: ['charge.succeeded', 'checkout.session.completed']
+            enabled_events: ['*']
         });
 
         app.use(cors());
