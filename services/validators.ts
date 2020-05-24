@@ -2,7 +2,7 @@ import { Command } from "../commands/command";
 import { GuildMember, TextChannel } from "discord.js";
 import Guilds from "../data/guilds";
 import Deps from "../utils/deps";
-import { GuildDocument } from "../models/guild";
+import { GuildDocument } from "../data/models/guild";
 
 export default class Validators {
     constructor(private guilds = Deps.get<Guilds>(Guilds)) {}

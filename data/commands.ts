@@ -1,7 +1,7 @@
 import DBWrapper from './db-wrapper';
-import { LogDocument } from '../models/log';
+import { LogDocument } from './models/log';
 import { Command } from '../commands/command';
-import { SavedCommand, CommandDocument } from '../models/command';
+import { SavedCommand, CommandDocument } from './models/command';
 
 export default class Commands extends DBWrapper<Command, CommandDocument> {
     protected async getOrCreate(command: Command) {

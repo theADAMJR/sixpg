@@ -1,6 +1,6 @@
 import { Command, CommandContext } from './Command';
 import CommandUtils from '../utils/command-utils';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from '../data/models/guild';
 import config from '../config.json';
 
 export default class XPCommand implements Command {

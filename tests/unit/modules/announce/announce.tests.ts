@@ -1,5 +1,5 @@
 import { use, should } from 'chai';
-import { SavedGuild, EventType } from '../../../../models/guild';
+import { SavedGuild, EventType } from '../../../../data/models/guild';
 import { mock } from 'ts-mockito';
 import { TextChannel, GuildMember } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';

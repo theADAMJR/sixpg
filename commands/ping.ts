@@ -1,5 +1,5 @@
 import { Command, CommandContext } from './Command';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from '../data/models/guild';
 
 export default class PingCommand implements Command {
     name = 'ping';

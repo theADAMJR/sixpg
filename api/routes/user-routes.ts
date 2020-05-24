@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
-import { SavedMember } from '../../models/member';
+import { SavedMember } from '../../data/models/member';
 import { AuthClient, stripe } from '../server';
 import { bot } from '../../bot';
 import Deps from '../../utils/deps';

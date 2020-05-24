@@ -1,6 +1,6 @@
 import { Guild, Message } from 'discord.js';
 import DBWrapper from './db-wrapper';
-import { LogDocument, SavedLog } from '../models/log';
+import { LogDocument, SavedLog } from './models/log';
 import { Command } from '../commands/command';
 
 export default class Logs extends DBWrapper<Guild, LogDocument> {

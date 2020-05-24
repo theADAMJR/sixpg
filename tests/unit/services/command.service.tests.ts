@@ -8,7 +8,7 @@ import chaiAsPromised from 'chai-as-promised';
 import Deps from '../../../utils/deps';
 import Logs from '../../../data/logs';
 import Commands from '../../../data/commands';
-import { SavedGuild } from '../../../models/guild'
+import { SavedGuild } from '../../../data/models/guild'
 import Cooldowns from '../../../services/cooldowns';
 
 use(chaiAsPromised);

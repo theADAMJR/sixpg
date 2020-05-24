@@ -2,7 +2,7 @@ import { Command, CommandContext } from './Command';
 import AutoMod from '../modules/auto-mod/auto-mod';
 import Deps from '../utils/deps';
 import CommandUtils from '../utils/command-utils';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from '../data/models/guild';
 
 export default class WarnCommand implements Command {
     name = 'warn';

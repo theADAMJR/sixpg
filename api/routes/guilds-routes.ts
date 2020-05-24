@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import config from '../../config.json';
-import { SavedMember, MemberDocument } from '../../models/member';
+import { SavedMember, MemberDocument } from '../../data/models/member';
 import { AuthClient } from '../server';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import { bot } from '../../bot';

@@ -1,5 +1,5 @@
 import { Message, GuildMember, User, Guild } from 'discord.js';
-import { GuildDocument, MessageFilter } from '../../models/guild';
+import { GuildDocument, MessageFilter } from '../../data/models/guild';
 import { BadWordValidator } from './validators/bad-word.validator';
 import { BadLinkValidator } from './validators/bad-link.validator';
 import Deps from '../../utils/deps';

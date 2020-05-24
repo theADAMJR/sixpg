@@ -1,5 +1,5 @@
 import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionString } from 'discord.js';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from '../data/models/guild';
 
 export interface Command {
     name: string;

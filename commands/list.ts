@@ -1,7 +1,7 @@
 import { Command, CommandContext } from './Command';
 import Deps from '../utils/deps';
 import Music from '../modules/music/music';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from '../data/models/guild';
 
 export default class ListCommand implements Command {
     name = 'list';

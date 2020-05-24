@@ -1,4 +1,4 @@
-import { GuildDocument } from '../../../models/guild';
+import { GuildDocument } from '../../../data/models/guild';
 import { ContentValidator } from './content-validator';
 
 export class BadWordValidator implements ContentValidator {

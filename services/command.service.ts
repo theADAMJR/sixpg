@@ -5,7 +5,7 @@ import Log from '../utils/log';
 import Deps from '../utils/deps';
 import Commands from '../data/commands';
 import Logs from '../data/logs';
-import { GuildDocument } from '../models/guild';
+import { GuildDocument } from '../data/models/guild';
 import Cooldowns from './cooldowns';
 import Validators from './validators';
 

@@ -1,5 +1,5 @@
 import { model, Schema, Document } from 'mongoose';
-import { ModuleString } from '../models/guild';
+import { ModuleString } from './guild';
 import { PermissionString } from 'discord.js';
 
 const commandSchema = new Schema({

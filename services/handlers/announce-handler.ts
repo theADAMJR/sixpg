@@ -1,4 +1,4 @@
-import { EventType, AnnounceEvent } from '../../models/guild';
+import { EventType, AnnounceEvent } from '../../data/models/guild';
 import Guilds from '../../data/guilds';
 import { Guild, TextChannel } from 'discord.js';
 import Deps from '../../utils/deps';
