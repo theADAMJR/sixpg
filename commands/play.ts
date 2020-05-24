@@ -17,7 +17,7 @@ export default class PlayCommand implements Command {
         if (!query)
             throw new TypeError('Query must be provided.');
 
-        const player = this.music.joinAndGetPlayer(ctx);
+        const player = this.music.joinAndGetPlayer(ctx.member, ctx.channel);
 
         const maxQueueSize = 5;
         if (player.queue.size >= maxQueueSize)

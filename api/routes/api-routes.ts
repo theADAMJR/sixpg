@@ -2,11 +2,13 @@ import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../data/models/command';
 import { AuthClient, stripe } from '../server';
 import * as config from '../../config.json';
-import bodyParser from 'body-parser';
+import { SavedUser } from '../../data/models/user';
+import { bot } from '../../bot';
+import { MessageEmbed } from 'discord.js';
 
 import { router as guildsRoutes } from './guilds-routes';
+import { router as musicRoutes } from './music-routes';
 import { router as userRoutes } from './user-routes';
-import { SavedUser } from '../../data/models/user';
 
 export const router = Router();
 
@@ -38,6 +40,28 @@ router.post('/stripe-webhook', async(req, res) => {
   } catch (error) { res.status(400).send(error); } 
 });
 
+router.post('/error', async(req, res) => {
+  try {
+    const { message } = req.body;
+
+    const key = req.query.key;
+    let user = { id: 'N/A' };
+    if (key)
+      user = AuthClient.getUser(key);
+
+    // it would probably be better to save errors in a db collection
+    // instead of notifying a Discord user directly
+    
+    await bot.users.cache
+      .get(config.bot.ownerId)
+      .send(new MessageEmbed({
+        title: 'Dashboard Error',
+        description: `**Message**: ${message}`,
+        footer: { text: `User ID: ${user.id}` }
+      }));
+  } catch (error) { res.status(400).json(error?.message); }
+});
+
 async function giveUserPlus(id: string) {   
   const savedUser = await SavedUser.findById(id);
   savedUser.premium = true;
@@ -51,6 +75,7 @@ router.get('/login', (req, res) =>
     res.redirect(`https://discordapp.com/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.webapp.url}/auth&response_type=code&scope=identify guilds`));
 
 router.use('/guilds', guildsRoutes);
+router.use('/guilds/:id/music', musicRoutes);
 router.use('/user', userRoutes);
 
 router.get('*', (req, res) => res.status(404).json({ code: 404 }));

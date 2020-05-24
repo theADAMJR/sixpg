@@ -1,20 +1,20 @@
-import { Command, CommandContext, Permission } from './Command';
+import { Command, CommandContext, Permission } from './command';
 import Deps from '../utils/deps';
 import Music from '../modules/music/music';
 
-export default class SkipCommand implements Command {
-    name = 'skip';
-    summary = 'Skip current playing track';
+export default class ShuffleCommand implements Command {
     precondition: Permission = 'SPEAK';
-    cooldown = 5;
+    name = 'shuffle';
+    summary = 'Shuffle a playlist.';
+    cooldown = 3;
     module = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}
     
     execute = async(ctx: CommandContext) => {
         const player = this.music.joinAndGetPlayer(ctx.member, ctx.channel);
-        if (player.queue.size <= 1)
-            throw new TypeError('No tracks to skip');
-        player.stop();
+        player.queue.shuffle();
+        
+        return ctx.channel.send('List shuffled.');
     }
 }

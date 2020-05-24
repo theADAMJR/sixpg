@@ -18,8 +18,11 @@ export default class MessageHandler implements EventHandler {
         if (msg.author.bot) return;
 
         const savedGuild = await this.guilds.get(msg.guild);
-        const handled = await this.commands.handle(msg, savedGuild);
-        if (handled) return;
+
+        const isCommand = msg.content.startsWith(savedGuild.general.prefix);
+        if (isCommand)
+            return await this.commands.handle(msg, savedGuild);        
+
         
         if (savedGuild.autoMod.enabled)
             await this.autoMod.validateMsg(msg, savedGuild);

@@ -3,16 +3,22 @@ import EventHandler from './event-handler';
 import Deps from '../../utils/deps';
 import Music from '../../modules/music/music';
 import { bot } from '../../bot';
+import CommandService from '../command.service';
+import config from '../../config.json';
 
 export default class ReadyHandler implements EventHandler {
     on = 'ready';
     
-    constructor(private music = Deps.get<Music>(Music)) {}
+    constructor(
+        private commandService = Deps.get<CommandService>(CommandService),        
+        private music = Deps.get<Music>(Music)) {}
 
-    async invoke(...args: any) {        
+    async invoke() {        
         Log.info(`It's live!`, `events`);
         
+        await this.commandService.init();
+
         this.music.initialize();
-        bot.user?.setActivity('2pg.xyz');
+        bot.user?.setActivity(config.bot.activity);
     }
 }

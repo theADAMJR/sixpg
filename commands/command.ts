@@ -3,11 +3,12 @@ import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionStrin
 export type Permission = '' | PermissionString;
 
 export interface Command {
-    name: string;
-    summary: string;
-    module: string;
-    precondition: Permission;
     cooldown?: number;
+    module: string;
+    name: string;
+    precondition: Permission;
+    summary: string;
+    usage?: string;
     
     execute: (ctx: CommandContext, ...args: any) => Promise<any> | void;
 }

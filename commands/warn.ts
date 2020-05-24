@@ -16,7 +16,7 @@ export default class WarnCommand implements Command {
         const target = (targetMention) ?
             CommandUtils.getMemberFromMention(targetMention, ctx.guild) : ctx.member;
         
-        await this.autoMod.warnMember(target, ctx.user, reason);
+        await this.autoMod.warn(target, ctx.user, reason);
 
         await ctx.channel.send(`${target} was warned for ${reason}`);
     };

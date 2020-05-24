@@ -14,6 +14,7 @@ import AuditLogger from '../modules/audit-logger';
 import { User } from 'discord.js';
 import Leveling from '../../modules/xp/leveling';
 import Log from '../../utils/log';
+import { getUser } from './user-routes';
 
 export const router = Router();
 
@@ -168,16 +169,11 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
     catch (error) { res.status(400).send(error?.message); }
 });
 
-async function validateGuildManager(key: string, id: string) {
+export async function validateGuildManager(key: string, id: string) {
     if (!key)
         throw new TypeError();
     const guilds = await getManagableGuilds(key);        
         
     if (!guilds.has(id))
         throw TypeError();
-}
-
-async function getUser(key: string) {    
-    const { id } = await AuthClient.getUser(key);
-    return bot.users.cache.get(id);
 }

@@ -82,7 +82,7 @@ router.put('/xp-card', async (req, res) => {
     } catch { res.status(400).send('Bad Request'); }
 });
 
-async function getUser(key: string) {    
+export async function getUser(key: string) {    
     const { id } = await AuthClient.getUser(key);
     return bot.users.cache.get(id);
 }
