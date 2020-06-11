@@ -14,7 +14,7 @@ export default class ReadyHandler implements EventHandler {
         private music = Deps.get<Music>(Music)) {}
 
     async invoke() {        
-        Log.info(`It's live!`, `events`);
+        Log.info(`Bot is live!`, `events`);
         
         await this.commandService.init();
 

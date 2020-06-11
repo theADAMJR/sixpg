@@ -5,8 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "test": "ts-mocha tests/**/*.tests.ts",
-    "test:u": "ts-mocha tests/unit/*/*.tests.ts",
-    "test:i": "ts-mocha tests/integration/*/*.tests.ts",
+    "test:u": "ts-mocha tests/unit/**/*.tests.ts",
+    "test:i": "ts-mocha tests/integration/**/*.tests.ts",
     "start": "npm run start:music | nodemon --exec ts-node bot.ts --watch * -e ts,json",
     "start:bot": "nodemon --exec ts-node bot.ts --watch * -e ts,json",
     "start:music": "cd dist/lavalink && java -jar Lavalink.jar"

@@ -23,7 +23,7 @@ router.get('/auth', async (req, res) => {
     try {
         const key = await AuthClient.getAccess(req.query.code);
         res.json(key);
-    } catch (error) { res.status(400).send(error?.message); console.log(error); }
+    } catch (error) { sendError(res, 400, error); }
 });
 
 router.post('/stripe-webhook', async(req, res) => {
@@ -37,7 +37,7 @@ router.post('/stripe-webhook', async(req, res) => {
       return res.json({ success: true });
     }
     res.json({ received: true });
-  } catch (error) { res.status(400).send(error); } 
+  } catch (error) { sendError(res, 400, error); }
 });
 
 router.post('/error', async(req, res) => {
@@ -48,9 +48,6 @@ router.post('/error', async(req, res) => {
     let user = { id: 'N/A' };
     if (key)
       user = AuthClient.getUser(key);
-
-    // it would probably be better to save errors in a db collection
-    // instead of notifying a Discord user directly
     
     await bot.users.cache
       .get(config.bot.ownerId)
@@ -59,7 +56,7 @@ router.post('/error', async(req, res) => {
         description: `**Message**: ${message}`,
         footer: { text: `User ID: ${user.id}` }
       }));
-  } catch (error) { res.status(400).json(error?.message); }
+  } catch (error) { sendError(res, 400, error); }
 });
 
 async function giveUserPlus(id: string) {   
@@ -79,3 +76,7 @@ router.use('/guilds/:id/music', musicRoutes);
 router.use('/user', userRoutes);
 
 router.get('*', (req, res) => res.status(404).json({ code: 404 }));
+
+export function sendError(res: any, code: number, error: Error) {
+  return res.status(code).json({ code, message: error?.message })
+}
