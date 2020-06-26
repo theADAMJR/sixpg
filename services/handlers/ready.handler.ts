@@ -16,8 +16,9 @@ export default class ReadyHandler implements EventHandler {
 
     async invoke() {
         Log.info(`Bot is live!`, `events`);
-        
-        if (!this.started) return;
+
+        if (this.started) return;
+        this.started = true;
         
         await this.commandService.init();
 
