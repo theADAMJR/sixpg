@@ -7,14 +7,17 @@ import CommandService from '../command.service';
 import config from '../../config.json';
 
 export default class ReadyHandler implements EventHandler {
+    started = false;
     on = 'ready';
     
     constructor(
         private commandService = Deps.get<CommandService>(CommandService),        
         private music = Deps.get<Music>(Music)) {}
 
-    async invoke() {        
+    async invoke() {
         Log.info(`Bot is live!`, `events`);
+        
+        if (!this.started) return;
         
         await this.commandService.init();
 
