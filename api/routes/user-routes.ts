@@ -31,8 +31,8 @@ router.get('/pay', async(req, res) => {
         const user = await getUser(req.query.key);
 
         const session = await stripe.checkout.sessions.create({
-            success_url: `${config.webapp.url}/payment-success`,
-            cancel_url: `${config.webapp.url}/plus`,
+            success_url: `${config.dashboard.url}/payment-success`,
+            cancel_url: `${config.dashboard.url}/plus`,
             payment_method_types: ['card'],
             metadata: { 'id': user.id },
             line_items: items

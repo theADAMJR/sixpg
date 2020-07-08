@@ -17,37 +17,32 @@ Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
 `config.json` example:
 ```
 {
-    "bot": { // https://discordapp.com/developers/applications
+    "bot": {
         "token": "yourBotToken",
         "secret": "oauthSecret",
+        "ownerId": "botOwnerId",
+        "activity": "2PG.xyz",
         "id": "discordBotId"
     },
     "api": {
         "port": "3000",
         "url": "https://2pg.xyz/api",
-        "managerPermission": "MANAGE_GUILD",
-        "stripe": { // https://dashboard.stripe.com/test/apikeys
-            "apiKey": "stripeAPIKey"
+        "stripe": {
+            "apiKey": "stripeAPIKey",
+            "endpointSecret: "webhookEndpointSecret"
         }
     },
-    "webapp": {
+    "dashboard": {
         "url": "https://2pg.xyz",
         "distPath": "/dist/dashboard"
     },
     "lavalink": {
         "password": "youshallnotpass"
     },
-    "tests": { // optional -> used for tests
-        "guild": {
-            "id": "yourTestGuildId"
-        }
-    },
     "mongoURL": "mongodb://localhost/2PG",
     "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"]
 }
 ```
-- Remove Comments
-
 
 ## Hosting
 1) `npm start` to start the bot, and Lavalink

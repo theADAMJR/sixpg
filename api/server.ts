@@ -15,7 +15,7 @@ export const app = express(),
 
 export default class API {
     constructor() {
-        AuthClient.setRedirect(`${config.webapp.url}/auth`);
+        AuthClient.setRedirect(`${config.dashboard.url}/auth`);
         AuthClient.setScopes('identify', 'guilds');
 
         stripe.webhookEndpoints.create({
@@ -27,10 +27,10 @@ export default class API {
         app.use(bodyParser.json());
         app.use('/api', apiRoutes);
         
-        app.use(express.static(join(__dirname, '..', config.webapp.distPath)));
+        app.use(express.static(join(__dirname, '..', config.dashboard.distPath)));
         
         app.all('*', (req, res) => res.status(200).sendFile(
-            join(__dirname, '..', config.webapp.distPath, '/index.html')));
+            join(__dirname, '..', config.dashboard.distPath, '/index.html')));
     }
 }
 

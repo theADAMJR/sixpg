@@ -9,6 +9,6 @@ export default class HelpCommand implements Command {
     module = 'General';
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.webapp.url}/commands`);
+        ctx.channel.send(`${config.dashboard.url}/commands`);
     }
 }

@@ -134,7 +134,7 @@ async function getManagableGuilds(key: string) {
     for (const id of userGuilds.keys()) {        
         const authGuild = userGuilds.get(id);        
         const hasManager = authGuild._permissions
-            .some(p => p === config.api.managerPermission);
+            .some(p => p === 'MANAGE_GUILD');
 
         if (hasManager)
             manageableGuilds.push(id);

@@ -9,6 +9,6 @@ export default class DashboardCommand implements Command {
     module = 'General';
     
     execute = async(ctx: CommandContext) => {
-        return ctx.channel.send(`${config.webapp.url}/servers/${ctx.guild.id}`);
+        return ctx.channel.send(`${config.dashboard.url}/servers/${ctx.guild.id}`);
     }
 }

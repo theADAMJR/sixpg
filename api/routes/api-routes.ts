@@ -66,10 +66,10 @@ async function giveUserPlus(id: string) {
 }
 
 router.get('/invite', (req, res) => 
-    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.webapp.url}/dashboard&permissions=8&scope=bot`));
+    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.dashboard.url}/dashboard&permissions=8&scope=bot`));
 
 router.get('/login', (req, res) =>
-    res.redirect(`https://discordapp.com/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.webapp.url}/auth&response_type=code&scope=identify guilds&prompt=none`));
+    res.redirect(`https://discordapp.com/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.dashboard.url}/auth&response_type=code&scope=identify guilds&prompt=none`));
 
 router.use('/guilds', guildsRoutes);
 router.use('/guilds/:id/music', musicRoutes);
