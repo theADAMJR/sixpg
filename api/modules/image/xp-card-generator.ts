@@ -1,6 +1,6 @@
 import { bot } from '../../../bot';
 import ImageGenerator from './image-generator';
-import { Canvas, createCanvas } from 'canvas';
+import { Canvas, createCanvas, loadImage, CanvasRenderingContext2D } from 'canvas';
 import { User } from 'discord.js';
 import { MemberDocument } from '../../../data/models/member';
 import { UserDocument, XPCard } from '../../../data/models/user';
@@ -13,7 +13,7 @@ export class XPCardGenerator extends ImageGenerator {
         tertiary: '#36E2CA'
     }
 
-    discordUser: User;
+    private discordUser: User;
 
     constructor(
         private user: UserDocument,
@@ -28,31 +28,42 @@ export class XPCardGenerator extends ImageGenerator {
             this.user.xpCard = preview;
 
         const canvas = createCanvas(700, 250);
-        const context = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
 
-        await super.addBackgroundToCanvas(context, canvas,
+        await super.addBackgroundToCanvas(ctx, canvas,
             this.user.xpCard.backgroundURL);
-        await this.addXPInfo(context, canvas, savedMember.xp);
-        this.addUserText(context, canvas);
-        await super.addAvatarToCanvas(context, 
+        await this.addXPInfo(ctx, canvas, savedMember.xp);
+        this.addUserText(ctx, canvas);
+        await this.addAvatarToCanvas(ctx, 
                 this.discordUser.displayAvatarURL({ format: 'png' }));
 
         return canvas.toBuffer();
     }
     
-    private addUserText(context, canvas: Canvas) {
+    private async addAvatarToCanvas(ctx: CanvasRenderingContext2D, imageURL: string) 
+    {
+      ctx.beginPath();
+      ctx.arc(125, 125, 95, 0, Math.PI * 2, true);
+      ctx.closePath();
+      ctx.clip();
+
+      const avatar = await loadImage(imageURL);
+      ctx.drawImage(avatar, 25, 25, 200, 200);
+    }
+    
+    private addUserText(ctx, canvas: Canvas) {
         let card = this.user.xpCard;
 
-        context.fillStyle = card.tertiary || this.defaultColors.tertiary;
-        context.font = '32px Roboto, sans-serif';
-        context.fillText(`#${this.rank}`, canvas.width / 2.5, canvas.height / 2.5);
+        ctx.fillStyle = card.tertiary || this.defaultColors.tertiary;
+        ctx.font = '32px Roboto, sans-serif';
+        ctx.fillText(`#${this.rank}`, canvas.width / 2.5, canvas.height / 2.5);
 
-        context.fillStyle = card.primary || this.defaultColors.primary;
-        context.font = super.applyText(canvas, this.discordUser.username);
-        context.fillText(this.discordUser.username, canvas.width / 2.7, canvas.height / 1.6);
+        ctx.fillStyle = card.primary || this.defaultColors.primary;
+        ctx.font = super.applyText(canvas, this.discordUser.username);
+        ctx.fillText(this.discordUser.username, canvas.width / 2.7, canvas.height / 1.6);
     }
 
-    private async addXPInfo(context: CanvasRenderingContext2D, canvas, xp: number) {
+    private async addXPInfo(ctx: CanvasRenderingContext2D, canvas, xp: number) {
         let card = this.user.xpCard;
 
         const sizeOffset = 325;
@@ -61,26 +72,26 @@ export class XPCardGenerator extends ImageGenerator {
         
         const { nextLevelXP, level, levelCompletion } = Leveling.xpInfo(xp);
         
-        context.fillStyle = card.secondary || this.defaultColors.secondary;
-        context.fillRect(position.x, position.y, canvas.width - sizeOffset - 1, height);
+        ctx.fillStyle = card.secondary || this.defaultColors.secondary;
+        ctx.fillRect(position.x, position.y, canvas.width - sizeOffset - 1, height);
 
-        context.fillStyle = card.tertiary || this.defaultColors.tertiary;
-        context.fillRect(position.x, position.y, 
+        ctx.fillStyle = card.tertiary || this.defaultColors.tertiary;
+        ctx.fillRect(position.x, position.y, 
             (canvas.width - sizeOffset) * (levelCompletion), height);
 
-        context.fillStyle = card.primary || this.defaultColors.primary;
-        context.font = '16px Roboto, sans-serif';
-        context.fillText(xp.toString(), canvas.width / 2.5, canvas.height / 1.175);
+        ctx.fillStyle = card.primary || this.defaultColors.primary;
+        ctx.font = '16px Roboto, sans-serif';
+        ctx.fillText(xp.toString(), canvas.width / 2.5, canvas.height / 1.175);
         
-        context.fillStyle = '#0F0F0F';
-        context.fillText(`/`, canvas.width / 2.5 + 
-            context.measureText(xp.toString()).width, canvas.height / 1.175);
+        ctx.fillStyle = '#0F0F0F';
+        ctx.fillText(`/`, canvas.width / 2.5 + 
+            ctx.measureText(xp.toString()).width, canvas.height / 1.175);
 
-        context.fillStyle = card.primary || this.defaultColors.primary;
-        context.fillText(`${nextLevelXP}XP`, canvas.width / 2.5 + 
-            context.measureText(`${xp}/`).width, canvas.height / 1.175);
+        ctx.fillStyle = card.primary || this.defaultColors.primary;
+        ctx.fillText(`${nextLevelXP}XP`, canvas.width / 2.5 + 
+            ctx.measureText(`${xp}/`).width, canvas.height / 1.175);
         
-        context.fillStyle = card.primary || this.defaultColors.primary;
-        context.fillText(`LEVEL ${level}`, canvas.width / 2.5, canvas.height / 1.35);
+        ctx.fillStyle = card.primary || this.defaultColors.primary;
+        ctx.fillText(`LEVEL ${level}`, canvas.width / 2.5, canvas.height / 1.35);
     }
 }

@@ -1,7 +1,6 @@
-import { Command, CommandContext, Permission
- } from './command';
+import { Command, CommandContext, Permission } from './command';
 import Members from '../data/members';
-import { TextChannel, PermissionString, Client, Guild } from 'discord.js';
+import { TextChannel } from 'discord.js';
 import { MemberDocument } from '../data/models/member';
 import Deps from '../utils/deps';
 import CommandUtils from '../utils/command-utils';
