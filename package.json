@@ -7,7 +7,8 @@
     "test": "ts-mocha tests/**/*.tests.ts",
     "test:u": "ts-mocha tests/unit/**/*.tests.ts",
     "test:i": "ts-mocha tests/integration/**/*.tests.ts",
-    "start": "npm run start:music | npm run start:bot",
+    "start": "npm run start:bot",
+    "start:prod": "npm run start:bot | npm run start:music",
     "start:dev": "npm run start:music | nodemon --exec ts-node bot.ts --watch * -e ts,json",
     "start:bot": "ts-node bot.ts",
     "start:music": "cd dist/lavalink && java -jar Lavalink.jar"

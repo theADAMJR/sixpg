@@ -6,7 +6,7 @@ export default class LeaderboardCommand implements Command {
     summary = `Get a link to the server's leaderboard`;
     precondition: Permission = '';
     cooldown = 3;
-    module = 'XP';
+    module = 'Leveling';
     
     execute = async(ctx: CommandContext) => {
         ctx.channel.send(`${config.dashboard.url}/leaderboard/${ctx.guild.id}`);

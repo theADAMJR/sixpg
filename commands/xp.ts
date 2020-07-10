@@ -7,7 +7,7 @@ export default class XPCommand implements Command {
     summary = 'Display the XP card of a user.';
     precondition: Permission = '';
     cooldown = 3;
-    module = 'XP';
+    module = 'Leveling';
 
     execute = (ctx: CommandContext, userMention: string) =>  {
         const target = (userMention) ?

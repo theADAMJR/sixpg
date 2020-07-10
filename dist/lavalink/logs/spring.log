@@ -1,4 +1,4 @@
-2020-07-09 17:24:08.729  INFO 29692 --- [main] lavalink.server.Launcher                 : 
+2020-07-10 14:00:57.315  INFO 21248 --- [main] lavalink.server.Launcher                 : 
 
 [32m       .  [31m _                  _ _       _    [32m__ _ _
 [32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
@@ -16,7 +16,8 @@
 	JVM:            13.0.2
 	Lavaplayer      1.3.38
 
-2020-07-09 17:24:11.394  INFO 29692 --- [main] o.s.boot.SpringApplication               : 
+2020-07-10 14:00:58.012  WARN 21248 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-07-10 14:00:58.426  INFO 21248 --- [main] o.s.boot.SpringApplication               : 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -26,26 +27,123 @@
  :: Spring Boot ::        (v2.1.8.RELEASE)
 
 
-2020-07-09 17:24:11.860  WARN 29692 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
-2020-07-09 17:24:12.839  INFO 29692 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 29692 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
-2020-07-09 17:24:12.841  INFO 29692 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
-2020-07-09 17:24:22.351  WARN 29692 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
-2020-07-09 17:24:22.611  INFO 29692 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
-2020-07-09 17:24:22.614  INFO 29692 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 9569 ms
-2020-07-09 17:24:24.950  WARN 29692 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
-2020-07-09 17:24:25.065  INFO 29692 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
-2020-07-09 17:24:25.065  INFO 29692 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
-2020-07-09 17:24:25.067  INFO 29692 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
-2020-07-09 17:24:25.067  INFO 29692 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
-2020-07-09 17:24:32.793  INFO 29692 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
-2020-07-09 17:24:34.467  INFO 29692 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 17:24:37.339  INFO 29692 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
-2020-07-09 17:24:37.439  INFO 29692 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
-2020-07-09 17:24:39.426  INFO 29692 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
-2020-07-09 17:24:39.453  INFO 29692 --- [main] lavalink.server.Launcher                 : Started Launcher in 46.779 seconds (JVM running for 156.684)
-2020-07-09 17:25:35.514  INFO 29692 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-07-09 17:25:35.518  INFO 29692 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
-2020-07-09 17:25:47.526  INFO 29580 --- [main] lavalink.server.Launcher                 : 
+2020-07-10 14:00:59.119  INFO 21248 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 21248 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
+2020-07-10 14:00:59.121  INFO 21248 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2020-07-10 14:01:05.410  WARN 21248 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-07-10 14:01:05.586  INFO 21248 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-07-10 14:01:05.588  INFO 21248 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6407 ms
+2020-07-10 14:01:08.186  WARN 21248 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2020-07-10 14:01:08.264  INFO 21248 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
+2020-07-10 14:01:08.264  INFO 21248 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
+2020-07-10 14:01:08.267  INFO 21248 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
+2020-07-10 14:01:08.267  INFO 21248 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
+2020-07-10 14:01:16.784  INFO 21248 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-07-10 14:01:18.258  INFO 21248 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-10 14:01:20.888  INFO 21248 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2020-07-10 14:01:20.921  INFO 21248 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-07-10 14:01:22.705  INFO 21248 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
+2020-07-10 14:01:22.712  INFO 21248 --- [main] lavalink.server.Launcher                 : Started Launcher in 39.321 seconds (JVM running for 53.811)
+2020-07-10 14:01:25.610  INFO 21248 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-10 14:13:26.930  INFO 21248 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-10 14:13:26.978  INFO 21248 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-10 14:13:26.980  INFO 21248 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-07-10 14:13:26.983 ERROR 21248 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Context initialization failed
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'requestMappingHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:208) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:606) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1234) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:340) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:598) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:505) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:494) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:598) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:529) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:169) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at javax.servlet.GenericServlet.init(GenericServlet.java:203) ~[javax.servlet-api-4.0.1.jar!/:4.0.1]
+	at io.undertow.servlet.core.LifecyleInterceptorInvocation.proceed(LifecyleInterceptorInvocation.java:117) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ManagedServlet$DefaultInstanceStrategy.start(ManagedServlet.java:305) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ManagedServlet.forceInit(ManagedServlet.java:212) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletChain.forceInit(ServletChain.java:130) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:63) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:68) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:132) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:269) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:78) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:133) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:130) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:249) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:78) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:99) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:376) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:830) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-07-10 14:13:29.084 ERROR 21248 --- [XNIO-1 task-1] io.undertow.request                      : UT005023: Exception handling request to /
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'requestMappingHandlerMapping': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:208) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:606) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1234) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:340) ~[spring-beans-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:598) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:505) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:494) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:598) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:529) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:169) ~[spring-webmvc-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at javax.servlet.GenericServlet.init(GenericServlet.java:203) ~[javax.servlet-api-4.0.1.jar!/:4.0.1]
+	at io.undertow.servlet.core.LifecyleInterceptorInvocation.proceed(LifecyleInterceptorInvocation.java:117) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ManagedServlet$DefaultInstanceStrategy.start(ManagedServlet.java:305) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ManagedServlet.forceInit(ManagedServlet.java:212) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletChain.forceInit(ServletChain.java:130) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:63) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:68) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:132) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:269) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:78) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:133) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:130) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:249) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:78) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:99) ~[undertow-servlet-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:376) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:830) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2020-07-10 14:13:39.454  INFO 22744 --- [main] lavalink.server.Launcher                 : 
 
 [32m       .  [31m _                  _ _       _    [32m__ _ _
 [32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
@@ -63,7 +161,7 @@
 	JVM:            13.0.2
 	Lavaplayer      1.3.38
 
-2020-07-09 17:25:47.566  INFO 29580 --- [main] o.s.boot.SpringApplication               : 
+2020-07-10 14:13:39.489  INFO 22744 --- [main] o.s.boot.SpringApplication               : 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -73,26 +171,39 @@
  :: Spring Boot ::        (v2.1.8.RELEASE)
 
 
-2020-07-09 17:25:47.669  INFO 29580 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 29580 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
-2020-07-09 17:25:47.669  INFO 29580 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
-2020-07-09 17:25:47.711  WARN 29580 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
-2020-07-09 17:25:48.884  WARN 29580 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
-2020-07-09 17:25:48.906  INFO 29580 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
-2020-07-09 17:25:48.906  INFO 29580 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1196 ms
-2020-07-09 17:25:49.212  WARN 29580 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
-2020-07-09 17:25:49.218  INFO 29580 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
-2020-07-09 17:25:49.218  INFO 29580 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
-2020-07-09 17:25:49.218  INFO 29580 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
-2020-07-09 17:25:49.218  INFO 29580 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
-2020-07-09 17:25:50.181  INFO 29580 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
-2020-07-09 17:25:50.534  INFO 29580 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 17:25:50.799  INFO 29580 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
-2020-07-09 17:25:50.811  INFO 29580 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
-2020-07-09 17:25:51.086  INFO 29580 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
-2020-07-09 17:25:51.091  INFO 29580 --- [main] lavalink.server.Launcher                 : Started Launcher in 4.014 seconds (JVM running for 4.442)
-2020-07-09 17:28:23.626  INFO 29580 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-07-09 17:28:23.629  INFO 29580 --- [Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
-2020-07-09 17:31:08.410  INFO 15672 --- [main] lavalink.server.Launcher                 : 
+2020-07-10 14:13:39.578  INFO 22744 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 22744 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
+2020-07-10 14:13:39.579  INFO 22744 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2020-07-10 14:13:39.624  WARN 22744 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-07-10 14:13:40.849  WARN 22744 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-07-10 14:13:40.874  INFO 22744 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-07-10 14:13:40.874  INFO 22744 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1259 ms
+2020-07-10 14:13:41.207  WARN 22744 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2020-07-10 14:13:41.214  INFO 22744 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
+2020-07-10 14:13:41.214  INFO 22744 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
+2020-07-10 14:13:41.215  INFO 22744 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
+2020-07-10 14:13:41.215  INFO 22744 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
+2020-07-10 14:13:41.492  INFO 22744 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-07-10 14:13:41.927  INFO 22744 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-10 14:13:42.212  INFO 22744 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2020-07-10 14:13:42.228  INFO 22744 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-07-10 14:13:42.499  INFO 22744 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
+2020-07-10 14:13:42.506  INFO 22744 --- [main] lavalink.server.Launcher                 : Started Launcher in 3.529 seconds (JVM running for 3.974)
+2020-07-10 14:13:48.482  INFO 22744 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-10 14:13:48.482  INFO 22744 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-10 14:13:48.488  INFO 22744 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-07-10 14:13:48.557  INFO 22744 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:54477
+2020-07-10 14:13:48.814  INFO 22744 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:54477
+2020-07-10 14:17:00.030  INFO 22744 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:54477 -- CloseStatus[code=1006, reason=]
+2020-07-10 14:17:00.031  INFO 22744 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-10 14:17:05.726  INFO 22744 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:54515
+2020-07-10 14:17:05.732  INFO 22744 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:54515
+2020-07-10 14:17:33.408  INFO 22744 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:54515 -- CloseStatus[code=1006, reason=]
+2020-07-10 14:17:33.409  INFO 22744 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-10 14:17:39.486  INFO 22744 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:54527
+2020-07-10 14:17:39.492  INFO 22744 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:54527
+2020-07-10 16:40:15.785  INFO 22744 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:54527 -- CloseStatus[code=1006, reason=]
+2020-07-10 16:40:15.793  INFO 22744 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-10 17:52:50.174  INFO 22288 --- [main] lavalink.server.Launcher                 : 
 
 [32m       .  [31m _                  _ _       _    [32m__ _ _
 [32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
@@ -110,7 +221,7 @@
 	JVM:            13.0.2
 	Lavaplayer      1.3.38
 
-2020-07-09 17:31:08.450  INFO 15672 --- [main] o.s.boot.SpringApplication               : 
+2020-07-10 17:52:50.216  INFO 22288 --- [main] o.s.boot.SpringApplication               : 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -120,81 +231,33 @@
  :: Spring Boot ::        (v2.1.8.RELEASE)
 
 
-2020-07-09 17:31:08.541  INFO 15672 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 15672 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
-2020-07-09 17:31:08.542  INFO 15672 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
-2020-07-09 17:31:08.569  WARN 15672 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
-2020-07-09 17:31:09.864  WARN 15672 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
-2020-07-09 17:31:09.886  INFO 15672 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
-2020-07-09 17:31:09.886  INFO 15672 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1302 ms
-2020-07-09 17:31:10.212  WARN 15672 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
-2020-07-09 17:31:10.219  INFO 15672 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
-2020-07-09 17:31:10.219  INFO 15672 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
-2020-07-09 17:31:10.219  INFO 15672 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
-2020-07-09 17:31:10.220  INFO 15672 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
-2020-07-09 17:31:10.463  INFO 15672 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
-2020-07-09 17:31:10.842  INFO 15672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 17:31:11.135  INFO 15672 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
-2020-07-09 17:31:11.145  INFO 15672 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
-2020-07-09 17:31:11.384  INFO 15672 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
-2020-07-09 17:31:11.391  INFO 15672 --- [main] lavalink.server.Launcher                 : Started Launcher in 3.499 seconds (JVM running for 4.038)
-2020-07-09 17:31:13.591  INFO 15672 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-09 17:31:13.592  INFO 15672 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-07-09 17:31:13.597  INFO 15672 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2020-07-09 17:31:13.651  INFO 15672 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56799
-2020-07-09 17:31:13.893  INFO 15672 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56799
-2020-07-09 17:46:18.365  INFO 15672 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56799 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:46:18.366  INFO 15672 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:46:24.131  INFO 15672 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57175
-2020-07-09 17:46:24.138  INFO 15672 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57175
-2020-07-09 17:46:29.722  INFO 15672 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57175 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:46:29.722  INFO 15672 --- [XNIO-1 I/O-11] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:46:35.592  INFO 15672 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57188
-2020-07-09 17:46:35.597  INFO 15672 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57188
-2020-07-09 17:47:08.389  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57188 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:47:08.389  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:47:14.773  INFO 15672 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57223
-2020-07-09 17:47:14.778  INFO 15672 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57223
-2020-07-09 17:47:24.568  INFO 15672 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57223 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:47:24.569  INFO 15672 --- [XNIO-1 I/O-11] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:47:30.587  INFO 15672 --- [XNIO-1 task-5] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57261
-2020-07-09 17:47:30.593  INFO 15672 --- [XNIO-1 task-5] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57261
-2020-07-09 17:47:42.339  INFO 15672 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57261 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:47:42.340  INFO 15672 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:47:48.271  INFO 15672 --- [XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57305
-2020-07-09 17:47:48.277  INFO 15672 --- [XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57305
-2020-07-09 17:48:09.794  INFO 15672 --- [XNIO-1 I/O-13] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57305 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:48:09.795  INFO 15672 --- [XNIO-1 I/O-13] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:48:15.704  INFO 15672 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57348
-2020-07-09 17:48:15.710  INFO 15672 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57348
-2020-07-09 17:48:34.089  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57348 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:48:34.089  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:48:40.024  INFO 15672 --- [XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57381
-2020-07-09 17:48:40.030  INFO 15672 --- [XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57381
-2020-07-09 17:48:50.304  INFO 15672 --- [XNIO-1 I/O-9] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57381 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:48:50.304  INFO 15672 --- [XNIO-1 I/O-9] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:48:56.647  INFO 15672 --- [XNIO-1 task-9] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57398
-2020-07-09 17:48:56.653  INFO 15672 --- [XNIO-1 task-9] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57398
-2020-07-09 17:49:01.999  INFO 15672 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57398 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:49:01.999  INFO 15672 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:49:13.032  INFO 15672 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57414
-2020-07-09 17:49:13.037  INFO 15672 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57414
-2020-07-09 17:49:14.736  INFO 15672 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57414 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:49:14.736  INFO 15672 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:49:34.435  INFO 15672 --- [XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57428
-2020-07-09 17:49:34.441  INFO 15672 --- [XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57428
-2020-07-09 17:49:36.323  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57428 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:49:36.324  INFO 15672 --- [XNIO-1 I/O-16] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:49:42.792  INFO 15672 --- [XNIO-1 task-12] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57440
-2020-07-09 17:49:42.797  INFO 15672 --- [XNIO-1 task-12] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57440
-2020-07-09 17:49:59.479  INFO 15672 --- [XNIO-1 I/O-12] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57440 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:49:59.480  INFO 15672 --- [XNIO-1 I/O-12] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:50:05.529  INFO 15672 --- [XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57453
-2020-07-09 17:50:05.535  INFO 15672 --- [XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57453
-2020-07-09 17:50:21.331  INFO 15672 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57453 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:50:21.332  INFO 15672 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:50:27.150  INFO 15672 --- [XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57467
-2020-07-09 17:50:27.155  INFO 15672 --- [XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57467
-2020-07-09 17:50:27.754  INFO 15672 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57467 -- CloseStatus[code=1006, reason=]
-2020-07-09 17:50:27.754  INFO 15672 --- [XNIO-1 I/O-15] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2020-07-09 17:50:33.512  INFO 15672 --- [XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57477
-2020-07-09 17:50:33.517  INFO 15672 --- [XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57477
+2020-07-10 17:52:50.312  INFO 22288 --- [main] lavalink.server.Launcher                 : Starting Launcher on DESKTOP-KJF4M4H with PID 22288 (C:\Users\adamj\Documents\Projects\2PG\dist\lavalink\Lavalink.jar started by adamj in C:\Users\adamj\Documents\Projects\2PG\dist\lavalink)
+2020-07-10 17:52:50.313  INFO 22288 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2020-07-10 17:52:50.349  WARN 22288 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-07-10 17:52:51.756  WARN 22288 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-07-10 17:52:51.780  INFO 22288 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-07-10 17:52:51.780  INFO 22288 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1424 ms
+2020-07-10 17:52:52.089  WARN 22288 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2020-07-10 17:52:52.097  INFO 22288 --- [main] l.s.c.AudioSendFactoryConfiguration      : OS: Windows 10, Arch: amd64
+2020-07-10 17:52:52.098  INFO 22288 --- [main] l.s.c.AudioSendFactoryConfiguration      : JDA-NAS supported system detected. Enabled native audio sending.
+2020-07-10 17:52:52.098  INFO 22288 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting buffer to 400ms
+2020-07-10 17:52:52.098  INFO 22288 --- [main] l.s.c.AudioSendFactoryConfiguration      : Setting playlist load limit to 6
+2020-07-10 17:52:52.343  INFO 22288 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-07-10 17:52:52.747  INFO 22288 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-10 17:52:53.072  INFO 22288 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2020-07-10 17:52:53.082  INFO 22288 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2020-07-10 17:52:53.443  INFO 22288 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
+2020-07-10 17:52:53.452  INFO 22288 --- [main] lavalink.server.Launcher                 : Started Launcher in 3.724 seconds (JVM running for 4.141)
+2020-07-10 17:52:55.093  INFO 22288 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-10 17:52:55.093  INFO 22288 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-10 17:52:55.098  INFO 22288 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-07-10 17:52:55.118  INFO 22288 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62921
+2020-07-10 17:52:55.222  INFO 22288 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62921
+2020-07-10 18:42:27.716  INFO 22288 --- [XNIO-1 I/O-13] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62921 -- CloseStatus[code=1006, reason=]
+2020-07-10 18:42:27.720  INFO 22288 --- [XNIO-1 I/O-13] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-10 18:42:33.837  INFO 22288 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49172
+2020-07-10 18:42:33.851  INFO 22288 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49172
+2020-07-10 18:43:05.927  INFO 22288 --- [XNIO-1 I/O-16] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49172 -- CloseStatus[code=1006, reason=]
+2020-07-10 18:43:05.928  INFO 22288 --- [XNIO-1 I/O-16] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-10 18:43:11.788  INFO 22288 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49244
+2020-07-10 18:43:11.796  INFO 22288 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49244

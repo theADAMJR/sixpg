@@ -43,7 +43,7 @@ export class XPCardGenerator extends ImageGenerator {
     private async addAvatarToCanvas(ctx: CanvasRenderingContext2D, imageURL: string) 
     {
       ctx.beginPath();
-      ctx.arc(125, 125, 95, 0, Math.PI * 2, true);
+      ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
       ctx.closePath();
       ctx.clip();
 
