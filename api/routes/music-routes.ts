@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import Music from '../../modules/music/music';
 import Deps from '../../utils/deps';
-import { validateGuildManager } from './guilds-routes';
-import { bot } from '../../bot';
+import { validateBotOwner } from './bots-routes';
 import { AuthClient } from '../server';
 import Users from '../../data/users';
 
@@ -114,7 +113,7 @@ router.get('/shuffle', async (req, res) => {
 
 router.get('/stop', async (req, res) => {
     try {
-        await validateGuildManager(req.query.key, req.params.id);
+        await validateBotOwner(req.query.key, req.params.id);
 
         music.client.players.destroy(req.params.id);
 

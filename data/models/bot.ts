@@ -17,7 +17,6 @@ export interface AnnounceEvent {
 }
 
 export class AutoModModule extends Module {
-    ignoredRoles: string[] = [];
     autoDeleteMessages = true;
     filters: MessageFilter[] = [];
     banWords: string[] = [];
@@ -39,13 +38,9 @@ export enum MessageFilter {
 
 export class GeneralModule extends Module {
     prefix = '.';
-    ignoredChannels: string[] = [];
-    autoRoles: string[] = [];
 }
 
 export class LevelingModule extends Module {
-    levelRoles: LevelRole[] = [];
-    ignoredRoles: string[] = [];
     xpPerMessage = 50;
     xpCooldown = 5;
 }
@@ -76,6 +71,7 @@ const botSchema = new Schema({
     general: { type: Object, default: new GeneralModule() },
     leveling: { type: Object, default: new LevelingModule() },
     music: { type: Object, default: new MusicModule },
+    ownerId: String,
     settings: { type: Object, default: new DashboardSettings() },
     tokenHash: String
 });
@@ -84,10 +80,11 @@ export interface BotDocument extends Document {
     _id: string;
     announce: AnnounceModule;
     autoMod: AutoModModule;
-    general: GeneralModule;
-    music: MusicModule;
-    leveling: LevelingModule;
     commands: CommandsModule;
+    general: GeneralModule;
+    leveling: LevelingModule;
+    music: MusicModule;
+    ownerId: string;
     tokenHash: string;
     settings: DashboardSettings;
 }

@@ -2,9 +2,9 @@ import Log from '../../utils/log';
 import EventHandler from './event-handler';
 import Deps from '../../utils/deps';
 import Music from '../../modules/music/music';
-import { bot } from '../../bot';
 import CommandService from '../command.service';
 import config from '../../config.json';
+import { Client } from 'discord.js';
 
 export default class ReadyHandler implements EventHandler {
     started = false;
@@ -14,7 +14,7 @@ export default class ReadyHandler implements EventHandler {
         private commandService = Deps.get<CommandService>(CommandService),        
         private music = Deps.get<Music>(Music)) {}
 
-    async invoke() {
+    async invoke(bot: Client) {
         Log.info(`Bot is live!`, `events`);
 
         if (this.started) return;
@@ -22,7 +22,8 @@ export default class ReadyHandler implements EventHandler {
         
         await this.commandService.init();
 
-        this.music.initialize();
-        bot.user?.setActivity(config.bot.activity);
+        this.music.initialize(bot);
+        // TODO: add custom activity to bot config
+        // bot.user?.setActivity(config.bot.activity);
     }
 }

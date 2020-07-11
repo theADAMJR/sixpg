@@ -1,15 +1,14 @@
 import * as config from '../../config.json';
 import { ErelaClient, Player, Track } from 'erela.js';
-import { bot } from '../../bot';
 import Log from '../../utils/log';
 import { CommandContext } from '../../commands/command';
-import { GuildMember, TextChannel } from 'discord.js';
+import { GuildMember, TextChannel, Client } from 'discord.js';
 
 export default class Music {
     private _client = {} as ErelaClient;
     get client() { return this._client; }
 
-    initialize() {
+    initialize(bot: Client) {
         const nodes = [{
             host: 'localhost',
             port: 2333,

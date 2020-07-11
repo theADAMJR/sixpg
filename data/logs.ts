@@ -2,8 +2,9 @@ import { Guild, Message } from 'discord.js';
 import DBWrapper from './db-wrapper';
 import { LogDocument, SavedLog } from './models/log';
 import { Command } from '../commands/command';
+import SnowflakeEntity from './snowflake-entity';
 
-export default class Logs extends DBWrapper<Guild, LogDocument> {
+export default class Logs extends DBWrapper<SnowflakeEntity, LogDocument> {
     protected async getOrCreate(guild: Guild) {
         const savedLog = await SavedLog.findById(guild.id);
         return savedLog ?? this.create(guild);

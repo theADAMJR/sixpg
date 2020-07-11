@@ -6,7 +6,7 @@ import Log from './utils/log';
 import SHA256 from 'crypto-js/sha256';
 
 export default class GlobalBots {
-  static get clients() { return this._clients; }
+  static get clients() { return this._clients.values(); }
   private static _clients = new Map<string, Client>();
   
   static add(bot: Client) {
@@ -15,6 +15,10 @@ export default class GlobalBots {
 
   static remove(bot: Client) {
     this._clients.delete(bot.user.id);
+  }
+  
+  static get(id: string) {
+    return this._clients.get(id);
   }
 
   static async init() {

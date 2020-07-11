@@ -1,18 +1,22 @@
 import { BotDocument, SavedBot } from './models/bot';
 import DBWrapper from './db-wrapper';
-import { Client } from 'discord.js';
+import SnowflakeEntity from './snowflake-entity';
 
-export default class Bots extends DBWrapper<Client, BotDocument> {
-    protected async getOrCreate(client: Client) {
-        const savedBot = await SavedBot.findById(client.user.id);
-        return savedBot ?? this.create(client);
+export default class Bots extends DBWrapper<SnowflakeEntity, BotDocument> {
+    protected async getOrCreate({ id }: SnowflakeEntity) {
+        const savedBot = await SavedBot.findById(id);
+        return savedBot ?? this.create({ id });
     }
 
-    protected create(client: Client) {
-        return new SavedBot({ _id: client.user.id }).save();
+    protected create({ id }: SnowflakeEntity) {
+        return new SavedBot({ _id: id }).save();
     }
 
     async getAll() {
         return await SavedBot.find();
+    }
+
+    async getManageableBots(ownerId: string) {
+        return await SavedBot.find({ ownerId });
     }
 }
