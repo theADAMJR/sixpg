@@ -24,6 +24,6 @@ export default class ReadyHandler implements EventHandler {
 
         this.music.initialize(bot);
         // TODO: add custom activity to bot config
-        // bot.user?.setActivity(config.bot.activity);
+        bot.user?.setActivity(config.dashboard.url);
     }
 }

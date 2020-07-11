@@ -20,7 +20,7 @@ export default class EventsService {
 
     async init() {
         const clients = GlobalBots.clients;
-        for (const client of clients.values())
+        for (const client of clients)
             for (const handler of this.handlers)
                 client.on(handler.on, handler.invoke.bind(handler));  
     }

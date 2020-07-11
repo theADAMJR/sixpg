@@ -17,8 +17,8 @@ export default class Validators {
     }
 
     checkChannel(channel: TextChannel, savedGuild: BotDocument) {
-        const isIgnored = savedGuild.general.ignoredChannels
-            .some(id => id === channel.id);
+        const isIgnored = savedGuild.general.ignoredChannelNames
+            .some(name => name === channel.name);
         if (isIgnored)
             throw new TypeError('Commands cannot be executed in this channel.');
     }

@@ -11,14 +11,14 @@ export default abstract class AnnounceHandler implements EventHandler {
     constructor(protected bots = Deps.get<Bots>(Bots)) {}
 
     protected async getEvent(guild: Guild) {
-        const savedConfig = await this.bots.get(guild.client);
+        const savedConfig = await this.bots.get(guild.client.user);
         
         const activeEvent = savedConfig.announce.events.find(e => e.event === this.event);
         return (savedConfig.announce.enabled && activeEvent) ? activeEvent : null;
     }
 
     protected getChannel(config: AnnounceEvent, guild: Guild) {
-        return guild.channels.cache.get(config?.channel) as TextChannel;
+        return guild.channels.cache.get(config?.channelName) as TextChannel;
     }
 
     protected async announce(guild: Guild, applyEventArgs: any[]) {

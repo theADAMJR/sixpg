@@ -13,9 +13,12 @@ export default class MemberJoinHandler extends AnnounceHandler {
     }
 
     private async addAutoRoles(member: GuildMember) {
-        const savedConfig = await this.bots.get(member.guild.client);
+        const savedConfig = await this.bots.get(member.guild.client.user);
 
-        await member.roles.add(savedConfig.general.autoRoles, 'Auto role');
+        const roles = savedConfig.general.autoRoleNames
+            .map(name => member.guild.roles.cache
+                .find(r => r.name === name));
+        await member.roles.add(roles, 'Auto role');
     }
 
     protected applyEventVariables(content: string, member: GuildMember) {

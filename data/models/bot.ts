@@ -12,11 +12,12 @@ export enum EventType { MemberJoin, MemberLeave, MessageDeleted }
 
 export interface AnnounceEvent {
     event: EventType;
-    channel: string;
+    channelName: string;
     message: string;
 }
 
 export class AutoModModule extends Module {
+    ignoredRoleNames: string[] = [];
     autoDeleteMessages = true;
     filters: MessageFilter[] = [];
     banWords: string[] = [];
@@ -38,16 +39,20 @@ export enum MessageFilter {
 
 export class GeneralModule extends Module {
     prefix = '.';
+    ignoredChannelNames: string[] = [];
+    autoRoleNames: string[] = [];
 }
 
 export class LevelingModule extends Module {
+    levelRoleNames: LevelRole[] = [];
+    ignoredRoleNames: string[] = [];
     xpPerMessage = 50;
     xpCooldown = 5;
 }
 
 export interface LevelRole {
     level: number;
-    role: string;
+    roleName: string;
 }
 
 export class MusicModule extends Module {

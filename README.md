@@ -18,9 +18,7 @@ Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
 ```
 {
     "bot": {
-        "token": "yourBotToken",
         "secret": "oauthSecret",
-        "ownerId": "botOwnerId",
         "activity": "2PG.xyz",
         "id": "discordBotId"
     },

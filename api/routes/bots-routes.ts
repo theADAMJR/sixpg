@@ -2,7 +2,6 @@ import { Router } from 'express';
 import config from '../../config.json';
 import { SavedMember } from '../../data/models/member';
 import { AuthClient } from '../server';
-import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import Deps from '../../utils/deps';
 import Members from '../../data/members';
 import Ranks from '../modules/ranks';
@@ -10,11 +9,12 @@ import Users from '../../data/users';
 import Bots from '../../data/bots';
 import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
-import { User } from 'discord.js';
+import { User, Client } from 'discord.js';
 import Leveling from '../../modules/xp/leveling';
 import { getUser } from './user-routes';
 import { sendError } from './api-routes';
 import GlobalBots from '../../global-bots';
+import { AES } from 'crypto-js/sha256';
 
 export const router = Router();
 
@@ -28,6 +28,26 @@ router.get('/', async (req, res) => {
         const clients = await getManageableBots(req.query.key);
         
         res.json(clients);
+    } catch (error) { sendError(res, 400, error); }
+});
+
+router.post('/', async (req, res) => {
+    try {
+        // TODO: decrypt
+        const token = req.body.token;
+
+        const bot = new Client();
+        bot.login(token);
+
+        bot.on('ready', async() => {
+            GlobalBots.add(bot);
+            
+            const savedBot = await bots.get(bot.user);
+            savedBot.id = bot.user.id;
+            savedBot.tokenHash = AES.encrypt(token, config.encryptionKey);
+    
+            res.json({ success: true });
+        });
     } catch (error) { sendError(res, 400, error); }
 });
 
@@ -112,7 +132,6 @@ router.get('/:id/members', async (req, res) => {
         res.json(rankedMembers);
     } catch (error) { sendError(res, 400, error); }
 });
-
 function leaderboardMember(user: User, xpInfo: any) {
     return {
         id: user.id,
@@ -128,7 +147,7 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         const bot = GlobalBots.get(req.params.id);
         const { guildId, memberId } = req.params;
 
-        const user = bot.users.cache.get(memberId);             
+        const user = bot.users.cache.get(memberId);
         const savedUser = await users.get(user); 
 
         const guild = bot.guilds.cache.get(guildId);
@@ -140,10 +159,11 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         const savedMembers = await SavedMember.find({ guildId });
         const rank = Ranks.get(member, savedMembers);
         
-        const generator = new XPCardGenerator(savedUser, rank);
-        const image = await generator.generate(savedMember);
+        // FIXME: make work
+        // const generator = new XPCardGenerator(, savedUser, rank);
+        // const image = await generator.generate(savedMember);
         
-        res.set({'Content-Type': 'image/png'}).send(image);
+        res.set({'Content-Type': 'image/png'}).send(null);
     } catch (error) { sendError(res, 400, error); }
 });
 

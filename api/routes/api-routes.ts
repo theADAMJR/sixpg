@@ -1,11 +1,10 @@
 import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../data/models/command';
-import { AuthClient, stripe } from '../server';
+import { AuthClient } from '../server';
 import * as config from '../../config.json';
 import { SavedUser } from '../../data/models/user';
 
 import { router as botsRoutes } from './bots-routes';
-import { router as musicRoutes } from './music-routes';
 import { router as userRoutes } from './user-routes';
 
 export const router = Router();
@@ -47,13 +46,7 @@ router.post('/error', async(req, res) => {
     if (key)
       user = AuthClient.getUser(key);
     
-    // await bot.users.cache
-    //   .get(config.bot.ownerId)
-    //   .send(new MessageEmbed({
-    //     title: 'Dashboard Error',
-    //     description: `**Message**: ${message}`,
-    //     footer: { text: `User ID: ${user.id}` }
-    //   }));
+    // TODO: log errors here in database or something, if you want
   } catch (error) { sendError(res, 400, error); }
 });
 

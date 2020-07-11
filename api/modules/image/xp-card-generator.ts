@@ -4,6 +4,7 @@ import { User } from 'discord.js';
 import { MemberDocument } from '../../../data/models/member';
 import { UserDocument, XPCard } from '../../../data/models/user';
 import Leveling from '../../../modules/xp/leveling';
+import { AuthUser } from '../../routes/user-routes';
 
 export class XPCardGenerator extends ImageGenerator {
     defaultColors = {
@@ -12,14 +13,11 @@ export class XPCardGenerator extends ImageGenerator {
         tertiary: '#36E2CA'
     }
 
-    private discordUser: User;
-
     constructor(
+        private discordUser: User | AuthUser,
         private user: UserDocument,
         private rank: number) {
         super();
-
-        this.discordUser = bot.users.cache.get(user.id);
     }
 
     async generate(savedMember: MemberDocument, preview?: XPCard) {
@@ -33,8 +31,12 @@ export class XPCardGenerator extends ImageGenerator {
             this.user.xpCard.backgroundURL);
         await this.addXPInfo(ctx, canvas, savedMember.xp);
         this.addUserText(ctx, canvas);
-        await this.addAvatarToCanvas(ctx, 
-                this.discordUser.displayAvatarURL({ format: 'png' }));
+        if ('iconUrl' in this.discordUser)
+            await this.addAvatarToCanvas(ctx, 
+                    (this.discordUser as AuthUser).avatarUrl(256));
+        else
+            await this.addAvatarToCanvas(ctx, 
+                    (this.discordUser as User).displayAvatarURL({ format: 'png', size: 256 }));
 
         return canvas.toBuffer();
     }

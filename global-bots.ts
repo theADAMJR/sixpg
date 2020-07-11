@@ -3,7 +3,8 @@ import EventsService from './services/events.service';
 import Deps from './utils/deps';
 import Bots from './data/bots';
 import Log from './utils/log';
-import SHA256 from 'crypto-js/sha256';
+import { AES } from 'crypto-js/sha256';
+import config from './config.json';
 
 export default class GlobalBots {
   static get clients() { return this._clients.values(); }
@@ -24,12 +25,12 @@ export default class GlobalBots {
   static async init() {
     const savedBots = await Deps.get<Bots>(Bots).getAll();
     for (const { tokenHash } of savedBots) {
-      const token = SHA256(tokenHash);
+      const token = AES.decript(tokenHash, config.encryptionKey);
 
       const bot = new Client();
       this.add(bot);
 
-      bot.login(token);
+      await bot.login(token);
     }
     Log.info(`Logged in ${this._clients.size} bots`, 'global');
 

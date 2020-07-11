@@ -41,7 +41,7 @@ export default class Leveling {
     private hasIgnoredXPRole(member: GuildMember, savedGuild: BotDocument) {
         for (const entry of member.roles.cache) { 
             const role = entry[1];
-            if (savedGuild.leveling.ignoredRoles.some(id => id === role.id))
+            if (savedGuild.leveling.ignoredRoleNames.some(name => name === role.name))
                 return true;
         }
         return false;
@@ -55,8 +55,8 @@ export default class Leveling {
             msg.member?.roles.add(levelRole);
     }
     private getLevelRole(level: number, savedGuild: BotDocument) {
-        return savedGuild.leveling.levelRoles
-            .find(r => r.level === level)?.role;
+        return savedGuild.leveling.levelRoleNames
+            .find(r => r.level === level)?.roleName;
     }
 
     getLevel(xp: number) {

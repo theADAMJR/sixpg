@@ -58,7 +58,7 @@ describe('modules/announce', () => {
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: 'test',
-                    channel: '321'
+                    channelName: '321'
                 });
             }
 
@@ -73,7 +73,7 @@ describe('modules/announce', () => {
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: 'test',
-                    channel: '123'
+                    channelName: '123'
                 });
             }
             
@@ -88,7 +88,7 @@ describe('modules/announce', () => {
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: '[USER] joined!',
-                    channel: '123'
+                    channelName: '123'
                 });
             }
 
