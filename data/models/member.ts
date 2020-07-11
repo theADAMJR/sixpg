@@ -3,15 +3,17 @@ import { model, Schema, Document } from 'mongoose';
 const memberSchema = new Schema({
     userId: String,
     guildId: String,
-    xp: { type: Number, default: 0 },
-    warnings: { type: Array, default: [] }
+    recentMessages: { type: Array, default: [] },
+    warnings: { type: Array, default: [] },
+    xp: { type: Number, default: 0 }
 });
 
 export interface MemberDocument extends Document {
     userId: string;
     guildId: string;
-    xp: number;
+    recentMessages: Date[];
     warnings: Warning[];
+    xp: number;
 }
 
 export interface Warning {

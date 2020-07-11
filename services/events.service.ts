@@ -10,6 +10,7 @@ import GuildCreateHandler from './handlers/guildCreate.handler';
 import MessageHandler from './handlers/message.handler';
 
 export default class EventsService {
+    // TODO: add auto loading
     private readonly handlers: EventHandler[] = [
         new ReadyHandler(),
         new GuildCreateHandler(),

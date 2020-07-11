@@ -166,6 +166,18 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
     } catch (error) { sendError(res, 400, error); }
 });
 
+router.get('/:id/bot-status', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const botMember = bot.guilds.cache
+            .get(id)?.members.cache
+            .get(bot.user.id);
+        
+        const requiredPermission = 'ADMINISTRATOR';
+        res.json({ hasAdmin: botMember.hasPermission(requiredPermission) });
+    } catch (error) { sendError(res, 400, error); }
+});
+
 export async function validateGuildManager(key: string, id: string) {
     if (!key)
         throw new TypeError();
