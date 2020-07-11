@@ -1,5 +1,5 @@
 import { Message, GuildMember } from 'discord.js';
-import { GuildDocument } from '../../data/models/guild';
+import { BotDocument } from '../../data/models/bot';
 import Members from '../../data/members';
 import Deps from '../../utils/deps';
 import { MemberDocument } from '../../data/models/member';
@@ -7,7 +7,7 @@ import { MemberDocument } from '../../data/models/member';
 export default class Leveling {
     constructor(private members = Deps.get<Members>(Members)) {}
 
-    async validateXPMsg(msg: Message, savedGuild: GuildDocument) {
+    async validateXPMsg(msg: Message, savedGuild: BotDocument) {
         if (!msg?.member || !savedGuild || this.hasIgnoredXPRole(msg.member, savedGuild))
             throw new TypeError('Member cannot earn XP');
 
@@ -24,7 +24,7 @@ export default class Leveling {
 
         savedMember.save();
     }
-    handleCooldown(savedMember: MemberDocument, savedGuild: GuildDocument) {
+    handleCooldown(savedMember: MemberDocument, savedGuild: BotDocument) {
         const inCooldown = savedMember.recentMessages
             .filter(m => m.getMinutes() === new Date().getMinutes())
             .length > 3; // TODO: implement -> savedGuild.leveling.maxMessagesPerMinute;
@@ -38,7 +38,7 @@ export default class Leveling {
         savedMember.recentMessages.push(new Date());
     }
 
-    private hasIgnoredXPRole(member: GuildMember, savedGuild: GuildDocument) {
+    private hasIgnoredXPRole(member: GuildMember, savedGuild: BotDocument) {
         for (const entry of member.roles.cache) { 
             const role = entry[1];
             if (savedGuild.leveling.ignoredRoles.some(id => id === role.id))
@@ -47,14 +47,14 @@ export default class Leveling {
         return false;
     }
 
-    private handleLevelUp(msg: Message, newLevel: number, savedGuild: GuildDocument) {
+    private handleLevelUp(msg: Message, newLevel: number, savedGuild: BotDocument) {
         msg.channel.send(`Level Up! ⭐\n**New Level**: \`${newLevel}\``);
 
         const levelRole = this.getLevelRole(newLevel, savedGuild);
         if (levelRole)
             msg.member?.roles.add(levelRole);
     }
-    private getLevelRole(level: number, savedGuild: GuildDocument) {
+    private getLevelRole(level: number, savedGuild: BotDocument) {
         return savedGuild.leveling.levelRoles
             .find(r => r.level === level)?.role;
     }

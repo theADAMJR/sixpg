@@ -1,11 +1,11 @@
-import { GuildDocument, MessageFilter } from '../../../data/models/guild';
+import { BotDocument, MessageFilter } from '../../../data/models/bot';
 import { ContentValidator } from './content-validator';
 import { ValidationError } from '../auto-mod';
 
 export default class MassCapsValidator implements ContentValidator {
     filter = MessageFilter.MassCaps;
 
-    validate(content: string, guild: GuildDocument) {
+    validate(content: string, guild: BotDocument) {
         const pattern = /[A-Z]/g;
         const severity = guild.autoMod.filterThreshold;
         

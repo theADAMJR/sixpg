@@ -1,11 +1,11 @@
-import { GuildDocument, MessageFilter } from '../../../data/models/guild';
+import { BotDocument, MessageFilter } from '../../../data/models/bot';
 import { ContentValidator } from './content-validator';
 import { ValidationError } from '../auto-mod';
 
 export default class MassMentionValidator implements ContentValidator {
     filter = MessageFilter.MassMention;
     
-    validate(content: string, guild: GuildDocument) {
+    validate(content: string, guild: BotDocument) {
         const pattern = /<@![0-9]{18}>/gm;
         const severity = guild.autoMod.filterThreshold;       
 

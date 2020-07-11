@@ -1,6 +1,6 @@
 import AnnounceHandler from './announce-handler';
 import { GuildMember } from 'discord.js';
-import { EventType } from '../../data/models/guild';
+import { EventType } from '../../data/models/bot';
 import EventVariables from '../../modules/announce/event-variables';
 
 export default class MemberJoinHandler extends AnnounceHandler {
@@ -13,9 +13,9 @@ export default class MemberJoinHandler extends AnnounceHandler {
     }
 
     private async addAutoRoles(member: GuildMember) {
-        const guild = await this.guilds.get(member.guild);
+        const savedConfig = await this.bots.get(member.guild.client);
 
-        await member.roles.add(guild.general.autoRoles, 'Auto role');
+        await member.roles.add(savedConfig.general.autoRoles, 'Auto role');
     }
 
     protected applyEventVariables(content: string, member: GuildMember) {

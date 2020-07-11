@@ -1,4 +1,3 @@
-import { bot } from '../../../bot';
 import ImageGenerator from './image-generator';
 import { Canvas, createCanvas, loadImage, CanvasRenderingContext2D } from 'canvas';
 import { User } from 'discord.js';

@@ -1,6 +1,6 @@
 import { expect, should, use, assert } from 'chai';
 import CommandService from '../../../services/command.service';
-import Guilds from '../../../data/guilds';
+import Bots from '../../../data/bots';
 import AutoMod from '../../../modules/auto-mod/auto-mod';
 import Leveling from '../../../modules/xp/leveling';
 import { mock } from 'ts-mockito';
@@ -8,7 +8,7 @@ import chaiAsPromised from 'chai-as-promised';
 import Deps from '../../../utils/deps';
 import Logs from '../../../data/logs';
 import Commands from '../../../data/commands';
-import { SavedGuild } from '../../../data/models/guild'
+import { SavedBot } from '../../../data/models/bot'
 import Cooldowns from '../../../services/cooldowns';
 
 use(chaiAsPromised);
@@ -19,7 +19,7 @@ describe('services/command-service', () => {
         Deps.testing = true;
 
         service = new CommandService(
-            mock<Guilds>(),
+            mock<Bots>(),
             mock<AutoMod>(),
             mock<Leveling>(),
             mock<Logs>(),
@@ -68,7 +68,7 @@ describe('services/command-service', () => {
         it('command override disabled command, throws error', () => {
             const guilds = {
                 get() {
-                    const guild = new SavedGuild();
+                    const guild = new SavedBot();
                     guild.commands.configs.push({ name: 'ping', enabled: false });
                     return guild;
                 }

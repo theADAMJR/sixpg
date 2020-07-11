@@ -1,5 +1,5 @@
-import { EventType, AnnounceEvent } from '../../data/models/guild';
-import Guilds from '../../data/guilds';
+import { EventType, AnnounceEvent } from '../../data/models/bot';
+import Bots from '../../data/bots';
 import { Guild, TextChannel } from 'discord.js';
 import Deps from '../../utils/deps';
 import EventHandler from './event-handler';
@@ -8,13 +8,13 @@ export default abstract class AnnounceHandler implements EventHandler {
     abstract on: string;
     abstract event: EventType;
 
-    constructor(protected guilds = Deps.get<Guilds>(Guilds)) {}
+    constructor(protected bots = Deps.get<Bots>(Bots)) {}
 
     protected async getEvent(guild: Guild) {
-        const savedGuild = await this.guilds.get(guild);
+        const savedConfig = await this.bots.get(guild.client);
         
-        const activeEvent = savedGuild.announce.events.find(e => e.event === this.event);
-        return (savedGuild.announce.enabled && activeEvent) ? activeEvent : null;
+        const activeEvent = savedConfig.announce.events.find(e => e.event === this.event);
+        return (savedConfig.announce.enabled && activeEvent) ? activeEvent : null;
     }
 
     protected getChannel(config: AnnounceEvent, guild: Guild) {

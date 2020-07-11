@@ -226,3 +226,10 @@
 2020-07-11 15:15:53.466  INFO 19220 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
 2020-07-11 15:15:53.750  INFO 19220 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
 2020-07-11 15:15:53.758  INFO 19220 --- [main] lavalink.server.Launcher                 : Started Launcher in 4.083 seconds (JVM running for 4.593)
+2020-07-11 15:17:01.229  INFO 19220 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-11 15:17:01.229  INFO 19220 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-11 15:17:01.235  INFO 19220 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-07-11 15:17:01.256  INFO 19220 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51420
+2020-07-11 15:17:01.374  INFO 19220 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51420
+2020-07-11 15:19:34.930  INFO 19220 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51420 -- CloseStatus[code=1006, reason=]
+2020-07-11 15:19:34.931  INFO 19220 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.

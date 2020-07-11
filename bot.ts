@@ -1,16 +1,14 @@
-import { Client } from 'discord.js';
 import config from './config.json';
 import mongoose from 'mongoose';
 import Deps from './utils/deps';
 
 import EventsService from './services/events.service';
 import API from './api/server';
+import GlobalBots from './global-bots';
 
-export const bot = new Client();
+Deps.build(API, EventsService, GlobalBots);
 
-bot.login(config.bot.token);
-
-Deps.build(EventsService, API);
+GlobalBots.init();
 
 mongoose.connect(config.mongoURL, { 
     useUnifiedTopology: true, 

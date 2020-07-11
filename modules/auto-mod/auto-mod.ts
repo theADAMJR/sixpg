@@ -1,5 +1,5 @@
 import { Message, GuildMember, User } from 'discord.js';
-import { GuildDocument, MessageFilter } from '../../data/models/guild';
+import { BotDocument, MessageFilter } from '../../data/models/bot';
 import Deps from '../../utils/deps';
 import Members from '../../data/members';
 import Log from '../../utils/log';
@@ -27,7 +27,7 @@ export default class AutoMod {
         Log.info(`Loaded: ${this.validators.length} validators`, `automod`);
     }
     
-    async validateMsg(msg: Message, guild: GuildDocument) {
+    async validateMsg(msg: Message, guild: BotDocument) {
         const activeFilters = guild.autoMod.filters;
         for (const filter of activeFilters) {
             try {                

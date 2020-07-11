@@ -5,7 +5,7 @@ import Log from '../utils/log';
 import Deps from '../utils/deps';
 import Commands from '../data/commands';
 import Logs from '../data/logs';
-import { GuildDocument } from '../data/models/guild';
+import { BotDocument } from '../data/models/bot';
 import Cooldowns from './cooldowns';
 import Validators from './validators';
 import { promisify } from 'util';
@@ -37,12 +37,12 @@ export default class CommandService {
         Log.info(`Loaded: ${this.commands.size} commands`, `cmds`);
     }
 
-    async handle(msg: Message, savedGuild: GuildDocument) {
+    async handle(msg: Message, savedGuild: BotDocument) {
         if (!(msg.member && msg.content && msg.guild && !msg.author.bot)) return;
 
         return this.handleCommand(msg, savedGuild);
     }
-    private async handleCommand(msg: Message, savedGuild: GuildDocument) {
+    private async handleCommand(msg: Message, savedGuild: BotDocument) {
         const content = msg.content.toLowerCase();
         try {
             this.validators.checkChannel(msg.channel as TextChannel, savedGuild);
@@ -64,7 +64,7 @@ export default class CommandService {
         }
     }
 
-    async findAndExecute(msg: Message, savedGuild: GuildDocument) {
+    async findAndExecute(msg: Message, savedGuild: BotDocument) {
         const prefix = savedGuild.general.prefix;        
         const command = this.findCommand(prefix, msg.content);        
         await command.execute(new CommandContext(msg), 

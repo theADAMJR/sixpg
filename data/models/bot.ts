@@ -1,7 +1,5 @@
 import { model, Schema, Document } from 'mongoose';
 
-export type ModuleString = 'Auto-mod' | 'Announce' | 'General' | 'Music' | 'XP';
-
 export class Module {
     enabled = true;
 }
@@ -70,7 +68,7 @@ export class DashboardSettings {
     privateLeaderboard = false;
 }
 
-const guildSchema = new Schema({
+const botSchema = new Schema({
     _id: String,
     announce: { type: Object, default: new AnnounceModule() }, 
     autoMod: { type: Object, default: new AutoModModule() }, 
@@ -78,10 +76,11 @@ const guildSchema = new Schema({
     general: { type: Object, default: new GeneralModule() },
     leveling: { type: Object, default: new LevelingModule() },
     music: { type: Object, default: new MusicModule },
-    settings: { type: Object, default: new DashboardSettings() }
+    settings: { type: Object, default: new DashboardSettings() },
+    tokenHash: String
 });
 
-export interface GuildDocument extends Document {
+export interface BotDocument extends Document {
     _id: string;
     announce: AnnounceModule;
     autoMod: AutoModModule;
@@ -89,7 +88,8 @@ export interface GuildDocument extends Document {
     music: MusicModule;
     leveling: LevelingModule;
     commands: CommandsModule;
+    tokenHash: string;
     settings: DashboardSettings;
 }
 
-export const SavedGuild = model<GuildDocument>('guild', guildSchema);
+export const SavedBot = model<BotDocument>('bot', botSchema);

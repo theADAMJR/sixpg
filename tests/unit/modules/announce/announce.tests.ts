@@ -1,20 +1,20 @@
 import { use, should } from 'chai';
-import { SavedGuild, EventType } from '../../../../data/models/guild';
+import { SavedBot, EventType } from '../../../../data/models/bot';
 import { mock } from 'ts-mockito';
 import { TextChannel, GuildMember } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
 import MemberJoinHandler from '../../../../services/handlers/member-join.handler'
-import Guilds from '../../../../data/guilds';
+import Bots from '../../../../data/bots';
 
 use(chaiAsPromised);
 should();
 
 describe('modules/announce', () => {
-    let guilds: Guilds;
+    let guilds: Bots;
 
     beforeEach(() => {
-        guilds = mock<Guilds>();
-        guilds.get = (): any => new SavedGuild();
+        guilds = mock<Bots>();
+        guilds.get = (): any => new SavedBot();
     });
 
     describe('member join handler', () =>
@@ -54,7 +54,7 @@ describe('modules/announce', () => {
         
         it('member join, channel not found, returns', () => {
             guilds.get = (): any => {
-                const guild = new SavedGuild();
+                const guild = new SavedBot();
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: 'test',
@@ -69,7 +69,7 @@ describe('modules/announce', () => {
         
         it('member join, event active, message is sent', () => {
             guilds.get = (): any => {
-                const guild = new SavedGuild();
+                const guild = new SavedBot();
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: 'test',
@@ -84,7 +84,7 @@ describe('modules/announce', () => {
         
         it('member join, event active, message is sent with applied guild variables', () => {
             guilds.get = (): any => {
-                const guild = new SavedGuild();
+                const guild = new SavedBot();
                 guild.announce.events.push({
                     event: EventType.MemberJoin,
                     message: '[USER] joined!',

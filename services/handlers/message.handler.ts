@@ -1,7 +1,7 @@
 import EventHandler from './event-handler';
 import Deps from '../../utils/deps';
 import CommandService from '../command.service';
-import Guilds from '../../data/guilds';
+import Bots from '../../data/bots';
 import AutoMod from '../../modules/auto-mod/auto-mod';
 import Leveling from '../../modules/xp/leveling';
 
@@ -11,22 +11,22 @@ export default class MessageHandler implements EventHandler {
     constructor(
         private autoMod = Deps.get<AutoMod>(AutoMod),
         private commands = Deps.get<CommandService>(CommandService),
-        private guilds = Deps.get<Guilds>(Guilds),
+        private bots = Deps.get<Bots>(Bots),
         private leveling = Deps.get<Leveling>(Leveling)) {}
 
     async invoke(msg: any) {
         if (msg.author.bot) return;
 
-        const savedGuild = await this.guilds.get(msg.guild);
+        const savedBot = await this.bots.get(msg.guild);
 
-        const isCommand = msg.content.startsWith(savedGuild.general.prefix);
+        const isCommand = msg.content.startsWith(savedBot.general.prefix);
         if (isCommand)
-            return await this.commands.handle(msg, savedGuild);        
+            return await this.commands.handle(msg, savedBot);        
 
         
-        if (savedGuild.autoMod.enabled)
-            await this.autoMod.validateMsg(msg, savedGuild);
-        if (savedGuild.leveling.enabled)
-            await this.leveling.validateXPMsg(msg, savedGuild);
+        if (savedBot.autoMod.enabled)
+            await this.autoMod.validateMsg(msg, savedBot);
+        if (savedBot.leveling.enabled)
+            await this.leveling.validateXPMsg(msg, savedBot);
     }
 }

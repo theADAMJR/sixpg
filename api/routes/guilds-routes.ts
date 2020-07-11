@@ -3,12 +3,11 @@ import config from '../../config.json';
 import { SavedMember, MemberDocument } from '../../data/models/member';
 import { AuthClient } from '../server';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
-import { bot } from '../../bot';
 import Deps from '../../utils/deps';
 import Members from '../../data/members';
 import Ranks from '../modules/ranks';
 import Users from '../../data/users';
-import Guilds from '../../data/guilds';
+import Bots from '../../data/bots';
 import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
 import { User } from 'discord.js';
@@ -22,7 +21,7 @@ export const router = Router();
 const logs = Deps.get<Logs>(Logs),
       members = Deps.get<Members>(Members),
       users = Deps.get<Users>(Users),
-      guilds = Deps.get<Guilds>(Guilds);
+      guilds = Deps.get<Bots>(Bots);
 
 router.get('/', async (req, res) => {
     try {        

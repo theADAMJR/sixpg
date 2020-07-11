@@ -1,9 +1,9 @@
 import { Command } from "../commands/command";
 import { GuildMember, TextChannel, Message } from "discord.js";
-import { GuildDocument } from "../data/models/guild";
+import { BotDocument } from "../data/models/bot";
 
 export default class Validators {
-    checkCommand(command: Command, guild: GuildDocument, msg: Message) {
+    checkCommand(command: Command, guild: BotDocument, msg: Message) {
         const config = guild.commands.configs.find(c => c.name === command.name);
         if (!config) return;
 
@@ -16,7 +16,7 @@ export default class Validators {
             throw new TypeError(`**Required Permission**: \`${command.precondition}\``);
     }
 
-    checkChannel(channel: TextChannel, savedGuild: GuildDocument) {
+    checkChannel(channel: TextChannel, savedGuild: BotDocument) {
         const isIgnored = savedGuild.general.ignoredChannels
             .some(id => id === channel.id);
         if (isIgnored)

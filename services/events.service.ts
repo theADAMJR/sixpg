@@ -1,6 +1,3 @@
-import { bot } from '../bot';
-import Log from '../utils/log';
-
 import MemberJoinHandler from './handlers/member-join.handler';
 import MemberLeaveHandler from './handlers/member-leave.handler';
 import MessageDeleteHandler from './handlers/message-deleted.handler';
@@ -8,6 +5,7 @@ import EventHandler from './handlers/event-handler';
 import ReadyHandler from './handlers/ready.handler';
 import GuildCreateHandler from './handlers/guildCreate.handler';
 import MessageHandler from './handlers/message.handler';
+import GlobalBots from '../global-bots';
 
 export default class EventsService {
     // TODO: add auto loading
@@ -20,10 +18,10 @@ export default class EventsService {
         new MessageDeleteHandler()
     ];
 
-    constructor() {
-        for (const handler of this.handlers) {
-            bot.on(handler.on, handler.invoke.bind(handler));
-        }
-        Log.info(`Loaded: ${this.handlers.length} handlers`, 'events');
+    async init() {
+        const clients = GlobalBots.clients;
+        for (const client of clients.values())
+            for (const handler of this.handlers)
+                client.on(handler.on, handler.invoke.bind(handler));  
     }
 }

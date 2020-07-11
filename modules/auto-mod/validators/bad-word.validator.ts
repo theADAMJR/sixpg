@@ -1,11 +1,11 @@
-import { GuildDocument, MessageFilter } from '../../../data/models/guild';
+import { BotDocument, MessageFilter } from '../../../data/models/bot';
 import { ContentValidator } from './content-validator';
 import { ValidationError } from '../auto-mod';
 
 export default class BadWordValidator implements ContentValidator {
     filter = MessageFilter.Words;
 
-    validate(content: string, guild: GuildDocument) {
+    validate(content: string, guild: BotDocument) {
         const msgWords = content.split(' ');
         for (const word of msgWords) {
             const isExplicit = guild.autoMod.banWords

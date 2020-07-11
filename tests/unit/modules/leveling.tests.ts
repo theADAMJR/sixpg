@@ -1,7 +1,7 @@
 import { should, use, expect } from 'chai';
 import { mock } from 'ts-mockito';
 import Leveling from '../../../modules/xp/leveling';
-import { GuildDocument } from '../../../data/models/guild';
+import { BotDocument } from '../../../data/models/bot';
 import chaiAsPromised from 'chai-as-promised';
 
 use(chaiAsPromised);
@@ -16,7 +16,7 @@ describe('modules/leveling', () => {
 
     describe('validateXPMsg', () => {
         it('null message member throws exception', () => {
-            const guild = mock<GuildDocument>();
+            const guild = mock<BotDocument>();
             let msg: any = { member: null };
 
             const result = () => leveling.validateXPMsg(msg, guild);  
@@ -25,7 +25,7 @@ describe('modules/leveling', () => {
         });
 
         it('member with ignored role throws exception', () => {
-            const guild = mock<GuildDocument>();
+            const guild = mock<BotDocument>();
             let msg: any = { member: { roles: { cache: [{ id: '123' }] }}};
             guild.leveling.ignoredRoles = ['123'];
 
