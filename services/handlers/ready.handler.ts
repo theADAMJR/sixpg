@@ -5,6 +5,7 @@ import Music from '../../modules/music/music';
 import CommandService from '../command.service';
 import config from '../../config.json';
 import { Client } from 'discord.js';
+import GlobalBots from '../../global-bots';
 
 export default class ReadyHandler implements EventHandler {
     started = false;
@@ -25,5 +26,7 @@ export default class ReadyHandler implements EventHandler {
         this.music.initialize(bot);
         // TODO: add custom activity to bot config
         bot.user?.setActivity(config.dashboard.url);
+        
+        GlobalBots.add(bot);
     }
 }

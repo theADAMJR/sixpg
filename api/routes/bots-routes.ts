@@ -14,7 +14,7 @@ import Leveling from '../../modules/xp/leveling';
 import { getUser } from './user-routes';
 import { sendError } from './api-routes';
 import GlobalBots from '../../global-bots';
-import { AES } from 'crypto-js/sha256';
+import AES from 'crypto-js/aes';
 
 export const router = Router();
 
@@ -40,13 +40,19 @@ router.post('/', async (req, res) => {
         bot.login(token);
 
         bot.on('ready', async() => {
+            try {                
+                // if (bots.exists(bot.user))
+                //     throw new TypeError('Bot already exists!');
+            } catch (error) { return sendError(res, 400, error); }
+
             GlobalBots.add(bot);
             
             const savedBot = await bots.get(bot.user);
             savedBot.id = bot.user.id;
             savedBot.tokenHash = AES.encrypt(token, config.encryptionKey);
+            await savedBot.save();
     
-            res.json({ success: true });
+            res.json(savedBot);
         });
     } catch (error) { sendError(res, 400, error); }
 });

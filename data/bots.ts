@@ -19,4 +19,8 @@ export default class Bots extends DBWrapper<SnowflakeEntity, BotDocument> {
     async getManageableBots(ownerId: string) {
         return await SavedBot.find({ ownerId });
     }
+
+    exists({ id }: SnowflakeEntity) {
+        return SavedBot.exists({ id });
+    }
 }

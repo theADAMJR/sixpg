@@ -8,7 +8,7 @@ import GlobalBots from './global-bots';
 
 Deps.build(API, EventsService, GlobalBots);
 
-GlobalBots.init();
+Deps.get<EventsService>(EventsService).init();
 
 mongoose.connect(config.mongoURL, { 
     useUnifiedTopology: true, 

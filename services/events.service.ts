@@ -5,10 +5,14 @@ import EventHandler from './handlers/event-handler';
 import ReadyHandler from './handlers/ready.handler';
 import GuildCreateHandler from './handlers/guildCreate.handler';
 import MessageHandler from './handlers/message.handler';
-import GlobalBots from '../global-bots';
+import Deps from '../utils/deps';
+import Bots from '../data/bots';
+import AES from 'crypto-js/aes';
+import config from '../config.json';
+import Log from '../utils/log';
+import { Client } from 'discord.js';
 
 export default class EventsService {
-    // TODO: add auto loading
     private readonly handlers: EventHandler[] = [
         new ReadyHandler(),
         new GuildCreateHandler(),
@@ -18,10 +22,33 @@ export default class EventsService {
         new MessageDeleteHandler()
     ];
 
+    constructor(private bots = Deps.get<Bots>(Bots)) {}
+
     async init() {
-        const clients = GlobalBots.clients;
-        for (const client of clients)
-            for (const handler of this.handlers)
-                client.on(handler.on, handler.invoke.bind(handler));  
+        const savedBots = await this.bots.getAll();
+        console.log(savedBots.length);
+
+        let loggedInCount = 0;
+        for (const { tokenHash } of savedBots) {
+            const isValidToken = /^[A-Za-z\d]{24}\.[A-Za-z\d-]{6}\.[A-Za-z\d-_]{27}$/.test(tokenHash);
+            if (!isValidToken) continue;
+            
+            await this.startBot(tokenHash);
+            loggedInCount++;
+        }
+        Log.info(`Logged in ${loggedInCount} bots`, 'events');
+    }
+
+    async startBot(tokenHash: string) {
+        const token = AES.decrypt(tokenHash, config.encryptionKey);
+
+        const bot = new Client();
+        const handler = this.handlers[0];
+        bot.on('ready', handler.invoke.bind(handler));
+
+        for (const handler of this.handlers)
+            bot.on(handler.on, () => handler.invoke(bot));
+
+        await bot.login(token);
     }
 }
