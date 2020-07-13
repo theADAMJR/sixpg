@@ -125,7 +125,7 @@ async function getMusic(guildId: string, key: string) {
     const { id } = await AuthClient.getUser(key);
 
     const user = bot.users.cache.get(id);
-    const guild = bot.guilds.cache.get(guildId);
+    const client = bot.guilds.cache.get(guildId);
     const member = guild.members.cache.get(id);
 
     const savedUser = await users.get(user);

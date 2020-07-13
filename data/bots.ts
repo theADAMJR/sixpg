@@ -1,9 +1,12 @@
 import { BotDocument, SavedBot } from './models/bot';
 import DBWrapper from './db-wrapper';
 import SnowflakeEntity from './snowflake-entity';
+import GlobalBots from '../global-bots';
 
 export default class Bots extends DBWrapper<SnowflakeEntity, BotDocument> {
     protected async getOrCreate({ id }: SnowflakeEntity) {
+        if (!id) return null;
+
         const savedBot = await SavedBot.findById(id);
         return savedBot ?? this.create({ id });
     }
@@ -17,7 +20,9 @@ export default class Bots extends DBWrapper<SnowflakeEntity, BotDocument> {
     }
 
     async getManageableBots(ownerId: string) {
-        return await SavedBot.find({ ownerId });
+        const savedBots = await SavedBot.find({ ownerId });
+        return savedBots
+            .map(b => GlobalBots.get(b._id).user);
     }
 
     exists({ id }: SnowflakeEntity) {

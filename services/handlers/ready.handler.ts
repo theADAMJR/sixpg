@@ -8,23 +8,18 @@ import { Client } from 'discord.js';
 import GlobalBots from '../../global-bots';
 
 export default class ReadyHandler implements EventHandler {
-    started = false;
+    startedBots: string[] = [];
     on = 'ready';
-    
-    constructor(
-        private commandService = Deps.get<CommandService>(CommandService),        
-        private music = Deps.get<Music>(Music)) {}
+
+    constructor(private music = Deps.get<Music>(Music)) {}
 
     async invoke(bot: Client) {
-        Log.info(`Bot is live!`, `events`);
-
-        if (this.started) return;
-        this.started = true;
+        Log.info(`Bot '${bot.user.username}' is live!`, `events`);
         
-        await this.commandService.init();
+        if (this.startedBots.includes(bot.user.id)) return;
+        this.startedBots.push(bot.user.id);
 
         this.music.initialize(bot);
-        // TODO: add custom activity to bot config
         bot.user?.setActivity(config.dashboard.url);
         
         GlobalBots.add(bot);

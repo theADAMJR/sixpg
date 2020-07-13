@@ -27,16 +27,22 @@ export default class AutoMod {
         Log.info(`Loaded: ${this.validators.length} validators`, `automod`);
     }
     
-    async validateMsg(msg: Message, guild: BotDocument) {
-        const activeFilters = guild.autoMod.filters;
+    async validateMsg(msg: Message, savedBot: BotDocument) {
+        const activeFilters = savedBot.autoMod.filters;
         for (const filter of activeFilters) {
             try {                
                 const validator = this.validators.find(v => v.filter === filter);
-                validator?.validate(msg.content, guild);
+                const hasIgnoredRoleWithName = savedBot.autoMod.ignoredRoleNames
+                    .some(n => msg.member.roles.cache.find(r => r.name === n));
+                console.log(hasIgnoredRoleWithName);
+                
+                if (hasIgnoredRoleWithName) return;
+
+                validator?.validate(msg.content, savedBot);
             } catch (validation) {
-                if (guild.autoMod.autoDeleteMessages)
+                if (savedBot.autoMod.autoDeleteMessages)
                     await msg.delete({ reason: validation.message });
-                if (guild.autoMod.autoWarnUsers && msg.member && msg.client.user)
+                if (savedBot.autoMod.autoWarnUsers && msg.member && msg.client.user)
                     await this.warn(msg.member, msg.client.user, validation.message);
 
                 throw validation;

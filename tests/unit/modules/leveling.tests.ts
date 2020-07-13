@@ -16,7 +16,7 @@ describe('modules/leveling', () => {
 
     describe('validateXPMsg', () => {
         it('null message member throws exception', () => {
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             let msg: any = { member: null };
 
             const result = () => leveling.validateXPMsg(msg, guild);  
@@ -25,7 +25,7 @@ describe('modules/leveling', () => {
         });
 
         it('member with ignored role throws exception', () => {
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             let msg: any = { member: { roles: { cache: [{ name: '123' }] }}};
             guild.leveling.ignoredRoleNames = ['123'];
 

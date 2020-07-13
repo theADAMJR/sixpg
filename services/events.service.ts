@@ -8,6 +8,7 @@ import MessageHandler from './handlers/message.handler';
 import Deps from '../utils/deps';
 import Bots from '../data/bots';
 import AES from 'crypto-js/aes';
+import CryptoJS from 'crypto-js';
 import config from '../config.json';
 import Log from '../utils/log';
 import { Client } from 'discord.js';
@@ -26,29 +27,36 @@ export default class EventsService {
 
     async init() {
         const savedBots = await this.bots.getAll();
-        console.log(savedBots.length);
 
         let loggedInCount = 0;
         for (const { tokenHash } of savedBots) {
-            const isValidToken = /^[A-Za-z\d]{24}\.[A-Za-z\d-]{6}\.[A-Za-z\d-_]{27}$/.test(tokenHash);
+            const token = AES
+                .decrypt(tokenHash || '', config.encryptionKey)
+                .toString(CryptoJS.enc.Utf8);
+            const isValidToken = /^[A-Za-z\d]{24}\.[A-Za-z\d-]{6}\.[A-Za-z\d-_]{27}$/.test(token);
             if (!isValidToken) continue;
             
-            await this.startBot(tokenHash);
-            loggedInCount++;
+            try {
+                await this.startBot(token);
+                loggedInCount++;
+            } catch {
+                // TODO: let the user know that their token does not work
+                Log.error(`Invalid bot token.`, 'events');
+            }
         }
         Log.info(`Logged in ${loggedInCount} bots`, 'events');
     }
 
-    async startBot(tokenHash: string) {
-        const token = AES.decrypt(tokenHash, config.encryptionKey);
-
+    async startBot(token: string) {
         const bot = new Client();
         const handler = this.handlers[0];
-        bot.on('ready', handler.invoke.bind(handler));
-
-        for (const handler of this.handlers)
-            bot.on(handler.on, () => handler.invoke(bot));
+        bot.on('ready', () => handler.invoke(bot));
 
         await bot.login(token);
+
+        for (const handler of this.handlers.slice(1))
+            bot.on(handler.on, handler.invoke.bind(handler));
+
+        return bot;
     }
 }

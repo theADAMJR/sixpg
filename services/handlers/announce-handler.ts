@@ -18,7 +18,7 @@ export default abstract class AnnounceHandler implements EventHandler {
     }
 
     protected getChannel(config: AnnounceEvent, guild: Guild) {
-        return guild.channels.cache.get(config?.channelName) as TextChannel;
+        return guild.channels.cache.find(c => c.name === config?.channelName) as TextChannel;
     }
 
     protected async announce(guild: Guild, applyEventArgs: any[]) {

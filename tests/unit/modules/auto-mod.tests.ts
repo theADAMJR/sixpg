@@ -20,7 +20,7 @@ describe('modules/auto-mod', () => {
     describe('validateMsg', () => {
 
         it('contains ban word, has filter, error thrown', async() => {            
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             const msg = mock<Message>();
 
             guild.autoMod.filters = [MessageFilter.Words];
@@ -33,7 +33,7 @@ describe('modules/auto-mod', () => {
         });
         
         it('contains ban word, has filter, auto deleted, error thrown', async() => {            
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             const msg = mock<Message>();
 
             guild.autoMod.filters = [MessageFilter.Words];
@@ -47,7 +47,7 @@ describe('modules/auto-mod', () => {
         });
 
         it('contains ban word, no filter, ignored', async() => {
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             const msg = mock<Message>();
 
             guild.autoMod.filters = [];
@@ -60,7 +60,7 @@ describe('modules/auto-mod', () => {
         });
         
         it('contains ban link, has filter, error thrown', async() => {            
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             const msg = mock<Message>();
             
             guild.autoMod.filters = [MessageFilter.Links];
@@ -73,7 +73,7 @@ describe('modules/auto-mod', () => {
         });
         
         it('contains ban link, no filter, ignored', async() => {            
-            const guild = mock<BotDocument>();
+            const client = mock<BotDocument>();
             const msg = mock<Message>();
 
             guild.autoMod.filters = [];

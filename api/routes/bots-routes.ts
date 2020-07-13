@@ -15,10 +15,12 @@ import { getUser } from './user-routes';
 import { sendError } from './api-routes';
 import GlobalBots from '../../global-bots';
 import AES from 'crypto-js/aes';
+import EventsService from '../../services/events.service';
 
 export const router = Router();
 
-const logs = Deps.get<Logs>(Logs),
+const events = Deps.get<EventsService>(EventsService),
+      logs = Deps.get<Logs>(Logs),
       members = Deps.get<Members>(Members),
       users = Deps.get<Users>(Users),
       bots = Deps.get<Bots>(Bots);
@@ -33,27 +35,17 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        // TODO: decrypt
-        const token = req.body.token;
+        const authUser = await getUser(req.query.key);
 
-        const bot = new Client();
-        bot.login(token);
+        const bot = await events.startBot(req.body.token);
 
-        bot.on('ready', async() => {
-            try {                
-                // if (bots.exists(bot.user))
-                //     throw new TypeError('Bot already exists!');
-            } catch (error) { return sendError(res, 400, error); }
+        const savedBot = await bots.get(bot.user);
+        savedBot.id = bot.user.id;
+        savedBot.ownerId = authUser.id;
+        savedBot.tokenHash = AES.encrypt(req.body.token, config.encryptionKey);
+        await savedBot.save();
 
-            GlobalBots.add(bot);
-            
-            const savedBot = await bots.get(bot.user);
-            savedBot.id = bot.user.id;
-            savedBot.tokenHash = AES.encrypt(token, config.encryptionKey);
-            await savedBot.save();
-    
-            res.json(savedBot);
-        });
+        res.json(savedBot);
     } catch (error) { sendError(res, 400, error); }
 });
 
@@ -106,25 +98,29 @@ router.get('/:id/log', async(req, res) => {
 
 router.get('/:id/public', (req, res) => {
     const bot = GlobalBots.get(req.params.id);
-    const guild = bot.guilds.cache.get(req.params.id);
 
-    res.json(guild);
+    res.json(bot);
 });
 
-router.get('/:id/roles', async (req, res) => {
+router.get('/:botId/guilds/:guildId', (req, res) => {
     try {
-        const bot = GlobalBots.get(req.params.id);
-        const guild = bot.guilds.cache.get(req.params.id);
+        const { botId, guildId } = req.params;
+        const bot = GlobalBots.get(botId);
+        if (!bot)
+            throw new TypeError('Bot not found.');
 
-        res.send(guild.roles.cache.filter(r => r.name !== '@everyone'));
+        const guild = bot.guilds.cache.get(guildId);
+
+        res.json(guild);        
     } catch (error) { sendError(res, 400, error); }
 });
 
-router.get('/:id/members', async (req, res) => {
+router.get('/:botId/guilds/:guildId/members', async (req, res) => {
     try {
-        const bot = GlobalBots.get(req.params.id);
+        const { botId, guildId } = req.params;
+        const bot = GlobalBots.get(botId);
 
-        const savedMembers = await SavedMember.find({ guildId: req.params.id }).lean();        
+        const savedMembers = await SavedMember.find({ guildId }).lean();        
         let rankedMembers = [];
         for (const member of savedMembers) {
             const user = bot.users.cache.get(member.userId);
@@ -138,20 +134,11 @@ router.get('/:id/members', async (req, res) => {
         res.json(rankedMembers);
     } catch (error) { sendError(res, 400, error); }
 });
-function leaderboardMember(user: User, xpInfo: any) {
-    return {
-        id: user.id,
-        username: user.username,
-        tag: '#' + user.discriminator,
-        displayAvatarURL: user.displayAvatarURL({ dynamic: true }),
-        ...xpInfo
-    };
-}
 
-router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
+router.get('/:botId/guilds/:guildId/members/:memberId/xp-card', async (req, res) => {
     try {
-        const bot = GlobalBots.get(req.params.id);
-        const { guildId, memberId } = req.params;
+        const { botId, guildId, memberId } = req.params;
+        const bot = GlobalBots.get(botId);
 
         const user = bot.users.cache.get(memberId);
         const savedUser = await users.get(user); 
@@ -165,11 +152,10 @@ router.get('/:guildId/members/:memberId/xp-card', async (req, res) => {
         const savedMembers = await SavedMember.find({ guildId });
         const rank = Ranks.get(member, savedMembers);
         
-        // FIXME: make work
         // const generator = new XPCardGenerator(, savedUser, rank);
         // const image = await generator.generate(savedMember);
         
-        res.set({'Content-Type': 'image/png'}).send(null);
+        // res.set({'Content-Type': 'image/png'}).send(image);
     } catch (error) { sendError(res, 400, error); }
 });
 
@@ -186,4 +172,14 @@ export async function validateBotOwner(key: string, botId: string) {
 export async function getManageableBots(key: string) {
     const authUser = await AuthClient.getUser(key);
     return bots.getManageableBots(authUser.id);
+}
+
+function leaderboardMember(user: User, xpInfo: any) {
+    return {
+        id: user.id,
+        username: user.username,
+        tag: '#' + user.discriminator,
+        displayAvatarURL: user.displayAvatarURL({ dynamic: true }),
+        ...xpInfo
+    };
 }

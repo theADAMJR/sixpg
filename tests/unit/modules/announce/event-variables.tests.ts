@@ -32,7 +32,7 @@ describe('modules/announce/event-variables', () => {
     it('MEMBER_COUNT', () => {
         const variables = new EventVariables('[MEMBER_COUNT] member(s)');
 
-        const guild = { memberCount: 1 } as any;
+        const client = { memberCount: 1 } as any;
         const result = variables.memberCount(guild).toString();
 
         expect(result).to.equal('1 member(s)');

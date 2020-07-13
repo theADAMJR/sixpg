@@ -66,9 +66,9 @@ describe('services/command-service', () => {
         });
 
         it('command override disabled command, throws error', () => {
-            const guilds = {
+            const clients = {
                 get() {
-                    const guild = new SavedBot();
+                    const client = new SavedBot();
                     guild.commands.configs.push({ name: 'ping', enabled: false });
                     return guild;
                 }
