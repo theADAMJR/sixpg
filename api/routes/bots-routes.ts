@@ -16,6 +16,7 @@ import { sendError } from './api-routes';
 import GlobalBots from '../../global-bots';
 import AES from 'crypto-js/aes';
 import EventsService from '../../services/events.service';
+import { XPCardGenerator } from '../modules/image/xp-card-generator';
 
 export const router = Router();
 
@@ -46,6 +47,30 @@ router.post('/', async (req, res) => {
         await savedBot.save();
 
         res.json(savedBot);
+    } catch (error) { sendError(res, 400, error); }
+});
+
+router.patch('/:id', async (req, res) => {
+    try {
+        const token = req.body.token;
+
+        GlobalBots.remove(req.params.id);
+
+        const bot = await events.startBot(token);
+
+        const savedBot = await bots.get(bot.user);
+        savedBot.tokenHash = AES.encrypt(token, config.encryptionKey);
+        await savedBot.save();
+
+        res.json({ success: true });
+    } catch (error) { sendError(res, 400, error); }    
+})
+
+router.delete('/:id', (req, res) => {
+    try {
+        bots.delete(req.params.id);
+
+        res.json({ success: true });
     } catch (error) { sendError(res, 400, error); }
 });
 
@@ -102,6 +127,18 @@ router.get('/:id/public', (req, res) => {
     res.json(bot);
 });
 
+router.get('/:botId/guilds', (req, res) => {
+    try {
+        const { botId } = req.params;
+        const bot = GlobalBots.get(botId);
+        if (!bot)
+            throw new TypeError('Bot not found.');
+
+        res.json(bot.guilds.cache);        
+    } catch (error) { sendError(res, 400, error); }
+});
+
+
 router.get('/:botId/guilds/:guildId', (req, res) => {
     try {
         const { botId, guildId } = req.params;
@@ -140,22 +177,22 @@ router.get('/:botId/guilds/:guildId/members/:memberId/xp-card', async (req, res)
         const { botId, guildId, memberId } = req.params;
         const bot = GlobalBots.get(botId);
 
-        const user = bot.users.cache.get(memberId);
-        const savedUser = await users.get(user); 
-
         const guild = bot.guilds.cache.get(guildId);
         const member = guild?.members.cache.get(memberId);        
         if (!member)
             throw Error();
+
+        const user = bot.users.cache.get(memberId);
+        const savedUser = await users.get(user);
         
         const savedMember = await members.get(member);  
         const savedMembers = await SavedMember.find({ guildId });
         const rank = Ranks.get(member, savedMembers);
         
-        // const generator = new XPCardGenerator(, savedUser, rank);
-        // const image = await generator.generate(savedMember);
+        const generator = new XPCardGenerator(user, savedUser, rank);
+        const image = await generator.generate(savedMember);
         
-        // res.set({'Content-Type': 'image/png'}).send(image);
+        res.set({'Content-Type': 'image/png'}).send(image);
     } catch (error) { sendError(res, 400, error); }
 });
 

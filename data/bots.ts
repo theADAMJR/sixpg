@@ -28,4 +28,8 @@ export default class Bots extends DBWrapper<SnowflakeEntity, BotDocument> {
     exists({ id }: SnowflakeEntity) {
         return SavedBot.exists({ id });
     }
+
+    async delete(id: any) {
+        return await SavedBot.findByIdAndDelete(id);
+    }
 }

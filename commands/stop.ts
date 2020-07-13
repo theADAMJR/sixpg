@@ -12,7 +12,8 @@ export default class StopCommand implements Command {
     constructor(private music = Deps.get<Music>(Music)) {}
     
     execute = (ctx: CommandContext) => {
-        const players = this.music.client.players;
+        const players = this.music.
+            getClient(ctx.bot.user).players;
         if (!players)
             throw new TypeError('Not currently playing any track.');
 

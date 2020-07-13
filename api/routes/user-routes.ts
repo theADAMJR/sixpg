@@ -64,7 +64,8 @@ router.get('/xp-card-preview', async (req, res) => {
         member.xp = 1800;
         
         delete req.query.key;        
-        const image = await generator.generate(member, { ...savedUser.xpCard, ...req.query });
+        const image = await generator.generate(member,
+            {...savedUser.xpCard, ...req.query });
         
         res.set({'Content-Type': 'image/png'}).send(image);
     } catch (error) { sendError(res, 400, error); }

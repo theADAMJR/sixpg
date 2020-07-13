@@ -48,6 +48,7 @@ export class LevelingModule extends Module {
     ignoredRoleNames: string[] = [];
     xpPerMessage = 50;
     xpCooldown = 5;
+    maxMessagesPerMinute = 3;
 }
 
 export interface LevelRole {

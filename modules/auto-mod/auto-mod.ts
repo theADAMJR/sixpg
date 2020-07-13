@@ -34,8 +34,6 @@ export default class AutoMod {
                 const validator = this.validators.find(v => v.filter === filter);
                 const hasIgnoredRoleWithName = savedBot.autoMod.ignoredRoleNames
                     .some(n => msg.member.roles.cache.find(r => r.name === n));
-                console.log(hasIgnoredRoleWithName);
-                
                 if (hasIgnoredRoleWithName) return;
 
                 validator?.validate(msg.content, savedBot);

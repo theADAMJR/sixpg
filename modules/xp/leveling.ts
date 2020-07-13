@@ -27,7 +27,7 @@ export default class Leveling {
     handleCooldown(savedMember: MemberDocument, savedGuild: BotDocument) {
         const inCooldown = savedMember.recentMessages
             .filter(m => m.getMinutes() === new Date().getMinutes())
-            .length > 3; // TODO: implement -> savedGuild.leveling.maxMessagesPerMinute;
+            .length > savedGuild.leveling.maxMessagesPerMinute;        
         if (inCooldown)
             throw new TypeError('User is in cooldown');
 
@@ -48,13 +48,16 @@ export default class Leveling {
     }
 
     private handleLevelUp(msg: Message, newLevel: number, savedGuild: BotDocument) {
+        // TODO: add disable xp message option
         msg.channel.send(`Level Up! ⭐\n**New Level**: \`${newLevel}\``);
 
-        const levelRole = this.getLevelRole(newLevel, savedGuild);
-        if (levelRole)
-            msg.member?.roles.add(levelRole);
+        const levelRoleName = this.getLevelRoleName(newLevel, savedGuild);
+        if (levelRoleName) {
+            const role = msg.guild.roles.cache.find(r => r.name === levelRoleName);
+            msg.member.roles.add(role);
+        }
     }
-    private getLevelRole(level: number, savedGuild: BotDocument) {
+    private getLevelRoleName(level: number, savedGuild: BotDocument) {
         return savedGuild.leveling.levelRoleNames
             .find(r => r.level === level)?.roleName;
     }

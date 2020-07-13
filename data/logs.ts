@@ -5,17 +5,17 @@ import { Command } from '../commands/command';
 import SnowflakeEntity from './snowflake-entity';
 
 export default class Logs extends DBWrapper<SnowflakeEntity, LogDocument> {
-    protected async getOrCreate(guild: Guild) {
-        const savedLog = await SavedLog.findById(guild.id);
-        return savedLog ?? this.create(guild);
+    protected async getOrCreate({ id }: SnowflakeEntity) {
+        const savedLog = await SavedLog.findById(id);
+        return savedLog ?? this.create({ id });
     }
 
-    protected async create(guild: Guild) {
-        return new SavedLog({ _id: guild.id }).save();
+    protected async create({ id }: SnowflakeEntity) {
+        return new SavedLog({ _id: id }).save();
     }
     
     async logCommand(msg: Message, command: Command) {
-        const log = await this.get(msg.guild);
+        const log = await this.get(msg.client.user);
         log.commands.push({
             name: command.name,
             by: msg.author.id,

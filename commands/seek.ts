@@ -17,8 +17,8 @@ export default class SeekCommand implements Command {
         
         if (player.queue.size <= 0)
             throw new TypeError('No tracks currently playing');
-        const pos = Number(position);
-        if (!pos)
+        const pos = +position;
+        if (!pos && pos !== 0)
             throw new TypeError('Position must be a number');
         
         if (!pos)

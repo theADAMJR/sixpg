@@ -33,7 +33,9 @@ export default class PlayCommand implements Command {
     }
 
     private async searchForTrack(query: string, requestor: GuildMember) {
-        const res = await this.music.client.search(query, requestor);    
+        const res = await this.music
+            .getClient(requestor.client.user)
+            .search(query, requestor);    
         return res.tracks[0];
     }
 }

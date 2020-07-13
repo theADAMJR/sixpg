@@ -1,12 +1,11 @@
 import * as config from '../../config.json';
 import { ErelaClient, Player, Track } from 'erela.js';
 import Log from '../../utils/log';
-import { CommandContext } from '../../commands/command';
-import { GuildMember, TextChannel, Client } from 'discord.js';
+import { GuildMember, TextChannel, Client, ClientUser } from 'discord.js';
+import SnowflakeEntity from '../../data/snowflake-entity';
 
 export default class Music {
-    private _client = {} as ErelaClient;
-    get client() { return this._client; }
+    readonly clients = new Map<string, ErelaClient>();
 
     initialize(bot: Client) {
         const nodes = [{
@@ -14,11 +13,15 @@ export default class Music {
             port: 2333,
             password: config.lavalink.password,
         }];
-        const music = new ErelaClient(bot, nodes);
+        const musicClient = new ErelaClient(bot, nodes);
 
-        this.hookEvents(music);
+        this.hookEvents(musicClient);
 
-        this._client = music;        
+        this.clients.set(bot.user.id, musicClient);
+    }
+
+    getClient({ id }: SnowflakeEntity) {
+        return this.clients.get(id);
     }
 
     private hookEvents(music: ErelaClient) {
@@ -33,15 +36,17 @@ export default class Music {
     }
     
     joinAndGetPlayer(member: GuildMember, textChannel?: TextChannel) {
-        const voiceChannel = member.voice.channel;
+        const voiceChannel = member?.voice.channel;
         if (!voiceChannel)
             throw new TypeError('You must be in a voice channel to play music.');
             
-        return this.client.players?.spawn({
-            guild: member.guild,
-            textChannel,
-            voiceChannel: voiceChannel
-        });
+        return this.clients
+            .get(member.client.user.id).players
+            ?.spawn({
+                guild: member.guild,
+                textChannel,
+                voiceChannel
+            });
     }
 
     getDurationString(player: Player, track?: Track) {
@@ -71,7 +76,9 @@ export default class Music {
     }
 
     private async searchForTrack(query: string, requestor: GuildMember) {
-        const res = await this.client.search(query, requestor);    
+        const res = await this.clients
+            .get(requestor.client.user.id)
+            .search(query, requestor);    
         return res.tracks[0];
     }
 }

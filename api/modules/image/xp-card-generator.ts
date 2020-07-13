@@ -30,13 +30,14 @@ export class XPCardGenerator extends ImageGenerator {
         await super.addBackgroundToCanvas(ctx, canvas,
             this.user.xpCard.backgroundURL);
         await this.addXPInfo(ctx, canvas, savedMember.xp);
-        this.addUserText(ctx, canvas);
-        if ('iconUrl' in this.discordUser)
+        this.addUserText(ctx, canvas);                
+        
+        if ('userFlags' in this.discordUser)
             await this.addAvatarToCanvas(ctx, 
-                    (this.discordUser as AuthUser).avatarUrl(256));
+                (this.discordUser as any).displayAvatarURL);
         else
             await this.addAvatarToCanvas(ctx, 
-                    (this.discordUser as User).displayAvatarURL({ format: 'png', size: 256 }));
+                (this.discordUser as User).displayAvatarURL({ format: 'png', size: 256 }));
 
         return canvas.toBuffer();
     }

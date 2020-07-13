@@ -4,6 +4,7 @@ import Deps from '../../utils/deps';
 import { validateBotOwner } from './bots-routes';
 import { AuthClient } from '../server';
 import Users from '../../data/users';
+import GlobalBots from '../../global-bots';
 
 export const router = Router({ mergeParams: true });
 
@@ -12,7 +13,7 @@ const music = Deps.get<Music>(Music),
 
 router.get('/pause', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         player.pause(true);
 
         res.status(200).send({ success: true });
@@ -21,7 +22,7 @@ router.get('/pause', async (req, res) => {
 
 router.get('/resume', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         player.pause(false);
 
         res.status(200).send({ success: true });
@@ -30,7 +31,7 @@ router.get('/resume', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         for (const track of player.queue) {
             const durationInSeconds = track.duration / 1000;  
@@ -44,7 +45,7 @@ router.get('/list', async (req, res) => {
 
 router.get('/skip', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         
         music.skip(player);
 
@@ -54,7 +55,7 @@ router.get('/skip', async (req, res) => {
 
 router.get('/seek/:position', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         player.seek(req.params.position * 1000);
 
@@ -62,10 +63,9 @@ router.get('/seek/:position', async (req, res) => {
     } catch (error) { res.status(400).send(error?.message); }
 });
 
-
 router.get('/remove/:number', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         
         const track = player.queue.remove(Number(req.params.number));
 
@@ -75,7 +75,7 @@ router.get('/remove/:number', async (req, res) => {
 
 router.get('/play', async (req, res) => {
     try {
-        const { player, requestor, hasPremium } = await getMusic(req.params.id, req.query.key);
+        const { player, requestor, hasPremium } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         const track = await music.findTrack(
             req.query.query, requestor, req.query.maxTrackLength ?? 2);
         
@@ -93,7 +93,7 @@ router.get('/play', async (req, res) => {
 
 router.get('/set-volume/:value', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         player.setVolume(Number(req.params.value));
 
@@ -103,7 +103,7 @@ router.get('/set-volume/:value', async (req, res) => {
 
 router.get('/shuffle', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         player.queue.shuffle();
 
@@ -113,20 +113,25 @@ router.get('/shuffle', async (req, res) => {
 
 router.get('/stop', async (req, res) => {
     try {
-        await validateBotOwner(req.query.key, req.params.id);
+        await validateBotOwner(req.query.key, req.params.botId);
 
-        music.client.players.destroy(req.params.id);
+        music.getClient({ id: req.params.botId }).players
+            .destroy(req.params.guildId);
 
         res.status(200).send({ success: true });
     } catch (error) { res.status(400).send(error?.message); }
 });
 
-async function getMusic(guildId: string, key: string) {
+async function getMusic(botId: string, guildId: string, key: string) {
+    const bot = GlobalBots.get(botId);
+    
     const { id } = await AuthClient.getUser(key);
 
     const user = bot.users.cache.get(id);
-    const client = bot.guilds.cache.get(guildId);
-    const member = guild.members.cache.get(id);
+    const guild = bot.guilds.cache.get(guildId);
+    const member = guild?.members.cache.get(id);
+    if (!member)
+        throw new TypeError('Member not found.');
 
     const savedUser = await users.get(user);
 

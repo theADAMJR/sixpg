@@ -5,6 +5,7 @@ import * as config from '../../config.json';
 import { SavedUser } from '../../data/models/user';
 
 import { router as botsRoutes } from './bots-routes';
+import { router as musicRoutes } from './music-routes';
 import { router as userRoutes } from './user-routes';
 
 export const router = Router();
@@ -63,7 +64,7 @@ router.get('/login', (req, res) =>
     res.redirect(`https://discordapp.com/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.dashboard.url}/auth&response_type=code&scope=identify guilds&prompt=none`));
 
 router.use('/bots', botsRoutes);
-// router.use('/bots/:id/music', musicRoutes);
+router.use('/bots/:botId/guilds/:guildId/music', musicRoutes);
 router.use('/user', userRoutes);
 
 router.get('*', (req, res) => res.status(404).json({ code: 404 }));

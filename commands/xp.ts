@@ -16,7 +16,7 @@ export default class XPCommand implements Command {
         if (target.user.bot)
             throw new Error(`Bot users cannot earn XP`);
 
-        const xpCardURL = `${config.api.url}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
+        const xpCardURL = `${config.api.url}/bots/${ctx.bot.user.id}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
         return ctx.channel.send({ files: [{
             attachment: xpCardURL,
             name: 'xp-card.png'

@@ -1,7 +1,4 @@
 import { Client } from 'discord.js';
-import EventsService from './services/events.service';
-import Deps from './utils/deps';
-import Bots from './data/bots';
 
 export default class GlobalBots {
   static get clients() { return this._clients.values(); }
@@ -15,8 +12,8 @@ export default class GlobalBots {
     this._clients.set(bot.user.id, bot);
   }
 
-  static remove(bot: Client) {
-    this._clients.delete(bot.user.id);
+  static remove(id: string) {
+    this._clients.delete(id);
   }
   
   static get(id: string) {
