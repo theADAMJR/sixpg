@@ -1,13 +1,9 @@
-# 2PG - Simple, powerful Discord bot
+# 6PG - Easily Build a Discord Bot With No Code
 Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
 
-**Dashboard**: https://github.com/theADAMJR/2PG-Dashboard
+**Dashboard**: https://github.com/theADAMJR/6PG-Dashboard
 
 ⭐ Please star this if you find it useful. This will support the project, and help improve 2PG.
-
-![2PG Avatar](https://2pg.xyz/assets/img/2PGAvatarTransparent.png)
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d6c9610e0eb4ae5a4045ab3b92f80bc)](https://www.codacy.com/manual/ADAMJR/2PG?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=theADAMJR/2PG&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 1) Fork/download this respository
@@ -19,7 +15,7 @@ Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
 {
     "bot": {
         "secret": "oauthSecret",
-        "activity": "2PG.xyz",
+        "activity": "6PG.xyz",
         "id": "discordBotId"
     },
     "api": {
@@ -39,7 +35,8 @@ Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
 ```
 
 ## Hosting
-1) `npm start` to start the bot, and Lavalink
+a) `npm start` to start the bot, and Lavalink
+b) `npm run start:dev` to start the bot, in development mode, and Lavalink
 
 ### Database
 - Remember to have a local MongoDB database running `mongod`
