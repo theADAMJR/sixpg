@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { XPCardGenerator } from '../modules/image/xp-card-generator';
 import { SavedMember } from '../../data/models/member';
-import { AuthClient, stripe } from '../server';
+import { AuthClient } from '../server';
 import Deps from '../../utils/deps';
 import Users from '../../data/users';
 import config from '../../config.json';
@@ -13,30 +13,6 @@ router.get('/', async (req, res) => {
     try {
         const user = await getUser(req.query.key);
         res.json(user);
-    } catch (error) { sendError(res, 400, error); }
-});
-
-const items = [
-    {
-        name: '2PG+',
-        description: 'Support 2PG, and unlock exclusive features!',
-        amount: 500,
-        currency: 'usd',
-        quantity: 1,
-    }
-];
-router.get('/pay', async(req, res) => {
-    try {
-        const user = await getUser(req.query.key);
-
-        const session = await stripe.checkout.sessions.create({
-            success_url: `${config.dashboard.url}/payment-success`,
-            cancel_url: `${config.dashboard.url}/plus`,
-            payment_method_types: ['card'],
-            metadata: { 'id': user.id },
-            line_items: items
-        });
-        res.send(session);
     } catch (error) { sendError(res, 400, error); }
 });
 

@@ -52,23 +52,31 @@ router.post('/', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
     try {
-        const token = req.body.token;
+        const id = req.params.id;
+        
+        try {
+            GlobalBots.remove(id);
 
-        GlobalBots.remove(req.params.id);
+            const bot = await events.startBot(req.body.token);
 
-        const bot = await events.startBot(token);
-
-        const savedBot = await bots.get(bot.user);
-        savedBot.tokenHash = AES.encrypt(token, config.encryptionKey);
-        await savedBot.save();
-
-        res.json({ success: true });
+            const savedBot = await bots.get({ id });
+            savedBot.tokenHash = AES.encrypt(req.body.token, config.encryptionKey);
+            await savedBot.save();
+    
+            res.json(bot.user);
+        } catch (error) {
+            console.log(error);            
+            throw new TypeError('Invalid token, reverting back.');
+        }
     } catch (error) { sendError(res, 400, error); }    
-})
+});
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        bots.delete(req.params.id);
+        const id = req.params.id;
+
+        GlobalBots.remove(id);
+        await bots.delete(id);
 
         res.json({ success: true });
     } catch (error) { sendError(res, 400, error); }

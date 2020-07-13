@@ -13,7 +13,7 @@ export default class GlobalBots {
   }
 
   static remove(id: string) {
-    this._clients.delete(id);
+    this.get(id).destroy();
   }
   
   static get(id: string) {

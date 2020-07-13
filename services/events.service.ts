@@ -12,6 +12,7 @@ import CryptoJS from 'crypto-js';
 import config from '../config.json';
 import Log from '../utils/log';
 import { Client } from 'discord.js';
+import { SavedBot } from '../data/models/bot';
 
 export default class EventsService {
     private readonly handlers: EventHandler[] = [
@@ -40,8 +41,8 @@ export default class EventsService {
                 await this.startBot(token);
                 loggedInCount++;
             } catch {
-                // TODO: let the user know that their token does not work
                 Log.error(`Invalid bot token.`, 'events');
+                await SavedBot.deleteOne({ tokenHash });
             }
         }
         Log.info(`Logged in ${loggedInCount} bots`, 'events');

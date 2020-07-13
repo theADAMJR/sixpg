@@ -24,20 +24,6 @@ router.get('/auth', async (req, res) => {
     } catch (error) { sendError(res, 400, error); }
 });
 
-router.post('/stripe-webhook', async(req, res) => {
-  try {
-    // TODO: add better validation
-    if (!req.headers['stripe-signature']) return;
-    
-    const id = req.body.data.object.metadata.id;
-    if (req.body.type === 'checkout.session.completed') {
-      await giveUserPlus(id);
-      return res.json({ success: true });
-    }
-    res.json({ received: true });
-  } catch (error) { sendError(res, 400, error); }
-});
-
 router.post('/error', async(req, res) => {
   try {
     const { message } = req.body;
@@ -50,12 +36,6 @@ router.post('/error', async(req, res) => {
     // TODO: log errors here in database or something, if you want
   } catch (error) { sendError(res, 400, error); }
 });
-
-async function giveUserPlus(id: string) {   
-  const savedUser = await SavedUser.findById(id);
-  savedUser.premium = true;
-  savedUser.save();
-}
 
 router.get('/invite', (req, res) => 
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.dashboard.url}/dashboard&permissions=8&scope=bot`));

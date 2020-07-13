@@ -3,25 +3,18 @@ import config from '../config.json';
 import cors from 'cors';
 import OAuthClient from 'disco-oauth';
 import bodyParser from 'body-parser';
-import { Stripe } from 'stripe';
 import { join } from 'path';
 
 import { router as apiRoutes } from './routes/api-routes';
 import Log from '../utils/log';
 
 export const app = express(),
-             AuthClient = new OAuthClient(config.bot.id, config.bot.secret),
-             stripe = new Stripe(config.api.stripe.apiKey, { apiVersion: '2020-03-02' });
+             AuthClient = new OAuthClient(config.bot.id, config.bot.secret);
 
 export default class API {
     constructor() {
         AuthClient.setRedirect(`${config.dashboard.url}/auth`);
         AuthClient.setScopes('identify', 'guilds');
-
-        stripe.webhookEndpoints.create({
-            url: config.api.url + '/stripe-webhook',
-            enabled_events: ['*']
-        });
 
         app.use(cors());
         app.use(bodyParser.json());
