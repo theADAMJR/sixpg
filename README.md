@@ -1,5 +1,6 @@
 # 6PG - Easily Build a Discord Bot With No Code
-Simple multi-purpose Discord bot made with TypeScript-> https://2pg.xyz
+Customize many different modules including:
+Announce, Auto-mod, General, Leveling, Music, and more!
 
 **Dashboard**: https://github.com/theADAMJR/6PG-Dashboard
 

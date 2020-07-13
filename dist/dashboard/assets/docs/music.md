@@ -25,13 +25,3 @@ This will play the next queued song, if there is one.
 
 ## Shuffle
 This will randomize the current playlist.
-
----
-
-## Useful Keybinds (coming soon)
-
-Key | Description
-:---|:----------
-J   | Seek +10 seconds
-K   | Toggle playback (pause/resume)
-L   | Seek -10 seconds

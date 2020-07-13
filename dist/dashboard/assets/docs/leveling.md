@@ -23,13 +23,13 @@ There's no secondary ranking system (tiebreakers) - when two users have the same
 
 ---
 
-### Ignored Roles
-Roles that are exempt from earning XP.
-For example, if you had the `@NoXP` role and the role was an ignored role, you would not be able to earn XP. 
+### Ignored Role Names
+Names of roles that are exempt from earning XP.
+For example, if you had the role with name `NoXP` and the role was an ignored role, you would not be able to earn XP. 
 
-### Level Roles
+### Level Role Names
 Earn a specific role when reaching a level. 
-For example, if `Level 5` had a level role `@Bronze`, and you just reached level 5, you would receive that role.
+For example, if `Level 5` had a level role name of `Bronze`, and you just reached level 5, you would receive the role with that name.
 
 ### Max Messages Per Minute `3`
 How many messages, during the same minute, will earn XP.

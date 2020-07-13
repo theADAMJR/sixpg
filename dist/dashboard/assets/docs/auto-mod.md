@@ -23,6 +23,6 @@ Filter message content, based on specific conditions.
 | Bad Links          | [saved bad link address]                         | Message contains custom bad link
 | Bad Words          | [listed bad word]                                      | Any words equal custom bad word
 
-## Ignored Roles
-Roles that are not affected by auto-mod.
+## Ignored Role Names
+The names of roles that are not affected by auto-mod.
 A use case for this may be an Admin role, where Admins could `SPAM CAPS IN CHAT` and watch other members suffer trying to do the same thing.

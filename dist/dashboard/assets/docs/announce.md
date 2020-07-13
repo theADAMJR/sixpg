@@ -12,6 +12,6 @@ These events are Discord based and are not 3PG specific.
 Variable        | Description                           | Events
 :---------------|:--------------------------------------|:-----------------------------|
 [GUILD]         | Guild name                            | All        
-[MEMBER_COUNT]  | Number of members in guild            | All
+[MEMBER_COUNT]  | Number of members in bot            | All
 [MESSAGE]       | Message content                       | MessageDeleted
 [USER]          | User mention                          | All
