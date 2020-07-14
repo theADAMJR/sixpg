@@ -30,6 +30,7 @@ Announce, Auto-mod, General, Leveling, Music, and more!
     "lavalink": {
         "password": "youshallnotpass"
     },
+    "encryptionKey: "make this something secure",
     "mongoURL": "mongodb://localhost/2PG",
     "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"]
 }
