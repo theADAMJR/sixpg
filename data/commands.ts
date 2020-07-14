@@ -10,7 +10,7 @@ export default class Commands extends DBWrapper<Command, CommandDocument> {
 
     protected async create(command: Command) {        
         return SavedCommand.updateOne({ name: command.name },
-            { ...command, usage: command.usage ?? this.getCommandUsage(command) },
+            { ...command, usage: command.usage ?? this.getCommandUsage(command) } as any,
             { upsert: true });
     }
 

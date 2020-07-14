@@ -391,3 +391,11 @@ Caused by: java.lang.NullPointerException: null
 2020-07-14 11:00:16.350  INFO 44572 --- [XNIO-1 I/O-14] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2020-07-14 11:00:21.549  INFO 44572 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50282
 2020-07-14 11:00:21.559  INFO 44572 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50282
+2020-07-14 12:54:53.715  INFO 44572 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50282 -- CloseStatus[code=1006, reason=]
+2020-07-14 12:54:53.720  INFO 44572 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-14 12:54:59.096  INFO 44572 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52155
+2020-07-14 12:54:59.114  INFO 44572 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52155
+2020-07-14 12:56:24.557  INFO 44572 --- [XNIO-1 I/O-15] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52155 -- CloseStatus[code=1006, reason=]
+2020-07-14 12:56:24.558  INFO 44572 --- [XNIO-1 I/O-15] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-07-14 12:56:29.764  INFO 44572 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52172
+2020-07-14 12:56:29.780  INFO 44572 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52172
