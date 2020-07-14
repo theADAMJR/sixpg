@@ -1,0 +1,52 @@
+{
+  "name": "2pg",
+  "version": "1.0.0",
+  "description": "Good bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "ts-mocha tests/**/*.tests.ts",
+    "test:u": "ts-mocha tests/unit/**/*.tests.ts",
+    "test:i": "ts-mocha tests/integration/**/*.tests.ts",
+    "start": "npm run start:prod",
+    "start:prod": "npm run start:music | npm run start:bot",
+    "start:dev": "npm run start:music | nodemon --exec ts-node bot.ts --watch * -e ts,json",
+    "start:bot": "ts-node bot.ts",
+    "start:music": "cd dist/lavalink && java -jar Lavalink.jar"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "keywords": [],
+  "author": "ADAMJR#0001",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "canvas": "^2.6.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "disco-oauth": "^4.2.1",
+    "discord.js": "^12.0.2",
+    "erela.js": "^1.1.7",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.3",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.2.10",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/mocha": "^7.0.2",
+    "@types/mongoose": "^5.7.3",
+    "@types/supertest": "^2.0.8",
+    "@types/ws": "^7.2.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^7.1.2",
+    "supertest": "^4.0.2",
+    "ts-mocha": "^6.0.0",
+    "ts-mockito": "^2.5.0"
+  }
+}

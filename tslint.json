@@ -1,0 +1,17 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "max-line-length": {
+            "options": [80]
+        },
+        "new-parens": true,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conditional-assignment": true,
+        "no-consecutive-blank-lines": false
+    },
+    "rulesDirectory": []
+}
