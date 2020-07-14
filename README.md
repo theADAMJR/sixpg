@@ -16,7 +16,6 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 {
     "bot": {
         "secret": "oauthSecret",
-        "activity": "6PG.xyz",
         "id": "discordBotId"
     },
     "api": {
