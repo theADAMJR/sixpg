@@ -41,8 +41,12 @@ router.post('/', async (req, res) => {
         const bot = await events.startBot(req.body.token);
 
         const savedBot = await bots.get(bot.user);
-        savedBot.id = bot.user.id;
-        savedBot.ownerId = authUser.id;
+
+        const exists = await bots.exists(bot.user);
+        if (!exists) {
+            savedBot.id = bot.user.id;
+            savedBot.ownerId = authUser.id;
+        }
         savedBot.tokenHash = AES.encrypt(req.body.token, config.encryptionKey);
         await savedBot.save();
 
@@ -55,13 +59,9 @@ router.patch('/:id', async (req, res) => {
         const id = req.params.id;
         
         try {
-            GlobalBots.remove(id);
 
             const bot = await events.startBot(req.body.token);
 
-            const savedBot = await bots.get({ id });
-            savedBot.tokenHash = AES.encrypt(req.body.token, config.encryptionKey);
-            await savedBot.save();
     
             res.json(bot.user);
         } catch (error) {
