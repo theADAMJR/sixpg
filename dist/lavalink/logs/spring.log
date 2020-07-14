@@ -399,3 +399,5 @@ Caused by: java.lang.NullPointerException: null
 2020-07-14 12:56:24.558  INFO 44572 --- [XNIO-1 I/O-15] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2020-07-14 12:56:29.764  INFO 44572 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52172
 2020-07-14 12:56:29.780  INFO 44572 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52172
+2020-07-14 13:08:47.233  INFO 44572 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52172 -- CloseStatus[code=1006, reason=]
+2020-07-14 13:08:47.233  INFO 44572 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
