@@ -1,10 +1,18 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES5",
-    "module": "CommonJS",
-    "strict": false,
+    "downlevelIteration": true,
     "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "lib": ["es2020"],
+    "module": "CommonJS",
+    "noImplicitAny": false,
+    "outDir": "lib",
     "resolveJsonModule": true,
-    "downlevelIteration": true
-  }
+    "strict": true,
+    "strictNullChecks": false,
+    "target": "ES5",
+    "watch": true
+  },
+  "include": ["src", "config.json"]
 }

@@ -1,8 +1,8 @@
 import { use, should, expect } from 'chai';
 import { mock } from 'ts-mockito';
-import WarningsCommand from '../../../commands/warnings';
+import WarningsCommand from '../../../src/commands/warnings';
 import chaiAsPromised from 'chai-as-promised';
-import { CommandContext } from '../../../commands/Command';
+import { CommandContext } from '../../../src/commands/Command';
 
 use(chaiAsPromised);
 should();

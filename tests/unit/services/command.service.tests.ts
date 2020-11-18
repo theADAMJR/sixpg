@@ -1,15 +1,15 @@
 import { expect, should, use, assert } from 'chai';
-import CommandService from '../../../services/command.service';
-import Bots from '../../../data/bots';
-import AutoMod from '../../../modules/auto-mod/auto-mod';
-import Leveling from '../../../modules/xp/leveling';
+import CommandService from '../../../src/services/command.service';
+import Bots from '../../../src/data/bots';
+import AutoMod from '../../../src/modules/auto-mod/auto-mod';
+import Leveling from '../../../src/modules/xp/leveling';
 import { mock } from 'ts-mockito';
 import chaiAsPromised from 'chai-as-promised';
-import Deps from '../../../utils/deps';
-import Logs from '../../../data/logs';
-import Commands from '../../../data/commands';
-import { SavedBot } from '../../../data/models/bot'
-import Cooldowns from '../../../services/cooldowns';
+import Deps from '../../../src/utils/deps';
+import Logs from '../../../src/data/logs';
+import Commands from '../../../src/data/commands';
+import { SavedBot } from '../../../src/data/models/bot'
+import Cooldowns from '../../../src/services/cooldowns';
 
 use(chaiAsPromised);
 

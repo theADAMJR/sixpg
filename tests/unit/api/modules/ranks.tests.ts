@@ -1,4 +1,4 @@
-import Ranks from "../../../../api/modules/ranks";
+import Ranks from "../../../../src/api/modules/ranks";
 import { expect } from "chai";
 
 describe('api/ranks', () => {

@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { app } from '../../../../api/server';
+import { app } from '../../../../src/api/server';
 import config from '../../../../config.json';
-import Deps from '../../../../utils/deps';
+import Deps from '../../../../src/utils/deps';
 
 describe('routes/api/guilds', () => {
     let url: string;

@@ -1,10 +1,10 @@
 import { use, should } from 'chai';
-import { SavedBot, EventType } from '../../../../data/models/bot';
+import { SavedBot, EventType } from '../../../../src/data/models/bot';
 import { mock } from 'ts-mockito';
 import { TextChannel, GuildMember } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
-import MemberJoinHandler from '../../../../services/handlers/member-join.handler'
-import Bots from '../../../../data/bots';
+import MemberJoinHandler from '../../../../src/services/handlers/member-join.handler'
+import Bots from '../../../../src/data/bots';
 
 use(chaiAsPromised);
 should();

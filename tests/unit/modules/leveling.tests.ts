@@ -1,7 +1,7 @@
 import { should, use, expect } from 'chai';
 import { mock } from 'ts-mockito';
-import Leveling from '../../../modules/xp/leveling';
-import { BotDocument } from '../../../data/models/bot';
+import Leveling from '../../../src/modules/xp/leveling';
+import { BotDocument } from '../../../src/data/models/bot';
 import chaiAsPromised from 'chai-as-promised';
 
 use(chaiAsPromised);

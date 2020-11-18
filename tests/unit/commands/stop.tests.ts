@@ -1,6 +1,6 @@
 import { use, should, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import StopCommand from '../../../commands/skip';
+import StopCommand from '../../../src/commands/skip';
 
 use(chaiAsPromised);
 should();

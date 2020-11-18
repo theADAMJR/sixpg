@@ -1,6 +1,6 @@
 import request from 'supertest';
-import { app } from '../../../../api/server';
-import Deps from '../../../../utils/deps';
+import { app } from '../../../../src/api/server';
+import Deps from '../../../../src/utils/deps';
 
 describe('routes/api', () => {
     beforeEach(() => Deps.testing = true);

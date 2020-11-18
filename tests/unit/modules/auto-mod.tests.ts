@@ -1,11 +1,11 @@
 import { use, should, expect } from 'chai';
-import { BotDocument, MessageFilter } from '../../../data/models/bot';
+import { BotDocument, MessageFilter } from '../../../src/data/models/bot';
 import { mock } from 'ts-mockito';
-import AutoMod from '../../../modules/auto-mod/auto-mod';
+import AutoMod from '../../../src/modules/auto-mod/auto-mod';
 import { Message } from 'discord.js';
 import chaiAsPromised from 'chai-as-promised';
-import {  SavedMember } from '../../../data/models/member';
-import Members from '../../../data/members';
+import {  SavedMember } from '../../../src/data/models/member';
+import Members from '../../../src/data/members';
 
 describe('modules/auto-mod', () => {
     let autoMod: AutoMod;

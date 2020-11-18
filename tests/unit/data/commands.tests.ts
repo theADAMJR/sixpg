@@ -1,4 +1,4 @@
-import Commands from '../../../data/commands';
+import Commands from '../../../src/data/commands';
 import { expect } from 'chai';
 
 describe('data/commands', () => {

@@ -1,4 +1,4 @@
-import EventVariables from "../../../../modules/announce/event-variables";
+import EventVariables from "../../../../src/modules/announce/event-variables";
 import { expect } from "chai";
 
 describe('modules/announce/event-variables', () => {

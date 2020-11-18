@@ -1,4 +1,4 @@
-import CommandService from '../../../services/command.service';
+import CommandService from '../../../src/services/command.service';
 import config from '../../../config.json';
 
 describe('command.service', () => {

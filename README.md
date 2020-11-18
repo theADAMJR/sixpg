@@ -4,8 +4,6 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 
 **Dashboard**: https://github.com/theADAMJR/6PG-Dashboard
 
-⭐ Please star this if you find it useful. This will support the project, and help improve 2PG.
-
 ## Installation
 1) Fork/download this respository
 2) `npm i` to install packages
@@ -14,24 +12,17 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 `config.json` example:
 ```
 {
-    "bot": {
-        "secret": "oauthSecret",
-        "id": "discordBotId"
-    },
-    "api": {
-        "port": "3000",
-        "url": "https://2pg.xyz/api"
-    },
-    "dashboard": {
-        "url": "https://2pg.xyz",
-        "distPath": "/dist/dashboard"
-    },
-    "lavalink": {
-        "password": "youshallnotpass"
-    },
-    "encryptionKey: "make this something secure",
-    "mongoURL": "mongodb://localhost/2PG",
-    "modules": ["announce", "autoMod", "commands", "general", "music", "xp", "settings"]
+  "bot": {
+    "secret": "<your_bot_secret>",
+    "id": "731513625335824425"
+  },
+  "api": {
+    "port": "3000",
+    "url": "http://localhost:3000/api"
+  },
+  "dashboardURL": "http://localhost:4200",
+  "encryptionKey": "minecraft is good",
+  "mongoURI": "mongodb://localhost/6PG"
 }
 ```
 

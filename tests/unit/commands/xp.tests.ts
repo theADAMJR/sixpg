@@ -1,4 +1,4 @@
-import XPCommand from '../../../commands/xp';
+import XPCommand from '../../../src/commands/xp';
 import { expect } from 'chai';
 
 describe.skip('commands/xp', () => {

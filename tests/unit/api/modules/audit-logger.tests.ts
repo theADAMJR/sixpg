@@ -1,4 +1,4 @@
-import AuditLogger from "../../../../api/modules/audit-logger";
+import AuditLogger from "../../../../src/api/modules/audit-logger";
 import { expect } from "chai";
 
 describe('api/modules/audit-logger', () => {

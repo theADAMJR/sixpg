@@ -1,8 +1,8 @@
 import { use, should, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import ResumeCommand from '../../../commands/resume';
+import ResumeCommand from '../../../src/commands/resume';
 import { mock } from 'ts-mockito';
-import { Player } from 'erela.js';
+import { Player } from '../../../src/modules/music/node_modules/erela.js.js';
 
 use(chaiAsPromised);
 should();
