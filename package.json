@@ -9,9 +9,8 @@
     "test:i": "ts-mocha tests/integration/**/*.tests.ts",
     "start": "npm run start:prod",
     "start:prod": "npm run start:music | npm run start:bot",
-    "start:dev": "npm run start:music | nodemon --exec ts-node bot.ts --watch * -e ts,json",
-    "start:bot": "ts-node bot.ts",
-    "start:music": "cd dist/lavalink && java -jar Lavalink.jar"
+    "start:dev": "npm run start:music | ts-node-dev src/bot.ts",
+    "start:bot": "ts-node src/bot.ts"
   },
   "engines": {
     "node": "12.x"
