@@ -7,12 +7,13 @@ import { resolve } from 'path';
 
 import { router as apiRoutes } from './routes/api-routes';
 import Log from '../utils/log';
+import rateLimiter from './modules/rate-limiter';
 
 export const app = express();
 export const AuthClient = new OAuthClient({
-    id: config.bot.id,
-    secret: config.bot.secret,
-    redirectURI: `${config.api.url}/auth`,
+    id: config.app.id,
+    secret: config.app.secret,
+    redirectURI: `${config.dashboardURL}/auth`,
     scopes: ['identify', 'guilds']
 });
 
@@ -20,6 +21,7 @@ export default class API {
     constructor() {
         app.use(cors());
         app.use(bodyParser.json());
+        app.use(rateLimiter);
         app.use('/api', apiRoutes);
         
         const dashboardPath = resolve('./dist/dashboard')

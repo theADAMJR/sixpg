@@ -116,8 +116,9 @@ async function getMusic(botId: string, guildId: string, key: any) {
     const { id } = await AuthClient.getUser(key);
 
     const user = bot.users.cache.get(id);
-    const guild = bot.guilds.cache.get(guildId);
-    const member = guild?.members.cache.get(id);
+    const member = bot.guilds.cache
+        .get(guildId)?.members.cache
+        .get(id);
     if (!member)
         throw new TypeError('Member not found.');
 

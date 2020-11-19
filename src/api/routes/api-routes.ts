@@ -11,36 +11,40 @@ import { resolve } from 'path';
 
 const appendFile = promisify(fs.appendFile);
 const dashboardLogsPath = resolve('./logs/dashboard');
+const sessionDate = new Date()
+  .toISOString()
+  .replace(/:/g, '');
 
 export const router = Router();
 
 let commands: CommandDocument[] = [];
-SavedCommand.find().then(cmds => commands = cmds);
+SavedCommand
+  .find()
+  .then(cmds => commands = cmds);
 
 router.get('/', (req, res) => res.json({ hello: '' }));
 
 router.get('/commands', async (req, res) => res.json(commands));
 
 router.get('/auth', async (req, res) => {
-    try {
-        const key = await AuthClient.getAccess(req.query.code.toString());
-        res.json(key);
-    } catch (error) { sendError(res, 400, error); }
+  try {
+    const key = await AuthClient.getAccess(req.query.code.toString());
+    res.json(key);
+  } catch (error) { sendError(res, 400, error); }
 });
 
 router.post('/error', async (req, res) => {
   try {
     const { message } = req.body;
 
-    const date = new Date().toDateString().replace(/ /g, '-');
-    await appendFile(`${dashboardLogsPath}/${date}.txt`, message);
+    await appendFile(`${dashboardLogsPath}/${sessionDate}.log`, message + '\n');
   
     res.json({ code: 200, message: 'Success!' });
   } catch (error) { sendError(res, 400, error); }
 });
 
 router.get('/invite', (req, res) => 
-    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.bot.id}&redirect_uri=${config.dashboardURL}/dashboard&permissions=8&scope=bot`));
+    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.app.id}&redirect_uri=${config.dashboardURL}/dashboard&permissions=8&scope=bot`));
 
 router.get('/login', (req, res) => res.redirect(AuthClient.authCodeLink.url));
 

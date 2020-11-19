@@ -15,11 +15,11 @@ export default class AutoMod {
     constructor(private members = Deps.get<Members>(Members)) {}
 
     async init() {
-        const directory = './modules/auto-mod/validators';
+        const directory = `${__dirname}/validators`;
         const files = await readdir(directory);
 
         for (const file of files) {
-            const Validator = require(`./validators/${file}`).default;
+            const { default: Validator } = await import(`./validators/${file}`);
             if (!Validator) continue;
 
             this.validators.push(new Validator());

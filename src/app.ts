@@ -19,3 +19,5 @@ mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, 
     useFindAndModify: false 
 });
+
+import './keep-alive';

@@ -12,7 +12,7 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 `config.json` example:
 ```
 {
-  "bot": {
+  "app": {
     "secret": "<your_bot_secret>",
     "id": "731513625335824425"
   },

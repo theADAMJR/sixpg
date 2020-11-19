@@ -9,6 +9,7 @@ import { BotDocument } from '../data/models/bot';
 import Cooldowns from './cooldowns';
 import Validators from './validators';
 import { promisify } from 'util';
+import { resolve } from 'path';
 
 const readdir = promisify(fs.readdir);
 
@@ -22,11 +23,11 @@ export default class CommandService {
         private savedCommands = Deps.get<Commands>(Commands)) {}
 
     async init() {
-        const directory = './commands';
+        const directory = resolve(`./src/commands`);
         const files = await readdir(directory);
         
         for (const file of files) {            
-            const Command = require(`../commands/${file}`).default;
+            const { default: Command } = await import(`../commands/${file}`);
             if (!Command) continue;
             
             const command = new Command();

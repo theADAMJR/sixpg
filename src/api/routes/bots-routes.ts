@@ -9,7 +9,7 @@ import Users from '../../data/users';
 import Bots from '../../data/bots';
 import Logs from '../../data/logs';
 import AuditLogger from '../modules/audit-logger';
-import { User, Client } from 'discord.js';
+import { User } from 'discord.js';
 import Leveling from '../../modules/xp/leveling';
 import { getUser } from './user-routes';
 import { sendError } from './api-routes';

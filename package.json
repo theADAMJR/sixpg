@@ -7,10 +7,8 @@
     "test": "ts-mocha tests/**/*.tests.ts",
     "test:u": "ts-mocha tests/unit/**/*.tests.ts",
     "test:i": "ts-mocha tests/integration/**/*.tests.ts",
-    "start": "npm run start:prod",
-    "start:prod": "npm run start:music | npm run start:bot",
-    "start:dev": "npm run start:music | ts-node-dev src/bot.ts",
-    "start:bot": "ts-node src/bot.ts"
+    "start": "ts-node src/app.ts",
+    "dev": "ts-node-dev src/app.ts"
   },
   "engines": {
     "node": "12.x"
@@ -20,16 +18,18 @@
   "license": "ISC",
   "dependencies": {
     "@2pg/music": "^1.1.2",
-    "@2pg/oauth": "^1.0.5",
-    "axios": "^0.19.2",
+    "@2pg/oauth": "^1.0.6",
     "body-parser": "^1.19.0",
     "canvas": "^2.6.1",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "discord.js": "^12.0.2",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3",
     "mongoose": "^5.9.3",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.3",
+    "rate-limit-mongo": "^2.3.0",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
@@ -48,6 +48,7 @@
     "mocha": "^7.1.2",
     "supertest": "^4.0.2",
     "ts-mocha": "^6.0.0",
-    "ts-mockito": "^2.5.0"
+    "ts-mockito": "^2.5.0",
+    "ts-node-dev": "^1.0.0"
   }
 }
