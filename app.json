@@ -8,16 +8,12 @@
   ],
   "repository": "https://github.com/theADAMJR/6PG",
   "env": {
-    "API_URL": {
+    "CLIENT_ID": {
       "description": "Client ID from https://discord.com/developers.",    
       "value": ""
     },
-    "ID": {
-      "description": "Client ID from https://discord.com/developers.",    
-      "value": ""
-    },
-    "SECRET": {
-      "description": "Client secret from https://discord.com/developers.",    
+    "CLIENT_SECRET": {
+      "description": "Client Secret from https://discord.com/developers.",    
       "value": ""
     },
     "ENCRYPTION_KEY": {
