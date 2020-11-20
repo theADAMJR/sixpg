@@ -1,6 +1,5 @@
 import request from 'supertest';
 import { app } from '../../../../src/api/server';
-import config from '../../../../config.json';
 import Deps from '../../../../src/utils/deps';
 
 describe('routes/api/guilds', () => {

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import config from '../../../config.json';
 import { SavedMember } from '../../data/models/member';
 import { AuthClient } from '../server';
 import Deps from '../../utils/deps';
@@ -47,7 +46,7 @@ router.post('/', async (req, res) => {
             savedBot.id = bot.user.id;
             savedBot.ownerId = authUser.id;
         }
-        savedBot.tokenHash = AES.encrypt(req.body.token, config.encryptionKey) as any;
+        savedBot.tokenHash = AES.encrypt(req.body.token, process.env.ENCRYPTION_KEY) as any;
         await savedBot.save();
 
         res.json(savedBot);

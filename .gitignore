@@ -1,4 +1,4 @@
-config.json
+.env
 
 logs/dashboard/*
 lib/

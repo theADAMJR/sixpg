@@ -1,6 +1,5 @@
 import { Command, CommandContext, Permission } from './command';
 import CommandUtils from '../utils/command-utils';
-import config from '../../config.json';
 
 export default class XPCommand implements Command {
     name = 'xp';
@@ -16,7 +15,7 @@ export default class XPCommand implements Command {
         if (target.user.bot)
             throw new Error(`Bot users cannot earn XP`);
 
-        const xpCardURL = `${config.api.url}/bots/${ctx.bot.user.id}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
+        const xpCardURL = `${process.env.API_URL}/bots/${ctx.bot.user.id}/guilds/${ctx.guild.id}/members/${target.id}/xp-card`;             
         return ctx.channel.send({ files: [{
             attachment: xpCardURL,
             name: 'xp-card.png'

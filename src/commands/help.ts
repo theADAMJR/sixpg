@@ -1,5 +1,4 @@
 import { Command, CommandContext, Permission } from './command';
-import config from '../../config.json';
 
 export default class HelpCommand implements Command {
     name = 'help';
@@ -9,6 +8,6 @@ export default class HelpCommand implements Command {
     module = 'General';
     
     execute = async(ctx: CommandContext) => {
-        await ctx.channel.send(`${config.dashboardURL}/commands`);
+        await ctx.channel.send(`${process.env.DASHBOARD_URL}/commands`);
     }
 }

@@ -14,5 +14,5 @@
     "target": "ES5",
     "watch": true
   },
-  "include": ["src", "config.json"]
+  "include": ["src"]
 }

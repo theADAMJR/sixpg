@@ -4,7 +4,6 @@ import { SavedMember } from '../../data/models/member';
 import { AuthClient } from '../server';
 import Deps from '../../utils/deps';
 import Users from '../../data/users';
-import config from '../../../config.json';
 import { sendError } from './api-routes';
 
 export const router = Router();

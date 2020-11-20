@@ -4,25 +4,21 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 
 **Dashboard**: https://github.com/theADAMJR/6PG-Dashboard
 
-## Installation
-1) Fork/download this repository
-2) `npm i` to install packages
-3) Setup config.json
+### Heroku
+[Deploy to Heroku]
 
-### Config
-`config.json` example:
-```
-{
-  "app": {
-    "id": "731513625335824425",
-    "secret": "<your_bot_secret>"
-  },
-  "api": {
-    "port": "3000",
-    "url": "http://localhost:3000/api"
-  },
-  "dashboardURL": "http://localhost:3000",
-  "encryptionKey": "something very secure",
-  "mongoURI": "mongodb://localhost/6PG"
-}
+---
+
+### Other Setup
+This is used if you are **not using Heroku**.
+
+Make a `.env` file for storing secrets. 
+```js
+API_URL="http://localhost:3000/api"
+CLIENT_ID=533947001578979328
+CLIENT_SECRET="fnBIV8t8Pj7JFNNDipKeRL8xhJT1sl8m"
+DASHBOARD_URL="http://localhost:3000"
+ENCRYPTION_KEY="minecraft is good"
+MONGO_URI="mongodb://localhost/6PG"
+PORT=3000
 ```

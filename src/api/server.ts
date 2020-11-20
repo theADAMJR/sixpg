@@ -1,5 +1,4 @@
 import express from 'express';
-import config from '../../config.json';
 import cors from 'cors';
 import OAuthClient from '@2pg/oauth';
 import bodyParser from 'body-parser';
@@ -11,9 +10,9 @@ import rateLimiter from './modules/rate-limiter';
 
 export const app = express();
 export const AuthClient = new OAuthClient({
-    id: config.app.id,
-    secret: config.app.secret,
-    redirectURI: `${config.dashboardURL}/auth`,
+    id: process.env.CLIENT_ID,
+    secret: process.env.CLIENT_SECRET,
+    redirectURI: `${process.env.DASHBOARD_URL}/auth`,
     scopes: ['identify', 'guilds']
 });
 
@@ -33,5 +32,5 @@ export default class API {
     }
 }
 
-const port = config.api.port || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => Log.info(`API is live on port ${port}`));

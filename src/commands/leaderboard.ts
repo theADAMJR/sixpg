@@ -1,5 +1,4 @@
 import { Command, CommandContext, Permission } from './command';
-import config from '../../config.json';
 
 export default class LeaderboardCommand implements Command {
     name = 'leaderboard';
@@ -9,6 +8,6 @@ export default class LeaderboardCommand implements Command {
     module = 'Leveling';
     
     execute = async(ctx: CommandContext) => {
-        ctx.channel.send(`${config.dashboardURL}/bots/${ctx.bot.user.id}/leaderboard/${ctx.guild.id}`);
+        ctx.channel.send(`${process.env.DASHBOARD_URL}/bots/${ctx.bot.user.id}/leaderboard/${ctx.guild.id}`);
     }
 }

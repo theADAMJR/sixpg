@@ -2,8 +2,6 @@ import Log from '../../utils/log';
 import EventHandler from './event-handler';
 import Deps from '../../utils/deps';
 import Music from '../../modules/music/music';
-import CommandService from '../command.service';
-import config from '../../../config.json';
 import { Client } from 'discord.js';
 import GlobalBots from '../../global-bots';
 
@@ -20,7 +18,7 @@ export default class ReadyHandler implements EventHandler {
         this.startedBots.push(bot.user.id);
 
         this.music.initialize();
-        bot.user?.setActivity(config.dashboardURL);
+        bot.user?.setActivity(process.env.DASHBOARD_URL);
         
         GlobalBots.add(bot);
     }

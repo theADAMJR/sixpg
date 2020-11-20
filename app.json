@@ -1,0 +1,37 @@
+{
+  "name": "6PG - Discord Bot Maker",
+  "description": "Host a bot without code, with one simple step.",
+  "keywords": [
+    "bot maker",
+    "discord bot maker",
+    "6pg"
+  ],
+  "repository": "https://github.com/theADAMJR/6PG",
+  "env": {
+    "API_URL": {
+      "description": "Client ID from https://discord.com/developers.",    
+      "value": ""
+    },
+    "ID": {
+      "description": "Client ID from https://discord.com/developers.",    
+      "value": ""
+    },
+    "SECRET": {
+      "description": "Client secret from https://discord.com/developers.",    
+      "value": ""
+    },
+    "ENCRYPTION_KEY": {
+      "description": "Key for encrypting and decrypting bot tokens.",    
+      "generator": "secret"
+    },
+    "MONGO_URI": {
+      "description": "The MongoDB URI to your database [mongodb://ip:port/db-name].",
+      "value": "mongodb://localhost/6PG"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

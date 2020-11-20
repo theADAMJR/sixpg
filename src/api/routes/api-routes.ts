@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { SavedCommand, CommandDocument } from '../../data/models/command';
 import { AuthClient } from '../server';
-import * as config from '../../../config.json';
 import fs from 'fs';
 import { router as botsRoutes } from './bots-routes';
 import { router as musicRoutes } from './music-routes';
@@ -44,7 +43,7 @@ router.post('/error', async (req, res) => {
 });
 
 router.get('/invite', (req, res) => 
-    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${config.app.id}&redirect_uri=${config.dashboardURL}/dashboard&permissions=8&scope=bot`));
+    res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.DASHBOARD_URL}/dashboard&permissions=8&scope=bot`));
 
 router.get('/login', (req, res) => res.redirect(AuthClient.authCodeLink.url));
 

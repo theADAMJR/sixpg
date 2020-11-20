@@ -8,7 +8,6 @@ import MessageHandler from './handlers/message.handler';
 import Deps from '../utils/deps';
 import Bots from '../data/bots';
 import CryptoJS, { AES } from 'crypto-js';
-import config from '../../config.json';
 import Log from '../utils/log';
 import { Client } from 'discord.js';
 import { SavedBot } from '../data/models/bot';
@@ -31,7 +30,7 @@ export default class EventsService {
         let loggedInCount = 0;
         for (const { tokenHash } of savedBots) {
             const token = AES
-                .decrypt(tokenHash || '', config.encryptionKey)
+                .decrypt(tokenHash || '', process.env.ENCRYPTION_KEY)
                 .toString(CryptoJS.enc.Utf8);
             const isValidToken = /^[A-Za-z\d]{24}\.[A-Za-z\d-]{6}\.[A-Za-z\d-_]{27}$/.test(token);
             if (!isValidToken) continue;

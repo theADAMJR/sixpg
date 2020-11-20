@@ -1,5 +1,4 @@
 import { loadImage, Canvas } from 'canvas';
-import config from '../../../../config.json';
 
 export default class ImageGenerator 
 {
