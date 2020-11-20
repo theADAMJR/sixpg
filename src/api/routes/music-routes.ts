@@ -12,7 +12,7 @@ const music = Deps.get<Music>(Music),
 
 router.get('/pause', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         await player.pause();
 
         res.status(200).send({ success: true });
@@ -21,7 +21,7 @@ router.get('/pause', async (req, res) => {
 
 router.get('/resume', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         await player.resume();
 
         res.status(200).send({ success: true });
@@ -30,7 +30,7 @@ router.get('/resume', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         for (const track of player.q.items)
             track['durationString'] = `${track.duration}`;
@@ -41,7 +41,7 @@ router.get('/list', async (req, res) => {
 
 router.get('/skip', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         await player.skip();
 
         res.status(200).send({ success: true });
@@ -51,7 +51,7 @@ router.get('/skip', async (req, res) => {
 // FIXME: make work
 // router.get('/seek/:position', async (req, res) => {
 //     try {
-//         const { player } = await getMusic(req.params.id, req.query.key);
+//         const { player } = await getMusic(req.params.guildId, req.query.key);
 
 //         player.seek(+req.params.position * 1000);
 
@@ -61,7 +61,7 @@ router.get('/skip', async (req, res) => {
 
 router.get('/remove/:number', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         
         const track = player.q.items.splice(+req.params.number - 1);
 
@@ -71,7 +71,7 @@ router.get('/remove/:number', async (req, res) => {
 
 router.get('/play', async (req, res) => {
     try {
-        const { player, hasPremium } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player, hasPremium } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         const track = await player.play(req.query.query?.toString());
         
         const maxSize = (hasPremium) ? 10 : 5;
@@ -84,8 +84,7 @@ router.get('/play', async (req, res) => {
 
 router.get('/set-volume/:value', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
-
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         await player.setVolume(+req.params.value / 100);
 
         res.status(200).send({ success: true });
@@ -94,7 +93,7 @@ router.get('/set-volume/:value', async (req, res) => {
 
 router.get('/shuffle', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
 
         player.q.shuffle();
 
@@ -104,7 +103,7 @@ router.get('/shuffle', async (req, res) => {
 
 router.get('/stop', async (req, res) => {
     try {
-        const { player } = await getMusic(req.params.botId, req.params.id, req.query.key);
+        const { player } = await getMusic(req.params.botId, req.params.guildId, req.query.key);
         await player.stop();
 
         res.status(200).send({ success: true });

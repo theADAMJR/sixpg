@@ -1,4 +1,5 @@
 config.json
 
+logs/dashboard/*
 lib/
 node_modules/

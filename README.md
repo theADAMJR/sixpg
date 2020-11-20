@@ -7,14 +7,15 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 ## Installation
 1) Fork/download this repository
 2) `npm i` to install packages
+3) Setup config.json
 
 ### Config
 `config.json` example:
 ```
 {
   "app": {
-    "secret": "<your_bot_secret>",
-    "id": "731513625335824425"
+    "id": "731513625335824425",
+    "secret": "<your_bot_secret>"
   },
   "api": {
     "port": "3000",
@@ -25,23 +26,3 @@ Announce, Auto-mod, General, Leveling, Music, and more!
   "mongoURI": "mongodb://localhost/6PG"
 }
 ```
-
-## Hosting
-a) `npm start` to start the bot, and Lavalink
-b) `npm run start:dev` to start the bot, in development mode, and Lavalink
-
-### Database
-- Remember to have a local MongoDB database running `mongod`
-
-### Music
-- Have Lavalink.jar running - `java -jar Lavalink.jar` (done with npm start)
-
-[Lavalink Setup](https://github.com/Frederikam/Lavalink#server-configuration)
-
-## Troubleshooting
-- Open an issue, if you find any bugs or have any suggestions etc.
-
-### Common Errors
-`UnhandledPromiseRejectionWarning: MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017`
-
-**Possible Cause**: No MongoDB server instance running, start with `mongod`
