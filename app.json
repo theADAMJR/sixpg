@@ -16,13 +16,17 @@
       "description": "Client Secret from https://discord.com/developers.",    
       "value": ""
     },
+    "DASHBOARD_URL": {
+      "description": "The Website URL [https://<heroku_app_name>/herokuapp.com]",    
+      "value": "https://<heroku_app_name>/herokuapp.com"
+    },
     "ENCRYPTION_KEY": {
       "description": "Key for encrypting and decrypting bot tokens.",    
       "generator": "secret"
     },
     "MONGO_URI": {
-      "description": "The MongoDB URI to your database [mongodb://ip:port/db-name].",
-      "value": "mongodb://localhost/6PG"
+      "description": "The MongoDB URI to your database [i.e. from MongoDB Atlas].",
+      "value": "mongodb+srv://<username>:<password>@<hostname>/6PG?retryWrites=true&w=majority"
     }
   },
   "buildpacks": [
