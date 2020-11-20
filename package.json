@@ -11,7 +11,7 @@
     "dev": "ts-node-dev src/app.ts"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.0.x"
   },
   "keywords": [],
   "author": "ADAMJR#0001",
