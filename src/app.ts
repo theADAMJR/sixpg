@@ -14,7 +14,7 @@ Deps.get<EventsService>(EventsService).init();
 Deps.get<CommandService>(CommandService).init();
 Deps.get<AutoMod>(AutoMod).init();
 
-mongoose.connect(config.mongoURI, { 
+mongoose.connect(process.env.MONGODB_URI || config.mongoURI, { 
     useUnifiedTopology: true, 
     useNewUrlParser: true, 
     useFindAndModify: false 
