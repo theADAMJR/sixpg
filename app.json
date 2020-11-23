@@ -8,6 +8,10 @@
   ],
   "repository": "https://github.com/theADAMJR/6PG",
   "env": {
+    "API_URL": {
+      "description": "Same as DASHBOARD_URL, but with /api at the end.",
+      "value": "https://<heroku_app_name>/herokuapp.com/api"
+    },
     "CLIENT_ID": {
       "description": "Client ID from https://discord.com/developers.",    
       "value": ""
@@ -27,6 +31,10 @@
     "MONGO_URI": {
       "description": "The MongoDB URI to your database [i.e. from MongoDB Atlas].",
       "value": "mongodb+srv://<username>:<password>@<hostname>/6PG?retryWrites=true&w=majority"
+    },
+    "PORT": {
+      "description": "Port for Heroku to use (default: 3000).",
+      "value": "3000"
     }
   },
   "buildpacks": [
