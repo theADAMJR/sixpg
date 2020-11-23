@@ -1,4 +1,4 @@
-.env
+# .env
 
 logs/dashboard/*
 lib/
