@@ -21,8 +21,8 @@
       "value": ""
     },
     "DASHBOARD_URL": {
-      "description": "The Website URL [https://<heroku_app_name>/herokuapp.com]",    
-      "value": "https://<heroku_app_name>/herokuapp.com"
+      "description": "The Website URL [https://<heroku_app_name>.herokuapp.com]",    
+      "value": "https://<heroku_app_name>.herokuapp.com"
     },
     "ENCRYPTION_KEY": {
       "description": "Key for encrypting and decrypting bot tokens.",    
