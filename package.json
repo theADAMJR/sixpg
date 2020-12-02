@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@2pg/music": "^1.1.2",
-    "@2pg/oauth": "^1.0.6",
+    "@2pg/oauth": "^1.0.7",
     "@types/axios": "^0.14.0",
     "@types/chai": "^4.2.10",
     "@types/chai-as-promised": "^7.1.2",
