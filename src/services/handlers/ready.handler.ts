@@ -18,7 +18,6 @@ export default class ReadyHandler implements EventHandler {
         this.startedBots.push(bot.user.id);
 
         this.music.initialize();
-        bot.user?.setActivity(process.env.DASHBOARD_URL);
         
         GlobalBots.add(bot);
     }
