@@ -9,5 +9,5 @@ Announce, Auto-mod, General, Leveling, Music, and more!
 
 ---
 
-### Setup
-https://help.codea.live/other-projects/6pg/setup
+### Guide + Setup
+https://help.codea.live/projects/6pg
