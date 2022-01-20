@@ -21,6 +21,3 @@ mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true, 
     useFindAndModify: false 
 });
-
-/** Used to prevent the app from sleeping (on Heroku, Glitch etc.) */
-import './keep-alive';
