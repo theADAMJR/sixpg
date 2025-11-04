@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import OAuthClient from '@2pg/oauth';
+import { Client as OAuthClient } from '@2pg/oauth';
 import bodyParser from 'body-parser';
 import { resolve } from 'path';
 

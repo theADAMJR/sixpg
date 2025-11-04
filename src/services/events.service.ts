@@ -47,7 +47,9 @@ export default class EventsService {
     }
 
     async startBot(token: string) {
-        const bot = new Client();
+        const bot = new Client({
+            intents: ['Guilds', 'GuildMessages', 'GuildMembers', 'GuildMessageReactions']
+        });
         const handler = this.handlers[0];
         bot.on('ready', () => handler.invoke(bot));
 

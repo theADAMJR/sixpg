@@ -5,7 +5,7 @@ import Music from '../modules/music/music';
 export default class SkipCommand implements Command {
     name = 'skip';
     summary = 'Skip current playing track';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     cooldown = 5;
     module = 'Music';
 

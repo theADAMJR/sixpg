@@ -39,9 +39,9 @@ export default class AutoMod {
                 validator?.validate(msg.content, savedBot);
             } catch (validation) {
                 if (savedBot.autoMod.autoDeleteMessages)
-                    await msg.delete({ reason: validation.message });
+                    await msg.delete();
                 if (savedBot.autoMod.autoWarnUsers && msg.member && msg.client.user)
-                    await this.warn(msg.member, msg.client.user, validation.message);
+                    await this.warn(msg.member, msg.client.user, (validation as ValidationError).message);
 
                 throw validation;
             }

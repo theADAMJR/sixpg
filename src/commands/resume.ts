@@ -5,7 +5,7 @@ import Music from '../modules/music/music';
 export default class ResumeCommand implements Command {
     name = 'resume';
     summary = 'Resume playing a track if paused.';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     module = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}

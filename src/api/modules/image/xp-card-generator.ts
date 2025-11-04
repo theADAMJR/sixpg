@@ -37,7 +37,7 @@ export class XPCardGenerator extends ImageGenerator {
                     .replace('size=64', 'size=256'));
         else
             await this.addAvatarToCanvas(ctx, 
-                (this.discordUser as User).displayAvatarURL({ format: 'png', size: 256 }));
+                (this.discordUser as User).displayAvatarURL({ size: 256 }));
 
         return canvas.toBuffer();
     }

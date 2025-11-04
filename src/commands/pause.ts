@@ -5,7 +5,7 @@ import Music from '../modules/music/music';
 export default class PauseCommand implements Command {
     name = 'pause';
     summary = 'Pause playback if playing.';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     module = 'Music';
 
     constructor(private music = Deps.get<Music>(Music)) {}

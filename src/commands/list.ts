@@ -7,7 +7,7 @@ export default class ListCommand implements Command {
     aliases = ['q'];
     name = 'list';
     summary = 'Display the current track list.';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     cooldown = 3;
     module = 'Music';
 

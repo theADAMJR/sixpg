@@ -59,9 +59,12 @@ export default class CommandService {
             this.cooldowns.add(msg.author, command);
 
             await this.logs.logCommand(msg, command);
-        } catch (error) {
-            const content = error?.message ?? 'Un unknown error occurred';          
-            msg.channel.send(':warning: ' + content);
+        } catch (error: any) {
+            const content = error instanceof Error ? error.message : 'An unknown error occurred';
+            // if channel is text channel:
+            if (msg.channel instanceof TextChannel) {
+                msg.channel.send(':warning: ' + content);
+            }
         }
     }
 

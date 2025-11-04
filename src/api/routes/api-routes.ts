@@ -29,7 +29,7 @@ router.get('/auth', async (req, res) => {
   try {
     const key = await AuthClient.getAccess(req.query.code.toString());
     res.json(key);
-  } catch (error) { sendError(res, 400, error); }
+  } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.post('/error', async (req, res) => {
@@ -39,7 +39,7 @@ router.post('/error', async (req, res) => {
     await appendFile(`${dashboardLogsPath}/${sessionDate}.log`, message + '\n');
   
     res.json({ code: 200, message: 'Success!' });
-  } catch (error) { sendError(res, 400, error); }
+  } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/invite', (req, res) => 
@@ -51,7 +51,7 @@ router.use('/bots', botsRoutes);
 router.use('/bots/:botId/guilds/:guildId/music', musicRoutes);
 router.use('/user', userRoutes);
 
-router.get('*', (req, res) => res.status(404).json({ code: 404 }));
+router.get(/.*/, (req, res) => res.status(404).json({ code: 404 }));
 
 export function sendError(res: any, code: number, error: Error) {
   return res.status(code).json({ code, message: error?.message })

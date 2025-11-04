@@ -16,8 +16,15 @@ Deps.get<EventsService>(EventsService).init();
 Deps.get<CommandService>(CommandService).init();
 Deps.get<AutoMod>(AutoMod).init();
 
-mongoose.connect(process.env.MONGO_URI, { 
-    useUnifiedTopology: true, 
-    useNewUrlParser: true, 
-    useFindAndModify: false 
-});
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+    console.error('MONGO_URI is not set');
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => {
+        console.error('MongoDB connection error:', err);
+        process.exit(1);
+    });

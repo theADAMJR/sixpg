@@ -1,6 +1,6 @@
-import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionString } from 'discord.js';
+import { Message, GuildMember, TextChannel, Guild, User, Client, PermissionsString } from 'discord.js';
 
-export type Permission = '' | PermissionString;
+export type Permission = '' | PermissionsString;
 
 export interface Command {
     cooldown?: number;

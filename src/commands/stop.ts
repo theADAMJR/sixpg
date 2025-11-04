@@ -6,7 +6,7 @@ export default class StopCommand implements Command {
     aliases = ['leave'];
     name = 'stop';
     summary = 'Stop playback, clear list, and leave channel';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     cooldown = 5;
     module = 'Music';
 

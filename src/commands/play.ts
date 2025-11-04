@@ -8,7 +8,7 @@ export default class PlayCommand implements Command {
     cooldown = 2;
     module = 'Music';
     name = 'play';
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     summary = 'Join and play a YouTube result.';
     usage = 'play query'
 

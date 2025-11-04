@@ -1,5 +1,5 @@
 import { model, Schema, Document } from 'mongoose';
-import { PermissionString } from 'discord.js';
+import { PermissionsString } from 'discord.js';
 
 const commandSchema = new Schema({
     name: String,
@@ -14,7 +14,7 @@ export interface CommandDocument extends Document {
     summary: string;
     module: string;
     usage: string;
-    precondition?: PermissionString;
+    precondition?: PermissionsString;
 }
 
 export const SavedCommand = model<CommandDocument>('command', commandSchema);

@@ -8,7 +8,7 @@ import CommandUtils from '../utils/command-utils';
 export default class WarningsCommand implements Command {
     name = 'warnings';
     summary = 'Display the warnings of a member.';
-    precondition: Permission = 'VIEW_AUDIT_LOG';
+    precondition: Permission = 'ViewAuditLog';
     cooldown = 3;
     module = 'Auto-mod';
 

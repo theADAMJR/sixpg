@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
         const clients = await getManageableBots(req.query.key.toString());
         
         res.json(clients);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.post('/', async (req, res) => {
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
         await savedBot.save();
 
         res.json(savedBot);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.patch('/:id', async (req, res) => {
@@ -59,10 +59,10 @@ router.patch('/:id', async (req, res) => {
             const bot = await events.startBot(req.body.token);
     
             res.json(bot.user);
-        } catch (error) {
+        } catch (error: any) {
             throw new TypeError('Invalid token, reverting back.');
         }
-    } catch (error) { sendError(res, 400, error); }    
+    } catch (error: any) { sendError(res, 400, error); }    
 });
 
 router.delete('/:id', async (req, res) => {
@@ -73,7 +73,7 @@ router.delete('/:id', async (req, res) => {
         await bots.delete(id);
 
         res.json({ success: true });
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.put('/:id/:module', async (req, res) => {
@@ -99,7 +99,7 @@ router.put('/:id/:module', async (req, res) => {
         await log.save();
             
         res.json(savedConfig);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/:id/config', async (req, res) => {
@@ -107,7 +107,7 @@ router.get('/:id/config', async (req, res) => {
         const savedConfig = await bots.get({ id: req.params.id });
 
         res.json(savedConfig);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/:id/log', async(req, res) => {
@@ -116,7 +116,7 @@ router.get('/:id/log', async(req, res) => {
         const log = await logs.get(bot.user);
 
         res.send(log);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/:id/public', (req, res) => {
@@ -132,7 +132,7 @@ router.get('/:botId/guilds', (req, res) => {
             throw new TypeError('Bot not found.');
 
         res.json(bot.guilds.cache);        
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 
@@ -146,7 +146,7 @@ router.get('/:botId/guilds/:guildId', (req, res) => {
         const guild = bot.guilds.cache.get(guildId);
 
         res.json(guild);        
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/:botId/guilds/:guildId/members', async (req, res) => {
@@ -166,7 +166,7 @@ router.get('/:botId/guilds/:guildId/members', async (req, res) => {
         rankedMembers.sort((a, b) => b.xp - a.xp);
     
         res.json(rankedMembers);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/:botId/guilds/:guildId/members/:memberId/xp-card', async (req, res) => {
@@ -190,7 +190,7 @@ router.get('/:botId/guilds/:guildId/members/:memberId/xp-card', async (req, res)
         const image = await generator.generate(savedMember);
         
         res.set({'Content-Type': 'image/png'}).send(image);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 export async function validateBotOwner(key: string, botId: string) {
@@ -213,7 +213,7 @@ function leaderboardMember(user: User, xpInfo: any) {
         id: user.id,
         username: user.username,
         tag: '#' + user.discriminator,
-        displayAvatarURL: user.displayAvatarURL({ dynamic: true }),
+        displayAvatarURL: user.displayAvatarURL(),
         ...xpInfo
     };
 }

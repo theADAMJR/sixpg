@@ -3,7 +3,7 @@ import Deps from '../utils/deps';
 import Music from '../modules/music/music';
 
 export default class ShuffleCommand implements Command {
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     name = 'shuffle';
     summary = 'Shuffle a playlist.';
     cooldown = 3;

@@ -3,7 +3,7 @@ import Deps from '../utils/deps';
 import Music from '../modules/music/music';
 
 export default class SeekCommand implements Command {
-    precondition: Permission = 'SPEAK';
+    precondition: Permission = 'Speak';
     name = 'seek';
     usage = 'seek [position]';
     summary = 'View current track position, or go to a position in a track.';

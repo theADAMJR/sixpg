@@ -12,7 +12,7 @@ export default class Validators {
     }
 
     checkPreconditions(command: Command, executor: GuildMember) {
-        if (command.precondition && !executor.hasPermission(command.precondition))
+        if (command.precondition && !executor.permissions.has(command.precondition))
             throw new TypeError(`**Required Permission**: \`${command.precondition}\``);
     }
 

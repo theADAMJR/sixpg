@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         const user = await getUser(req.query.key);
         res.json(user);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/saved', async (req, res) => {
@@ -20,7 +20,7 @@ router.get('/saved', async (req, res) => {
         const user = await getUser(req.query.key);
         const savedUser = await Deps.get<Users>(Users).get(user);
         res.json(savedUser);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.get('/xp-card-preview', async (req, res) => {
@@ -43,7 +43,7 @@ router.get('/xp-card-preview', async (req, res) => {
             {...savedUser.xpCard, ...req.query });
         
         res.set({'Content-Type': 'image/png'}).send(image);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 router.put('/xp-card', async (req, res) => {        
@@ -55,7 +55,7 @@ router.put('/xp-card', async (req, res) => {
         await savedUser.save();
         
         res.send(savedUser);
-    } catch (error) { sendError(res, 400, error); }
+    } catch (error: any) { sendError(res, 400, error); }
 });
 
 export async function getUser(key: any) {
